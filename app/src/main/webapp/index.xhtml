@@ -26,5 +26,48 @@
         <h:outputText value="#{bean.result}" />
     </h:form>
 
+    <div id = "login">
+        <h:form>
+            <h:outputLabel for="name">Name</h:outputLabel>
+            <h:inputText id="name" value="#{user.username}"
+                         size="20" required="true"
+                         label="Name" >
+                <f:validateLength minimum="3" maximum="50" />
+                <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />
+            </h:inputText>
+
+            <h:outputText value="&lt;br/&gt;" escape="false" />
+
+            <h:outputLabel for="surname">Surname</h:outputLabel>
+            <h:inputText id="surname" value="#{user.username}"
+                         size="20" required="true"
+                         label="Surname" >
+                <f:validateLength minimum="3" maximum="50" />
+                <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />
+            </h:inputText>
+
+            <h:outputLabel for ="password">Password</h:outputLabel>
+            <h:inputSecret id ="password" value="#{LoginController.password}"/>
+
+            <h:outputLabel for="username">Username</h:outputLabel>
+            <h:inputText id ="username" value="#{LoginController.password}"/>
+
+            <h:outputLabel for="email">E-mai</h:outputLabel>
+            <h:inputText id="email" value="#{settingsBean.aFriendEmail}" required="true" label="Email"
+                         validatorMessage="#{settingsBean.aFriendEmail} is not valid">
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+            </h:inputText>
+
+            <h:outputLabel for="data">Data</h:outputLabel>
+            <h:inputText id = "data" value="#{backingBean.someDate}">
+                <f:convertDateTime pattern="dd/mm/yyyy"/>
+            </h:inputText>
+
+
+            <h:commandButton value="Welcom" action="#{LoginController.login}"/>
+        </h:form>
+    </div>
+
+
 </h:body>
 </html>
