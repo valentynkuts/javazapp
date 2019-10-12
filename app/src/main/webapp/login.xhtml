@@ -5,7 +5,22 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+
+<h:head>h:hh
+    <h:outputStylesheet library="css" name="main.css"  />
+</h:head>
+<h:body>
+
+    <h1>Form</h1>
+
+    <div id = "login">
+        <h:form>
+            <h:inputText value="#{LoginController.username}"/>
+            <h:inputSecret value="#{LoginController.password}"/>
+            <h:commandButton value="Welcom" action="#{LoginController.login}"/>
+        </h:form>
+    </div>
+
+</h:body>
+
 </html>
