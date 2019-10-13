@@ -5,63 +5,61 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world from index.xhtml"/>
-</f:view>
+
 
 <h:body>
 
     <h1>Form</h1>
 
-    <h:form>
-        <h:inputText value="#{bean.text}" required="true" />
-        <h:selectOneMenu value="#{bean.choice}" required="true">
-            <f:selectItem itemValue="#{null}" />
-            <f:selectItem itemValue="One" />
-            <f:selectItem itemValue="Two" />
-            <f:selectItem itemValue="Three" />
-        </h:selectOneMenu>
-        <h:commandButton value="submit" action="#{bean.submit}" />
-        <h:messages />
-        <h:outputText value="#{bean.result}" />
-    </h:form>
-
-    <div id = "login">
+    <div id="login">
         <h:form>
             <h:outputLabel for="name">Name</h:outputLabel>
-            <h:inputText id="name" value="#{user.username}"
+            <h:inputText id="name" value="#{LoginController.name}"
                          size="20" required="true"
-                         label="Name" >
-                <f:validateLength minimum="3" maximum="50" />
-                <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />
+                         label="Name">
+                <f:validateLength minimum="3" maximum="50"/>
+                <f:validateRegex pattern="[a-zA-Z]"/>
             </h:inputText>
 
-            <h:outputText value="&lt;br/&gt;" escape="false" />
+            <h:outputText value="&lt;br/&gt;" escape="false"/>
 
             <h:outputLabel for="surname">Surname</h:outputLabel>
-            <h:inputText id="surname" value="#{user.username}"
+            <h:inputText id="surname" value="#{LoginController.surname}"
                          size="20" required="true"
-                         label="Surname" >
-                <f:validateLength minimum="3" maximum="50" />
-                <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />
+                         label="Surname">
+                <f:validateLength minimum="3" maximum="50"/>
+                <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$"/>
             </h:inputText>
 
-            <h:outputLabel for ="password">Password</h:outputLabel>
-            <h:inputSecret id ="password" value="#{LoginController.password}"/>
+            <h:outputText value="&lt;br/&gt;" escape="false"/>
+
+            <h:outputLabel for="password">Password</h:outputLabel>
+            <h:inputSecret id="password" value="#{LoginController.password}">
+                <f:validateLength minimum="5" maximum="30"/>
+                <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$"/>
+            </h:inputSecret>
+
+            <h:outputText value="&lt;br/&gt;" escape="false"/>
 
             <h:outputLabel for="username">Username</h:outputLabel>
-            <h:inputText id ="username" value="#{LoginController.password}"/>
+            <h:inputText id="username" value="#{LoginController.username}"/>
+
+            <h:outputText value="&lt;br/&gt;" escape="false"/>
 
             <h:outputLabel for="email">E-mai</h:outputLabel>
-            <h:inputText id="email" value="#{settingsBean.aFriendEmail}" required="true" label="Email"
+            <h:inputText id="email" value="#{LoginController.email}" required="true" label="Email"
                          validatorMessage="#{settingsBean.aFriendEmail} is not valid">
-                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
             </h:inputText>
 
+            <h:outputText value="&lt;br/&gt;" escape="false"/>
+
             <h:outputLabel for="data">Data</h:outputLabel>
-            <h:inputText id = "data" value="#{backingBean.someDate}">
+            <h:inputText id="data" value="#{LoginController.date}">
                 <f:convertDateTime pattern="dd/mm/yyyy"/>
             </h:inputText>
+
+            <h:outputText value="&lt;br/&gt;" escape="false"/>
 
 
             <h:commandButton value="Welcom" action="#{LoginController.login}"/>
