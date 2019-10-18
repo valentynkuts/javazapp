@@ -1,11 +1,11 @@
-package pl.edu.pjwstk.jaz.login;
+package pl.edu.pjwstk.jaz.webapp;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class LoginRequest {
+public class Logintest {
 
     private String name;
     private String surname;
@@ -63,12 +63,15 @@ public class LoginRequest {
         this.date = date;
     }
 
-
     @Override
     public String toString() {
         return "LoginRequest{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void action(){
+        System.out.println("Welcom");
     }
 }

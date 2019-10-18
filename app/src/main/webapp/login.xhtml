@@ -6,55 +6,96 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>h:hh
-    <h:outputStylesheet library="css" name="main.css"  />
+<h:head>
+    <!-- Bootstrap core CSS -->
+    <h:outputStylesheet name="bootstrap/css/bootstrap.min.css"/>
+    <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
+
+    <f:verbatim>
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </f:verbatim>
 </h:head>
+
 <h:body>
 
-    <h1>Form</h1>
+    <h2>Login Form</h2>
 
-    <div id = "login">
-        <h:form>
-            <h:outputLabel for="name">Name</h:outputLabel>
-            <h:inputText id="name" value="#{user.username}"
-                         size="20" required="true"
-                         label="Name" >
-                <f:validateLength minimum="3" maximum="50" />
-                <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />
-            </h:inputText>
+    <h:panelGroup class="container">
 
-            <h:outputLabel for="surname">Surname</h:outputLabel>
-            <h:inputText id="surname" value="#{user.username}"
-                         size="20" required="true"
-                         label="Surname" >
-                <f:validateLength minimum="3" maximum="50" />
-                <f:validateRegex pattern="^([a-zA-Z]+(.)?[\s]*)$" />
-            </h:inputText>
+        <h:form class="form">
+            <h:panelGroup class="row">
+                <h:panelGroup class="form-group col-xs-4">
+                    <h:outputLabel for="name">Name</h:outputLabel>
+                    <h:inputText id="name" value="#{loginRequest.name}" class="form-control">
+                        <f:validateLength minimum="3" maximum="50"/>
+                        <f:validateRegex pattern="[\p{L}\d]+"/>
+                    </h:inputText>
+                </h:panelGroup>
+            </h:panelGroup>
 
-            <h:outputLabel for ="password">Password</h:outputLabel>
-            <h:inputSecret id ="password" value="#{LoginController.password}"/>
+            <h:panelGroup class="row">
+                <h:panelGroup class="form-group col-xs-4">
+                    <h:outputLabel for="surname">Surname</h:outputLabel>
+                    <h:inputText id="surname" value="#{loginRequest.surname}" class="form-control">
+                        <f:validateLength minimum="3" maximum="50"/>
+                        <f:validateRegex pattern="[\p{L}\d]+"/>
+                    </h:inputText>
+                </h:panelGroup>
+            </h:panelGroup>
 
-            <h:outputLabel for="username">Username</h:outputLabel>
-            <h:inputText id ="username" value="#{LoginController.password}"/>
+            <h:panelGroup class="row">
+                <h:panelGroup class="form-group col-xs-4">
+                    <h:outputLabel for="password">Password</h:outputLabel>
+                    <h:inputSecret id="password" value="#{loginRequest.password}" class="form-control">
+                        <f:validateLength minimum="5" maximum="30"/>
+                        <f:validateRegex pattern="[\p{Ll}\p{Lu}\d]+"/>
+                    </h:inputSecret>
+                </h:panelGroup>
+            </h:panelGroup>
 
-            <h:outputLabel for="email">E-mai</h:outputLabel>
-            <h:inputText id="email" value="#{settingsBean.aFriendEmail}" required="true" label="Email"
-                         validatorMessage="#{settingsBean.aFriendEmail} is not valid">
-                <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
-            </h:inputText>
+            <h:panelGroup class="row">
+                <h:panelGroup class="form-group col-xs-4">
+                    <h:outputLabel for="username">Username</h:outputLabel>
+                    <h:inputText id="username" value="#{loginRequest.username}" class="form-control">
+                        <f:validateRegex pattern="[a-z0-9]+"/>
+                    </h:inputText>
+                </h:panelGroup>
+            </h:panelGroup>
 
-            <h:outputLabel for="data">Data</h:outputLabel>
-            <h:inputText id = "data" value="#{backingBean.someDate}">
-                <f:convertDateTime pattern="dd/mm/yyyy"/>
-            </h:inputText>
+            <h:panelGroup class="row">
+                <h:panelGroup class="form-group col-xs-4">
+                    <h:outputLabel for="email">E-mai</h:outputLabel>
+                    <h:inputText id="email" value="#{loginRequest.email}" class="form-control">
+                        <f:validateRegex
+                                pattern="(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|&quot;
+                                (?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*&quot;
+                                )@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|
+                                2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:
+                                (?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"/>
+                    </h:inputText>
+                </h:panelGroup>
+            </h:panelGroup>
+
+            <h:panelGroup class="row">
+                <h:panelGroup class="form-group col-xs-4">
+                    <h:outputLabel for="data">Data</h:outputLabel>
+                    <h:inputText id="data" value="#{loginRequest.date}" class="form-control">
+                        <f:convertDateTime pattern="dd/mm/yyyy"/>
+                    </h:inputText>
+                </h:panelGroup>
+            </h:panelGroup>
 
 
-            <h:commandButton value="Welcom" action="#{LoginController.login}"/>
+            <h:panelGroup>
+                <h:commandButton value="Welcom" action="#{loginController.login}" class="btn btn-default btn-sm"/>
+            </h:panelGroup>
+
         </h:form>
-    </div>
+    </h:panelGroup>
 
-    <h:link value="Login page" outcome="login" />
 
 </h:body>
-
 </html>
