@@ -15,4 +15,8 @@ public class LoginController {
     public void login() {
         System.out.println("Tried to log in using " + loginRequest.toString());
     }
+
+    public String info() {
+        return  loginRequest.msg();
+    }
 }
