@@ -17,7 +17,7 @@ import java.io.IOException;
 
 @Named
 @RequestScoped
-public class LoginRequest extends HttpServlet {
+public class LoginRequest{
 
     private String name;
     private String surname;
@@ -110,29 +110,7 @@ public class LoginRequest extends HttpServlet {
                 '}';
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req,
-                          HttpServletResponse res) throws ServletException, IOException {
-        //response.setContentType("text/html");
-        var respWriter = res.getWriter();
-        String name = req.getParameter("name");
-        String pwd = req.getParameter("password");
-        String username = req.getParameter("username");
 
-        if (name.equals("Test") && pwd.equals("Test1234")) {
-
-            HttpSession session = req.getSession(true); // reuse existing
-            // session if exist
-            // or create one
-            session.setAttribute("username", username);
-            session.setMaxInactiveInterval(30); // 30 seconds
-            res.sendRedirect("index.xhtml");
-        } else {
-            RequestDispatcher rd = req.getRequestDispatcher("login.xhtml");
-            respWriter.println("<font color=red>Either user name or password is wrong.</font>");
-            rd.include(req, res);
-        } // TODO Auto-generated method stub
-    }
     public void validatePasswordCorrect(FacesContext context, UIComponent component, Object value) {
 
         // Retrieve the value passed to this method

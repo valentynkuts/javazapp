@@ -19,66 +19,31 @@ import java.io.IOException;
 
 @Named
 @RequestScoped
-@SessionScoped
-public class LoginController extends HttpServlet {
+
+public class LoginController {
     @Inject
     private LoginRequest loginRequest;
-    @Inject
-    private SessionBean sessionBean;
+
+
 
     public String info() {
         return loginRequest.msg();
     }
 
     public void login() {
-        if (loginRequest.getUsername() == "qqqq1234") {
-            FacesContext context = FacesContext.getCurrentInstance();
-            //context.getExternalContext().getSessionMap().put("username", loginRequest.getUsername());
-            HttpServletRequest session = (HttpServletRequest) context.getExternalContext().getSession(true);
+        if(loginRequest.isAttributesSet()){
+            if (loginRequest.getUsername().equals("qqqq1234")) {
 
-            //HttpSession session = request.getSession(true); // reuse existing
-            // session if exist
-            // or create one
-            session.setAttribute("username", loginRequest.getUsername());
+                FacesContext facesContext = FacesContext.getCurrentInstance();
+                HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+                session.setAttribute("username", loginRequest.getUsername());
+                //session.getSessionMaxInactiveInterval(30); // 30 seconds //????
 
+            }
 
-//            ExternalContext c =
-//            session.getSessionMaxInactiveInterval(30); // 30 seconds
-//            response.sendRedirect("home.jsp");
         }
-//        if(loginRequest.isAttributesSet()){
-//
-//        }
 
     }
 
-
-    @Override
-    protected void doPost(HttpServletRequest req,
-                          HttpServletResponse res) throws ServletException, IOException {
-        //response.setContentType("text/html");
-        var respWriter = res.getWriter();
-//        String name = req.getParameter("name");
-//        String pwd = req.getParameter("password");
-//        String username = req.getParameter("username");
-
-        String name = loginRequest.getName();
-        String pwd = loginRequest.getPassword();
-        String username = loginRequest.getUsername();
-
-        if (name.equals("Test") && pwd.equals("Test1234")) {
-
-            HttpSession session = req.getSession(true); // reuse existing
-            // session if exist
-            // or create one
-            session.setAttribute("username", username);
-            session.setMaxInactiveInterval(30); // 30 seconds
-            res.sendRedirect("index.xhtml");
-        } else {
-            RequestDispatcher rd = req.getRequestDispatcher("login.xhtml");
-            respWriter.println("<font color=red>Either user name or password is wrong.</font>");
-            rd.include(req, res);
-        } // TODO Auto-generated method stub
-    }
 }
 
