@@ -2,20 +2,13 @@ package pl.edu.pjwstk.jaz.webapp;
 
 import pl.edu.pjwstk.jaz.login.LoginRequest;
 
-import javax.ejb.SessionBean;
 import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
-import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.HashMap;
 
 @Named
 @RequestScoped
@@ -24,24 +17,50 @@ public class LoginController {
     @Inject
     private LoginRequest loginRequest;
 
+    private HashMap<String, String> data = new HashMap<String, String>();
 
 
     public String info() {
         return loginRequest.msg();
     }
 
-    public void login() {
+    public void login() throws IOException {
+
+//        data.put("name", "Test");
+//        data.put("surname", "surTest");
+//        data.put("password", "1234qQQQ");
+//        data.put("username", "qqqq1234");
+//        data.put("email", "test@gmail.com");
+//        data.put("birthday", "22/02/2002");
+
+        data.put("name", loginRequest.getName());
+        data.put("surname", loginRequest.getSurname());
+        data.put("password", loginRequest.getPassword());
+        data.put("username", loginRequest.getUsername());
+        data.put("email", loginRequest.getEmail());
+        data.put("birthday", loginRequest.getBirthday());
+
+        String username = data.get("username");
+
         if(loginRequest.isAttributesSet()){
-            if (loginRequest.getUsername().equals("qqqq1234")) {
+            if (loginRequest.getUsername().equals(data.get("username"))) {
 
                 FacesContext facesContext = FacesContext.getCurrentInstance();
                 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
                 session.setAttribute("username", loginRequest.getUsername());
                 //session.getSessionMaxInactiveInterval(30); // 30 seconds //????
 
+                System.out.println(session.getAttribute("username"));
+
+                facesContext.getExternalContext().redirect("index.xhtml");
+
             }
 
         }
+
+    }
+    public String welcomUserName() {
+        return "Welcom " + loginRequest.getName() + " " + loginRequest.getSurname();
 
     }
 
