@@ -2,7 +2,11 @@ package pl.edu.pjwstk.jaz.webapp;
 
 import pl.edu.pjwstk.jaz.login.LoginRequest;
 
+import javax.ejb.SessionBean;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.RequestDispatcher;
@@ -15,23 +19,37 @@ import java.io.IOException;
 
 @Named
 @RequestScoped
+@SessionScoped
 public class LoginController extends HttpServlet {
     @Inject
     private LoginRequest loginRequest;
+    @Inject
+    private SessionBean sessionBean;
 
     public String info() {
         return loginRequest.msg();
     }
 
     public void login() {
-//        if (loginRequest.getEmail() == "qqqq") {
-//            HttpSession session = request.getSession(true); // reuse existing
-//            // session if exist
-//            // or create one
-//            session.setAttribute("user", un);
-//            session.setMaxInactiveInterval(30); // 30 seconds
+        if (loginRequest.getUsername() == "qqqq1234") {
+            FacesContext context = FacesContext.getCurrentInstance();
+            //context.getExternalContext().getSessionMap().put("username", loginRequest.getUsername());
+            HttpServletRequest session = (HttpServletRequest) context.getExternalContext().getSession(true);
+
+            //HttpSession session = request.getSession(true); // reuse existing
+            // session if exist
+            // or create one
+            session.setAttribute("username", loginRequest.getUsername());
+
+
+//            ExternalContext c =
+//            session.getSessionMaxInactiveInterval(30); // 30 seconds
 //            response.sendRedirect("home.jsp");
+        }
+//        if(loginRequest.isAttributesSet()){
+//
 //        }
+
     }
 
 
@@ -40,9 +58,13 @@ public class LoginController extends HttpServlet {
                           HttpServletResponse res) throws ServletException, IOException {
         //response.setContentType("text/html");
         var respWriter = res.getWriter();
-        String name = req.getParameter("name");
-        String pwd = req.getParameter("password");
-        String username = req.getParameter("username");
+//        String name = req.getParameter("name");
+//        String pwd = req.getParameter("password");
+//        String username = req.getParameter("username");
+
+        String name = loginRequest.getName();
+        String pwd = loginRequest.getPassword();
+        String username = loginRequest.getUsername();
 
         if (name.equals("Test") && pwd.equals("Test1234")) {
 

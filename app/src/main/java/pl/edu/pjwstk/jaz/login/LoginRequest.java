@@ -7,10 +7,17 @@ import javax.faces.component.UIInput;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
 import javax.inject.Named;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @Named
 @RequestScoped
-public class LoginRequest {
+public class LoginRequest extends HttpServlet {
 
     private String name;
     private String surname;
@@ -77,7 +84,12 @@ public class LoginRequest {
         this.birthday = birthday;
     }
 
-
+    public boolean isAttributesSet(){
+        if(name != null && surname != null && password != null && passwordConfirm != null && username != null
+                && email != null && birthday != null)
+            return true;
+        return false;
+    }
     @Override
     public String toString() {
         return "LoginRequest{" +
@@ -98,6 +110,29 @@ public class LoginRequest {
                 '}';
     }
 
+    @Override
+    protected void doPost(HttpServletRequest req,
+                          HttpServletResponse res) throws ServletException, IOException {
+        //response.setContentType("text/html");
+        var respWriter = res.getWriter();
+        String name = req.getParameter("name");
+        String pwd = req.getParameter("password");
+        String username = req.getParameter("username");
+
+        if (name.equals("Test") && pwd.equals("Test1234")) {
+
+            HttpSession session = req.getSession(true); // reuse existing
+            // session if exist
+            // or create one
+            session.setAttribute("username", username);
+            session.setMaxInactiveInterval(30); // 30 seconds
+            res.sendRedirect("index.xhtml");
+        } else {
+            RequestDispatcher rd = req.getRequestDispatcher("login.xhtml");
+            respWriter.println("<font color=red>Either user name or password is wrong.</font>");
+            rd.include(req, res);
+        } // TODO Auto-generated method stub
+    }
     public void validatePasswordCorrect(FacesContext context, UIComponent component, Object value) {
 
         // Retrieve the value passed to this method
