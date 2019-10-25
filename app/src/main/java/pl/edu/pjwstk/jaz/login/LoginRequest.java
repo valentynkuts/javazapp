@@ -90,15 +90,9 @@ public class LoginRequest{
             return true;
         return false;
     }
+
     @Override
     public String toString() {
-        return "LoginRequest{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
-    }
-
-    public String msg() {
         return "LoginRequest{" +
                 " name ='" + name + '\'' +
                 ", surname ='" + surname + '\'' +

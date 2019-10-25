@@ -21,7 +21,7 @@ public class LoginController {
 
 
     public String info() {
-        return loginRequest.msg();
+        return loginRequest.toString();
     }
 
     public void login() throws IOException {
@@ -47,10 +47,11 @@ public class LoginController {
 
                 FacesContext facesContext = FacesContext.getCurrentInstance();
                 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-                session.setAttribute("username", loginRequest.getUsername());
-                //session.getSessionMaxInactiveInterval(30); // 30 seconds //????
+                session.setAttribute("name", loginRequest.getName());
+                session.setAttribute("surname", loginRequest.getSurname());
+                ////session.getSessionMaxInactiveInterval(30); // 30 seconds //????
 
-                System.out.println(session.getAttribute("username"));
+                //System.out.println(session.getAttribute("name"));
 
                 facesContext.getExternalContext().redirect("index.xhtml");
 
@@ -60,7 +61,9 @@ public class LoginController {
 
     }
     public String welcomUserName() {
-        return "Welcom " + loginRequest.getName() + " " + loginRequest.getSurname();
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        return session.getAttribute("name") + "  " + session.getAttribute("surname");
 
     }
 
