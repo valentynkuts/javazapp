@@ -15,9 +15,9 @@
             <property name="hibernate.connection.provider_class"
                       value="org.hibernate.hikaricp.internal.HikariCPConnectionProvider"/>
             <property name="hibernate.hikari.driverClassName" value="org.postgresql.Driver"/>
-            <property name="hibernate.hikari.jdbcUrl" value="jdbc:postgresql://localhost:5432/jazapp"/>
-            <property name="hibernate.hikari.username" value="jazapp"/>
-            <property name="hibernate.hikari.password" value="jazapp!98"/>
+            <property name="hibernate.hikari.jdbcUrl" value="jdbc:postgresql://localhost:5432/javaZapp"/>
+            <property name="hibernate.hikari.username" value="javaZapp"/>
+            <property name="hibernate.hikari.password" value="javaZapp123"/>
 
         </properties>
     </persistence-unit>

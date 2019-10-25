@@ -29,9 +29,9 @@ public class LiquibaseConfig {
     public DataSource createDataSource() throws SQLException {
         var config = new HikariConfig();
         config.setDriverClassName("org.postgresql.Driver");
-        config.setJdbcUrl("jdbc:postgresql://localhost:5432/jazapp");
-        config.setUsername("jazapp");
-        config.setPassword("jazapp!98");
+        config.setJdbcUrl("jdbc:postgresql://localhost:5432/javaZapp");
+        config.setUsername("javaZapp");
+        config.setPassword("javaZapp123");
 
         return new HikariDataSource(config);
     }
