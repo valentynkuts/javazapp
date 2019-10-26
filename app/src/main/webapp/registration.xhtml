@@ -24,15 +24,14 @@
     <h:panelGroup class="container">
 
         <h:panelGroup class="row col-md-2 col-md-offset-5">
-            <h2>Login Form</h2>
-            <h:link value="Registration page" outcome="registration" />
+            <h2>Registration Form</h2>
         </h:panelGroup>
 
         <h:form class="form">
 
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="name">Name</h:outputLabel>
-                <h:inputText id="name" value="#{loginRequest.name}" class="form-control">
+                <h:inputText id="name" value="#{user.name}" class="form-control">
                     <f:validateLength minimum="3" maximum="50"/>
                     <f:validateRegex pattern="[\p{L}\d]+"/>
                 </h:inputText>
@@ -40,7 +39,7 @@
 
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="surname">Surname</h:outputLabel>
-                <h:inputText id="surname" value="#{loginRequest.surname}" class="form-control">
+                <h:inputText id="surname" value="#{user.surname}" class="form-control">
                     <f:validateLength minimum="3" maximum="50"/>
                     <f:validateRegex pattern="[\p{L}\d]+"/>
                 </h:inputText>
@@ -48,7 +47,7 @@
 
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="password">Password</h:outputLabel>
-                <h:inputSecret id="password" value="#{loginRequest.password}" class="form-control">
+                <h:inputSecret id="password" value="#{user.password}" class="form-control">
                     <f:validateLength minimum="5" maximum="30"/>
                     <f:validateRegex pattern="(?=.*[\d])(?=.*[\p{Ll}])(?=.*[\p{Lu}])[\p{Ll}\p{Lu}\d]+"/>
                 </h:inputSecret>
@@ -56,7 +55,7 @@
 
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="password">Confirm password</h:outputLabel>
-                <h:inputSecret id="password_confirm" value="#{loginRequest.passwordConfirm}" class="form-control"
+                <h:inputSecret id="password_confirm" value="#{user.passwordConfirm}" class="form-control"
                                validator="#{loginRequest.validatePasswordCorrect}">
                     <!--
                     <f:validateLength minimum="5" maximum="30"/>
@@ -67,14 +66,14 @@
 
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="username">Username</h:outputLabel>
-                <h:inputText id="username" value="#{loginRequest.username}" class="form-control">
+                <h:inputText id="username" value="#{user.username}" class="form-control">
                     <f:validateRegex pattern="(?=.*[\d])(?=.*[a-z])[a-z0-9]+"/>
                 </h:inputText>
             </h:panelGroup>
 
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="email">E-mail</h:outputLabel>
-                <h:inputText id="email" value="#{loginRequest.email}" class="form-control">
+                <h:inputText id="email" value="#{user.email}" class="form-control">
                     <f:validateRegex
                             pattern="(?:[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&amp;'*+/=?^_`{|}~-]+)*|&quot;
                                 (?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*&quot;
@@ -86,16 +85,16 @@
 
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="birthday">Birthday</h:outputLabel>
-                <h:inputText id="birthday" value="#{loginRequest.birthday}" class="form-control">
+                <h:inputText id="birthday" value="#{user.birthday}" class="form-control">
                     <f:convertDateTime pattern="dd/mm/yyyy"/>
                 </h:inputText>
             </h:panelGroup>
 
             <h:panelGroup class="row">
-                <h:commandButton value="Welcom" action="#{loginController.login}" class="btn col-md-2 col-md-offset-5"/>
+                <h:commandButton value="Welcom" action="#{registrationController.registration}" class="btn col-md-2 col-md-offset-5"/>
             </h:panelGroup>
             <h:messages>
-                <h:outputText value="#{loginController.info()}"/>
+                <h:outputText value="#{registrationController.info()}"/>
             </h:messages>
 
         </h:form>
@@ -103,4 +102,5 @@
 
 
 </h:body>
+
 </html>

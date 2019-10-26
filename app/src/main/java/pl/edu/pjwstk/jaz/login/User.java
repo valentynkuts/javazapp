@@ -10,8 +10,8 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class LoginRequest{
 
+public class User {
     private String name;
     private String surname;
     private String password;
@@ -86,7 +86,7 @@ public class LoginRequest{
 
     @Override
     public String toString() {
-        return "LoginRequest{" +
+        return "User{" +
                 " name ='" + name + '\'' +
                 ", surname ='" + surname + '\'' +
                 ", username ='" + username + '\'' +
@@ -113,6 +113,5 @@ public class LoginRequest{
             throw new ValidatorException(msg);
         }
     }
-
 
 }

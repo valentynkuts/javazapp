@@ -1,8 +1,8 @@
 databaseChangeLog:
   - changeSet:
-      id: 20191021_init
+      id: 20191025_init
       author: Valentyn Kuts
       sqlFile:
         relativeToChangelogFile: true
         splitStatements: false
-        path: 20191021_init.sql
+        path: 20191025_init.sql
