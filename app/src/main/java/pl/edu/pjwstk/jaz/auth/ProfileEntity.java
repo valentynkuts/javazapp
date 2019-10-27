@@ -23,7 +23,7 @@ public class ProfileEntity {
     public ProfileEntity() {
     }
 
-    public ProfileEntity(String name,String surname,String password,String email,String username,String birthday) {
+    public ProfileEntity(String name, String surname, String password, String email, String username, String birthday) {
 
         this.name = name;
         this.surname = surname;

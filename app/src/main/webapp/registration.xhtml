@@ -57,10 +57,6 @@
                 <h:outputLabel for="password">Confirm password</h:outputLabel>
                 <h:inputSecret id="password_confirm" value="#{user.passwordConfirm}" class="form-control"
                                validator="#{loginRequest.validatePasswordCorrect}">
-                    <!--
-                    <f:validateLength minimum="5" maximum="30"/>
-                    <f:validateRegex pattern="(?=.*[\d])(?=.*[\p{Ll}])(?=.*[\p{Lu}])[\p{Ll}\p{Lu}\d]+"/>
-                    -->
                 </h:inputSecret>
             </h:panelGroup>
 
@@ -86,15 +82,17 @@
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="birthday">Birthday</h:outputLabel>
                 <h:inputText id="birthday" value="#{user.birthday}" class="form-control">
-                    <f:convertDateTime pattern="dd/mm/yyyy"/>
+                    <f:convertDateTime type="date" pattern="dd/mm/yyyy"/>
                 </h:inputText>
             </h:panelGroup>
 
             <h:panelGroup class="row">
-                <h:commandButton value="Welcom" action="#{registrationController.registration}" class="btn col-md-2 col-md-offset-5"/>
+                <h:commandButton value="Welcom" action="#{registrationController.registration}"
+                                 class="btn col-md-2 col-md-offset-5"/>
             </h:panelGroup>
             <h:messages>
-                <h:outputText value="#{registrationController.info()}"/>
+                <h:outputText rendered="#{registrationController.getIsUserExist()}"
+                              value="#{registrationController.info()}"/>
             </h:messages>
 
         </h:form>
