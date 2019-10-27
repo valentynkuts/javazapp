@@ -10,12 +10,12 @@ import javax.inject.Named;
 
 @Named
 @RequestScoped
-public class LoginRequest{
+public class LoginRequest {
 
     private String name;
     private String surname;
     private String password;
-    private String passwordConfirm;
+    //private String passwordConfirm;
     private String email;
     private String username;
     private String birthday;
@@ -44,13 +44,13 @@ public class LoginRequest{
         this.password = password;
     }
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
+//    public String getPasswordConfirm() {
+//        return passwordConfirm;
+//    }
+//
+//    public void setPasswordConfirm(String passwordConfirm) {
+//        this.passwordConfirm = passwordConfirm;
+//    }
 
     public String getEmail() {
         return email;
@@ -77,8 +77,8 @@ public class LoginRequest{
         this.birthday = birthday;
     }
 
-    public boolean isAttributesSet(){
-        if(name != null && surname != null && password != null && passwordConfirm != null && username != null
+    public boolean isAttributesSet() {
+        if (name != null && surname != null && password != null && username != null
                 && email != null && birthday != null)
             return true;
         return false;
@@ -91,13 +91,12 @@ public class LoginRequest{
                 ", surname ='" + surname + '\'' +
                 ", username ='" + username + '\'' +
                 ", password ='" + password + '\'' +
-                ", passwordConfirm ='" + passwordConfirm + '\'' +
                 ", email ='" + email + '\'' +
                 ", birthday ='" + birthday + '\'' +
                 '}';
     }
 
-
+/*
     public void validatePasswordCorrect(FacesContext context, UIComponent component, Object value) {
 
         // Retrieve the value passed to this method
@@ -108,11 +107,11 @@ public class LoginRequest{
         String password = (String) passwordInput.getLocalValue();
 
         if (password == null || confirmPassword == null || !password.equals(confirmPassword)) {
-            String message = context.getApplication().evaluateExpressionGet(context, "#{msgs['nomatch']}", String.class);
+            String message = context.getApplication().evaluateExpressionGet(context, "#{msg['nomatch']}", String.class);
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message);
             throw new ValidatorException(msg);
         }
     }
-
+*/
 
 }
