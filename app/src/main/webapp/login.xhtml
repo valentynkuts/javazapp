@@ -56,14 +56,7 @@
                     <f:validateRegex pattern="(?=.*[\d])(?=.*[\p{Ll}])(?=.*[\p{Lu}])[\p{Ll}\p{Lu}\d]+"/>
                 </h:inputSecret>
             </h:panelGroup>
-            <!--
-            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                <h:outputLabel for="password">Confirm password</h:outputLabel>
-                <h:inputSecret id="password_confirm" value="#{loginRequest.passwordConfirm}" class="form-control"
-                               validator="#{loginRequest.validatePasswordCorrect}">
-                </h:inputSecret>
-            </h:panelGroup>
-            -->
+
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="username">Username</h:outputLabel>
                 <h:inputText id="username" value="#{loginRequest.username}" class="form-control"
@@ -89,7 +82,7 @@
                 <h:outputLabel for="birthday">Birthday</h:outputLabel>
                 <h:inputText id="birthday" value="#{loginRequest.birthday}" class="form-control"
                              validatorMessage="#{msg['birthday']}">
-                    <f:convertDateTime type="date" pattern="dd/mm/yyyy"/>
+                    <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
                 </h:inputText>
             </h:panelGroup>
 
