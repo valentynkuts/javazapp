@@ -42,9 +42,8 @@ public class LoginController {
             ProfileEntity pe = null;
             try {
                 pe = pr.selectSingleResWithUsername(loginRequest.getUsername().trim());
-                //bccrypt ????
                 String passw = loginRequest.getPassword().trim();
-
+                //if (BCrypt.checkpw(passw, pe.getPassword())) //BCrypt.checkpw(candidate_password, stored_hash) TODO
                 if (pe.getPassword().equals(passw)) {
 
                     FacesContext facesContext = FacesContext.getCurrentInstance();
