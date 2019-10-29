@@ -1,5 +1,6 @@
 package pl.edu.pjwstk.jaz.webapp;
 
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import pl.edu.pjwstk.jaz.auth.ProfileEntity;
 import pl.edu.pjwstk.jaz.auth.ProfileRepository;
 import pl.edu.pjwstk.jaz.login.LoginRequest;
@@ -43,9 +44,8 @@ public class LoginController {
             try {
                 pe = pr.selectSingleResWithUsername(loginRequest.getUsername().trim());
                 String passw = loginRequest.getPassword().trim();
-                //if (BCrypt.checkpw(passw, pe.getPassword())) //BCrypt.checkpw(candidate_password, stored_hash) TODO
-                if (pe.getPassword().equals(passw)) {
-
+                if (BCrypt.checkpw(passw, pe.getPassword())){ //BCrypt.checkpw(candidate_password, stored_hash)
+                //if (pe.getPassword().equals(passw)) {
                     FacesContext facesContext = FacesContext.getCurrentInstance();
                     HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
                     session.setAttribute("name", pe.getName());
