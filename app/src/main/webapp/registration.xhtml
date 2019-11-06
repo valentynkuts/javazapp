@@ -88,7 +88,7 @@
                 <h:outputLabel for="birthday">Birthday</h:outputLabel>
                 <h:inputText id="birthday" value="#{user.birthday}" class="form-control"
                              validatorMessage="#{msg['birthday']}">
-                    <f:convertDateTime type="date" pattern="dd/MM/yyyy"/>
+                    <f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
                 </h:inputText>
             </h:panelGroup>
 
