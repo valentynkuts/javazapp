@@ -4,7 +4,6 @@ import org.springframework.security.crypto.bcrypt.BCrypt;
 import pl.edu.pjwstk.jaz.auth.ProfileEntity;
 import pl.edu.pjwstk.jaz.auth.ProfileRepository;
 import pl.edu.pjwstk.jaz.login.User;
-
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -14,8 +13,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Locale;
 
@@ -50,36 +47,17 @@ public class RegistrationController {
             ProfileEntity pe = null;
             try {
                 pe = pr.selectSingleResWithUsername(user.getUsername().trim());
-                //----Date
+                //---- Date ----
                 String bithday = user.getBirthday().trim();
                 System.out.println(bithday);
-
-//                String dateInString = bithday;
-//                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-//                LocalDate dateTime = LocalDate.parse(dateInString, formatter);
-//                System.out.println(dateTime);
-
-//                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-//                Date date = dateFormat.parse(bithday);
-//                System.out.println(dateFormat.format(date));
-
-
-                String input = bithday; //"Thu Jun 18 20:56:02 EDT 2009";  Mon Jul 07 02:00:00 CEST 1997
                 SimpleDateFormat parser = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-                Date date = parser.parse(input);
+                Date date = parser.parse(bithday);
                 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-                String formattedDate = formatter.format(date);
-                user.setBirthday(formattedDate);
+                //String formattedDate = formatter.format(date);
+                user.setBirthday(formatter.format(date));
                 System.out.println(user.getBirthday());
-                System.out.println(formattedDate);
-//-----------
-//                String pattern = "dd/MM/yyyy";
-//                SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-//
-//                String date1 = simpleDateFormat.format(new Date());
-//                System.out.println(date1);
-                //--------
-
+                //System.out.println(formattedDate);
+                //-----------
             } catch (NoResultException nre) {
                 System.out.println("Username does not exist");
             } catch (ParseException e) {
@@ -120,4 +98,3 @@ public class RegistrationController {
 
 }
 ////1111Qqqq
-//Mon Jul 07 02:00:00 CEST 1997

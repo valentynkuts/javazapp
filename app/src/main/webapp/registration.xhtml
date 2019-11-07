@@ -37,9 +37,6 @@
                     <f:validateRegex pattern="[\p{L}\d]+"/>
                 </h:inputText>
             </h:panelGroup>
-            <h:messages for ="name" class="row form-group col-md-2 col-md-offset-5">
-
-            </h:messages>
 
             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                 <h:outputLabel for="surname">Surname</h:outputLabel>
@@ -100,21 +97,10 @@
                 </h:inputText>
             </h:panelGroup>
 
-            <h:outputText value="#{user.birthday}">
-                <f:convertDateTime type="date" pattern="dd/mm/yyyy"/>
-            </h:outputText>
-
             <h:panelGroup class="row">
-
                 <h:commandButton value="Submit" action="#{registrationController.registration}"
                                  class="btn col-md-2 col-md-offset-5"/>
             </h:panelGroup>
-            <!--
-            <h:messages>
-                <h:outputText rendered="#{registrationController.getIsUserExist()}"
-                              value="#{registrationController.info()}"/>
-            </h:messages>
-            -->
 
         </h:form>
     </h:panelGroup>
