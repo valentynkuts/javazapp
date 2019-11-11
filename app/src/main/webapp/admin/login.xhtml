@@ -13,7 +13,7 @@
             <h:panelGroup class="container">
 
                 <h:panelGroup class="row col-md-2 col-md-offset-5">
-                    <h2>Login Form</h2>
+                    <h2>Admin Login Form</h2>
                 </h:panelGroup>
 
                 <h:form class="form">
@@ -43,7 +43,7 @@
                     <h:panelGroup class="row col-md-2 col-md-offset-5">
                         <!--    <h:messages > -->
                         <h:outputText rendered="#{adminController.getIsAdminExist()}" value="#{adminController.info()}"/>
-                        <!--<h:link rendered="#{adminController.getIsAdminExist()}" value="Protected page" outcome="admin/protected"/>-->
+                        <!--<h:link rendered="#{adminController.getIsAdminExist()}" value="Protected page" outcome="protected"/>-->
                         <!-- </h:messages>  -->
                     </h:panelGroup>
 

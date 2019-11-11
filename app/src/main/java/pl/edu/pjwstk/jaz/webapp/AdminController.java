@@ -49,7 +49,7 @@ public class AdminController {
                 if (BCrypt.checkpw(passw, pe.getPassword())) {
                     FacesContext facesContext = FacesContext.getCurrentInstance();
                     HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-                    session.setAttribute("admin", pe.getName());
+                    session.setAttribute("admin", pe.getUsername());
                     facesContext.getExternalContext().redirect("protected.xhtml");
 
                 }
