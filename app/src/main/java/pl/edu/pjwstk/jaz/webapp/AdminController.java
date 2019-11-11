@@ -1,5 +1,6 @@
 package pl.edu.pjwstk.jaz.webapp;
 
+
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import pl.edu.pjwstk.jaz.auth.ProfileEntity;
 import pl.edu.pjwstk.jaz.auth.ProfileRepository;
@@ -16,25 +17,25 @@ import java.io.IOException;
 @Named
 @RequestScoped
 
-public class LoginController {
+public class AdminController {
     @Inject
     private LoginRequest loginRequest;
 
     @Inject
     private ProfileRepository pr;
 
-    private boolean isUserExist = false;
+    private boolean isAdminExist = false;
 
-    public boolean getIsUserExist() {
-        return isUserExist;
+    public boolean getIsAdminExist() {
+        return isAdminExist;
     }
 
-    public void setIsUserExist(boolean userExist) {
-        isUserExist = userExist;
+    public void setIsAdminExist(boolean adminExist) {
+        isAdminExist = adminExist;
     }
 
     public String info() {
-        return "Username or password are wrong";
+        return "Admin name or password are wrong";
     }
 
     public void login() throws IOException {
@@ -45,32 +46,28 @@ public class LoginController {
                 pe = pr.selectSingleResWithUsername(loginRequest.getUsername().trim());
                 String passw = loginRequest.getPassword().trim();
 
-                if (BCrypt.checkpw(passw, pe.getPassword())) { //BCrypt.checkpw(candidate_password, stored_hash)
-                    //if (pe.getPassword().equals(passw)) {
+                if (BCrypt.checkpw(passw, pe.getPassword())) {
                     FacesContext facesContext = FacesContext.getCurrentInstance();
                     HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-                    session.setAttribute("name", pe.getName());
-                    session.setAttribute("surname", pe.getSurname());
-                    facesContext.getExternalContext().redirect("index.xhtml");
+                    session.setAttribute("admin", pe.getName());
+                    facesContext.getExternalContext().redirect("protected.xhtml");
 
-                } else {
-                    setIsUserExist(true);
                 }
 
             } catch (NoResultException nre) {
-                System.out.println("User does not exist");
-                setIsUserExist(true);
+                System.out.println("Admin does not exist");
+                setIsAdminExist(true);
             } catch (IllegalArgumentException iae) {
-                System.out.println("User does not exist");
-                setIsUserExist(true);
+                System.out.println("Admin does not exist");
+                setIsAdminExist(true);
             }
         }
     }
 
-    public String welcomUserName() {
+    public String welcomAdminName() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-        return session.getAttribute("name") + "  " + session.getAttribute("surname");
+        return (String) session.getAttribute("admin");
 
     }
 

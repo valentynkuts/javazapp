@@ -16,7 +16,8 @@ public class LoginFilter extends HttpFilter {
         if ((req.getRequestURI().contains("index.xhtml") || req.getRequestURI().equals(req.getContextPath() + "/"))
                 && req.getSession().getAttribute("name") == null) {
             res.sendRedirect("login.xhtml");
-        } else if (req.getRequestURI().matches(req.getContextPath() + "/" + "protected.xhtml")) {
+        } else if (req.getRequestURI().matches(req.getContextPath() + "/admin/protected.xhtml")
+                && req.getSession().getAttribute("admin") == null) {
             res.sendRedirect("login.xhtml");
         } else {
             chain.doFilter(req, res);
