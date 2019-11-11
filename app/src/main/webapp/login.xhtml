@@ -6,62 +6,51 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-<h:head>
-    <!-- Bootstrap core CSS -->
-    <h:outputStylesheet name="bootstrap/css/bootstrap.min.css"/>
-    <h:outputScript name="bootstrap/js/bootstrap.min.js"/>
-
-    <f:verbatim>
-        <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </f:verbatim>
-</h:head>
-
 <h:body>
+    <ui:composition template="layout.xhtml">
+        <ui:define name="title">Login page</ui:define>
+        <ui:define name="content">
+            <h:panelGroup class="container">
 
-    <h:panelGroup class="container">
+                <h:panelGroup class="row col-md-2 col-md-offset-5">
+                    <h2>Login Form</h2>
+                    <h:link value="Registration page" outcome="registration"/>
+                </h:panelGroup>
 
-        <h:panelGroup class="row col-md-2 col-md-offset-5">
-            <h2>Login Form</h2>
-            <h:link value="Registration page" outcome="registration"/>
-        </h:panelGroup>
+                <h:form class="form">
 
-        <h:form class="form">
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="username">Username</h:outputLabel>
+                        <h:inputText id="username" value="#{loginRequest.username}" class="form-control"
+                                     validatorMessage="#{msg['username']}">
+                            <f:validateRegex pattern="(?=.*[\d])(?=.*[a-z])[a-z0-9]+"/>
+                        </h:inputText>
+                    </h:panelGroup>
 
-            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                <h:outputLabel for="username">Username</h:outputLabel>
-                <h:inputText id="username" value="#{loginRequest.username}" class="form-control"
-                             validatorMessage="#{msg['username']}">
-                    <f:validateRegex pattern="(?=.*[\d])(?=.*[a-z])[a-z0-9]+"/>
-                </h:inputText>
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="password">Password</h:outputLabel>
+                        <h:inputSecret id="password" value="#{loginRequest.password}" class="form-control"
+                                       validatorMessage="#{msg['password']}">
+                            <f:validateLength minimum="5" maximum="30"/>
+                            <f:validateRegex pattern="(?=.*[\d])(?=.*[\p{Ll}])(?=.*[\p{Lu}])[\p{Ll}\p{Lu}\d]+"/>
+                        </h:inputSecret>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row">
+                        <h:commandButton value="Login" action="#{loginController.login}"
+                                         class="btn col-md-2 col-md-offset-5"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row col-md-2 col-md-offset-5">
+                        <!--    <h:messages > -->
+                        <h:outputText rendered="#{loginController.getIsUserExist()}" value="#{loginController.info()}"/>
+                        <!-- </h:messages>  -->
+                    </h:panelGroup>
+
+                </h:form>
             </h:panelGroup>
-
-            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                <h:outputLabel for="password">Password</h:outputLabel>
-                <h:inputSecret id="password" value="#{loginRequest.password}" class="form-control"
-                               validatorMessage="#{msg['password']}">
-                    <f:validateLength minimum="5" maximum="30"/>
-                    <f:validateRegex pattern="(?=.*[\d])(?=.*[\p{Ll}])(?=.*[\p{Lu}])[\p{Ll}\p{Lu}\d]+"/>
-                </h:inputSecret>
-            </h:panelGroup>
-
-            <h:panelGroup class="row">
-                <h:commandButton value="Login" action="#{loginController.login}" class="btn col-md-2 col-md-offset-5"/>
-            </h:panelGroup>
-
-            <h:panelGroup class="row col-md-2 col-md-offset-5">
-            <!--    <h:messages > -->
-                    <h:outputText rendered="#{loginController.getIsUserExist()}" value="#{loginController.info()}"/>
-            <!-- </h:messages>  -->
-            </h:panelGroup>
-
-
-
-        </h:form>
-    </h:panelGroup>
-
+        </ui:define>
+    </ui:composition>
 
 </h:body>
 </html>
