@@ -1,4 +1,4 @@
-package pl.edu.pjwstk.jaz.webapp;
+package pl.edu.pjwstk.jaz.login;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import pl.edu.pjwstk.jaz.auth.ProfileEntity;
@@ -46,12 +46,27 @@ public class LoginController {
                 String passw = loginRequest.getPassword().trim();
 
                 if (BCrypt.checkpw(passw, pe.getPassword())) { //BCrypt.checkpw(candidate_password, stored_hash)
-                    //if (pe.getPassword().equals(passw)) {
-                    FacesContext facesContext = FacesContext.getCurrentInstance();
-                    HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-                    session.setAttribute("name", pe.getName());
-                    session.setAttribute("surname", pe.getSurname());
-                    facesContext.getExternalContext().redirect("index.xhtml");
+                    if (pe.getRole().equals("standard")) {
+
+                        FacesContext facesContext = FacesContext.getCurrentInstance();
+                        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+
+                        session.setAttribute("name", pe.getName());
+                        session.setAttribute("surname", pe.getSurname());
+
+                        facesContext.getExternalContext().redirect("index.xhtml");
+                    }
+
+                    if (pe.getRole().equals("admin")) {
+
+                        FacesContext facesContext = FacesContext.getCurrentInstance();
+                        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+
+                        session.setAttribute("admin", pe.getName());
+
+                        facesContext.getExternalContext().redirect("admin/protected.xhtml");
+                    }
+
 
                 } else {
                     setIsUserExist(true);
@@ -71,6 +86,13 @@ public class LoginController {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
         return session.getAttribute("name") + "  " + session.getAttribute("surname");
+
+    }
+
+    public String welcomAdminName() {
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+        return (String) session.getAttribute("admin");
 
     }
 

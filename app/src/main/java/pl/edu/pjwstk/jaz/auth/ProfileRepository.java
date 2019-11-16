@@ -26,8 +26,8 @@ public class ProfileRepository {
 //    }
 
     @Transactional
-    public void insert(String name, String surname, String password, String email, String username, String birthday) {
-        var profile = new ProfileEntity(name, surname, password, email, username, birthday);
+    public void insert(String name, String surname, String password, String email, String username, String birthday, String role) {
+        var profile = new ProfileEntity(name, surname, password, email, username, birthday, role);
         em.persist(profile);
 
     }

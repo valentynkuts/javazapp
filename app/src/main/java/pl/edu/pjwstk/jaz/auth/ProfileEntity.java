@@ -19,11 +19,12 @@ public class ProfileEntity {
     private String email;
     private String username;
     private String birthday;
+    private String role;
 
     public ProfileEntity() {
     }
 
-    public ProfileEntity(String name, String surname, String password, String email, String username, String birthday) {
+    public ProfileEntity(String name, String surname, String password, String email, String username, String birthday,String role) {
 
         this.name = name;
         this.surname = surname;
@@ -31,6 +32,7 @@ public class ProfileEntity {
         this.email = email;
         this.username = username;
         this.birthday = birthday;
+        this.role = role;
     }
 
     public Long getId() {
@@ -83,6 +85,14 @@ public class ProfileEntity {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

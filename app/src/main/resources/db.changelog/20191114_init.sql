@@ -9,6 +9,7 @@ CREATE TABLE profile
     email VARCHAR   NOT NULL,
     username VARCHAR   NOT NULL,
     birthday VARCHAR   NOT NULL,
+    role VARCHAR   NOT NULL,
 
     PRIMARY KEY (id)
 );

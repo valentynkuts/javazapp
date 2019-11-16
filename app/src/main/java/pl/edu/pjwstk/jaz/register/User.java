@@ -1,4 +1,4 @@
-package pl.edu.pjwstk.jaz.login;
+package pl.edu.pjwstk.jaz.register;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -19,6 +19,7 @@ public class User {
     private String email;
     private String username;
     private String birthday;
+    private String role;
 
     public String getName() {
         return name;
@@ -75,6 +76,14 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public boolean isAttributesSet() {

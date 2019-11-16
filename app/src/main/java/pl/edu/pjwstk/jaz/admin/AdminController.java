@@ -1,4 +1,4 @@
-package pl.edu.pjwstk.jaz.webapp;
+package pl.edu.pjwstk.jaz.admin;
 
 
 import org.springframework.security.crypto.bcrypt.BCrypt;

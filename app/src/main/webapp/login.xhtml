@@ -7,8 +7,9 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:body>
-    <ui:composition template="layout.xhtml">
-        <ui:define name="title">Login page</ui:define>
+    <ui:composition template="templates/base.xhtml">
+       <!-- <ui:define name="title">Login page</ui:define> -->
+        <ui:param name="title" value="Login"/>
         <ui:define name="content">
             <h:panelGroup class="container">
 

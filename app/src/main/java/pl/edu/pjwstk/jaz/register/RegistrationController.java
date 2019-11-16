@@ -1,9 +1,9 @@
-package pl.edu.pjwstk.jaz.webapp;
+package pl.edu.pjwstk.jaz.register;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import pl.edu.pjwstk.jaz.auth.ProfileEntity;
 import pl.edu.pjwstk.jaz.auth.ProfileRepository;
-import pl.edu.pjwstk.jaz.login.User;
+
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -71,8 +71,14 @@ public class RegistrationController {
                 String suname = user.getSurname().trim();
                 String pw_hash = BCrypt.hashpw(plain_password, BCrypt.gensalt());
                 //pw_hash -  instead of -  plain_password
+
+//               String adminRole = "admin";
+//                pr.insert(name, suname, pw_hash,
+//                        user.getEmail().trim(), user.getUsername().trim(), user.getBirthday().trim(), adminRole);
+
+                String role = "standard";
                 pr.insert(name, suname, pw_hash,
-                        user.getEmail().trim(), user.getUsername().trim(), user.getBirthday().trim());
+                        user.getEmail().trim(), user.getUsername().trim(), user.getBirthday().trim(), role);
 
                 FacesContext facesContext = FacesContext.getCurrentInstance();
                 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
