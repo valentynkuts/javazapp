@@ -32,7 +32,6 @@ CREATE TABLE parametr_name
     id_parametr   BIGSERIAL  PRIMARY KEY,
     name_key VARCHAR   NOT NULL,    -- color
     --value  VARCHAR   NOT NULL      -- grey
-
 );
 
 CREATE TABLE photo
@@ -40,7 +39,7 @@ CREATE TABLE photo
     id_photo   BIGSERIAL  PRIMARY KEY,
     name VARCHAR   NOT NULL,
     path  VARCHAR   NOT NULL,
-    miniature_path VARCHAR   NOT NULL
+    --miniature_path VARCHAR   NOT NULL
 
 );
 
