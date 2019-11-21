@@ -2,7 +2,7 @@
 CREATE TABLE section
 (
     id_section   BIGSERIAL PRIMARY KEY,
-    name VARCHAR   NOT NULL,
+    name VARCHAR   NOT NULL
 );
 
 CREATE TABLE category
@@ -21,40 +21,36 @@ CREATE TABLE product
     description  TEXT   NOT NULL,
     price  NUMERIC (9,2)   NOT NULL,
     category_id  BIGINT NOT NULL,
-    creator_id  BIGINT NOT NULL,  -- id_user_creator from profile
+    creator_id  BIGINT NOT NULL,
 
-    FOREIGN KEY(creater_id) REFERENCES profile(id),
+    FOREIGN KEY(creator_id) REFERENCES profile(id),
     FOREIGN KEY(category_id) REFERENCES category(id_category)
 );
 
 CREATE TABLE parametr_name
 (
-    id_parametr   BIGSERIAL  PRIMARY KEY,
-    name_key VARCHAR   NOT NULL,    -- color
-    --value  VARCHAR   NOT NULL      -- grey
+    id_parametr BIGSERIAL  PRIMARY KEY,
+    name_key VARCHAR   NOT NULL
 );
 
 CREATE TABLE photo
 (
     id_photo   BIGSERIAL  PRIMARY KEY,
     name VARCHAR   NOT NULL,
-    path  VARCHAR   NOT NULL,
-    --miniature_path VARCHAR   NOT NULL
-
+    path  VARCHAR   NOT NULL
 );
 
---product parametr => value
 CREATE TABLE product_parametrval
 (
     product_id  BIGINT NOT NULL,
     parametr_id BIGINT NOT NULL,
-    value_param VARCHAR   NOT NULL      -- grey
+    value_param VARCHAR   NOT NULL,
 
     CONSTRAINT   product_parametr_pk PRIMARY KEY(product_id,parametr_id),
 
     FOREIGN KEY(product_id) REFERENCES product(id_product),
 
-    FOREIGN KEY(parametr_id) REFERENCES parametr(id_parametr)
+    FOREIGN KEY(parametr_id) REFERENCES parametr_name(id_parametr)
 );
 
 CREATE TABLE product_photo
@@ -62,7 +58,7 @@ CREATE TABLE product_photo
     product_id  BIGINT NOT NULL,
     photo_id BIGINT NOT NULL,
 
-    CONSTRAINT   product_parametr_pk PRIMARY KEY(product_id,photo_id),
+    CONSTRAINT   product_photo_pk PRIMARY KEY(product_id,photo_id),
 
     FOREIGN KEY(product_id) REFERENCES product(id_product),
 
