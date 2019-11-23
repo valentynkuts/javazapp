@@ -1,10 +1,9 @@
 package pl.edu.pjwstk.jaz.auth;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import pl.edu.pjwstk.jaz.product.ProductEntity;
+
+import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "profile")
@@ -21,10 +20,15 @@ public class ProfileEntity {
     private String birthday;
     private String role;
 
+    @OneToMany
+    @JoinColumn(name = "creator_id")
+    private Collection<ProductEntity> products;
+
     public ProfileEntity() {
     }
 
-    public ProfileEntity(String name, String surname, String password, String email, String username, String birthday,String role) {
+    public ProfileEntity(String name, String surname, String password, String email,
+                         String username, String birthday,String role) {
 
         this.name = name;
         this.surname = surname;
@@ -33,6 +37,26 @@ public class ProfileEntity {
         this.username = username;
         this.birthday = birthday;
         this.role = role;
+    }
+
+    public ProfileEntity(String name, String surname, String password, String email, String username,
+                         String birthday, String role, Collection<ProductEntity> products) {
+        this.name = name;
+        this.surname = surname;
+        this.password = password;
+        this.email = email;
+        this.username = username;
+        this.birthday = birthday;
+        this.role = role;
+        this.products = products;
+    }
+
+    public Collection<ProductEntity> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Collection<ProductEntity> products) {
+        this.products = products;
     }
 
     public Long getId() {

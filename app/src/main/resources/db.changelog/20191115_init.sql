@@ -29,6 +29,7 @@ CREATE TABLE product
 
 CREATE TABLE parametr_name
 (
+
     id_parametr BIGSERIAL  PRIMARY KEY,
     name_key VARCHAR   NOT NULL
 );

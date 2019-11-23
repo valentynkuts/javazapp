@@ -27,9 +27,16 @@ public class LoginFilter extends HttpFilter {
 
         if (isResourceReq(req) || isSiteAllowed(req) || isUserLogged(req)) {
 
-            System.out.println("isResourceReq(req): "+ isResourceReq(req));  ////TODO
-            System.out.println("isSiteAllowed(req): "+ isSiteAllowed(req));  ////TODO
-            System.out.println("isUserLogged(req): "+ isUserLogged(req));  ////TODO
+            System.out.println("isResourceReq(req): " + isResourceReq(req));  ////TODO
+            System.out.println("isSiteAllowed(req): " + isSiteAllowed(req));  ////TODO
+            System.out.println("isUserLogged(req): " + isUserLogged(req));  ////TODO
+
+            chain.doFilter(req, res);
+        } else if (isResourceReq(req) || isAdminSiteAllowed(req) || isAdminLogged(req)) {
+
+            System.out.println("isResourceReq(req): " + isResourceReq(req));  ////TODO
+            System.out.println("isSiteAllowed(req): " + isSiteAllowed(req));  ////TODO
+            System.out.println("isUserLogged(req): " + isUserLogged(req));  ////TODO
 
             chain.doFilter(req, res);
         } else {
@@ -40,8 +47,8 @@ public class LoginFilter extends HttpFilter {
 
     private boolean isResourceReq(HttpServletRequest req) {
 
-        System.out.println("1-req.getRequestURI(): "+ req.getRequestURI()); ////TODO
-        System.out.println("1-req.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER + /: "+ req.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER + "/"); ////TODO
+        System.out.println("1-req.getRequestURI(): " + req.getRequestURI()); ////TODO
+        System.out.println("1-req.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER + /: " + req.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER + "/"); ////TODO
 
         return req.getRequestURI().startsWith(
                 req.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER + "/");
@@ -49,17 +56,33 @@ public class LoginFilter extends HttpFilter {
 
     private boolean isSiteAllowed(HttpServletRequest req) {
 
-        System.out.println("2-req.getContextPath(): "+ req.getContextPath()); ////TODO
+        System.out.println("2-req.getContextPath(): " + req.getContextPath()); ////TODO
 
         return req.getRequestURI().equals(req.getContextPath() + "/login.xhtml") ||
                 req.getRequestURI().equals(req.getContextPath() + "/registration.xhtml");
     }
+
     private boolean isUserLogged(HttpServletRequest req) {
         var session = req.getSession(false);
 
-        System.out.println("3-session: "+ session);  ////TODO
+        System.out.println("3-session: " + session);  ////TODO
 
         return session != null && session.getAttribute("username") != null;
+    }
+
+    private boolean isAdminSiteAllowed(HttpServletRequest req) {
+
+        System.out.println("4-req.getContextPath(): " + req.getContextPath()); ////TODO
+
+        return req.getRequestURI().equals(req.getContextPath() + "/admin/protected.xhtml");
+    }
+
+    private boolean isAdminLogged(HttpServletRequest req) {
+        var session = req.getSession(false);
+
+        System.out.println("5-session: " + session);  ////TODO
+
+        return session != null && session.getAttribute("admin") != null;
     }
 
 }
