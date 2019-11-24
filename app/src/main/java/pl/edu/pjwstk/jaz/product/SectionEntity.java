@@ -48,4 +48,8 @@ public class SectionEntity {
     public void setCategories(Collection<CategoryEntity> categories) {
         this.categories = categories;
     }
+
+    public String toString(){
+        return name;
+    }
 }

@@ -30,10 +30,13 @@ public class SectionCategoryRepository {
         em.persist(category);
     }
 
-
+    @Transactional
     public List<SectionEntity> getSectionList(){
-        List<SectionEntity> sectionList = new ArrayList<>();
 
-        return sectionList;
+        return em.createQuery("select s from SectionEntity s", SectionEntity.class).getResultList();
+
+       //// List<SectionEntity> sectionList = new ArrayList<>();
+
+       //// return sectionList;
     }
 }

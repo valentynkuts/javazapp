@@ -14,33 +14,43 @@
             <h:panelGroup class="container">
 
                 <h:panelGroup class="row col-md-2 col-md-offset-5">
-                    <h2>Add Section Category</h2>
+                    <h3>Add Section Category</h3>
                 </h:panelGroup>
 
-                <h:form class="form">
+                <h:form class="form mb-4">
 
                     <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-<!--                        <h:outputLabel for="section">Section</h:outputLabel>-->
-<!--                        <h:selectOneMenu id="section" value="#{sectionCategoryController.sectionList()}">-->
-<!--                            <f:selectItem id="item1" itemLabel="Новости" itemValue="1" />-->
-<!--                            <f:selectItem id="item2" itemLabel="Спорт" itemValue="2" />-->
-<!--                            <f:selectItem id="item3" itemLabel="Музыка" itemValue="3" />-->
-<!--                            <f:selectItem id="item4" itemLabel="Интернет" itemValue="4" />-->
-<!--                            <f:selectItem id="item5" itemLabel="&#45;&#45;&#45;&#45;" itemValue="5" />-->
-<!--                        </h:selectOneMenu>-->
-
+                        <h:outputLabel for="section1">Section</h:outputLabel>
                         <h:inputText id="section1" value="#{sectionRequest.name}" class="form-control">
                         </h:inputText>
                     </h:panelGroup>
 
-<!--                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">-->
-<!--                        <h:outputLabel for="caterory">Caterory</h:outputLabel>-->
-<!--                        <h:inputText id="caterory" value="#{categoryRequest.name}" class="form-control">-->
-<!--                        </h:inputText>-->
-<!--                    </h:panelGroup>-->
+                    <h:panelGroup class="row">
+                        <h:commandButton value="Add" action="#{sectionCategoryController.addSection}"
+                                         class="btn col-md-2 col-md-offset-5"/>s
+                    </h:panelGroup>
+                </h:form>
+
+                <h:form class="form">
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="section">Sections to select</h:outputLabel>
+                        <h:selectOneMenu class="form-control" id="section" value="#{sectionRequest.selectedItem}">
+                            <f:selectItems value="#{sectionCategoryController.sectionList()}"/>
+                            <!--                        <f:selectItem id="item2" itemLabel="Спорт" itemValue="2"/>-->
+                            <!--                        <f:selectItem id="item3" itemLabel="Музыка" itemValue="3"/>-->
+                            <!--                        <f:selectItem id="item4" itemLabel="Интернет" itemValue="4"/>-->
+                            <!--                        <f:selectItem id="item5" itemLabel="&#45;&#45;&#45;&#45;" itemValue="5"/>-->
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="caterory">Caterory</h:outputLabel>
+                        <h:inputText id="caterory" value="#{categoryRequest.name}" class="form-control">
+                        </h:inputText>
+                    </h:panelGroup>
 
                     <h:panelGroup class="row">
-                        <h:commandButton value="Add" action="#{sectionCategoryController.add}"
+                        <h:commandButton value="Add" action="#{sectionCategoryController.addCategory}"
                                          class="btn col-md-2 col-md-offset-5"/>s
                     </h:panelGroup>
 
@@ -48,12 +58,12 @@
                         <h:outputLink value="editSectionCategory.xhtml">Edit Section Category</h:outputLink>
                     </h:panelGroup>
 
-<!--                    <h:panelGroup class="row col-md-2 col-md-offset-5">-->
-<!--                        &lt;!&ndash;    <h:messages > &ndash;&gt;-->
-<!--                        <h:outputText rendered="#{AddSectionCategoryController.getIsUserExist()}"-->
-<!--                                      value="#{AddSectionCategoryController.info()}"/>-->
-<!--                        &lt;!&ndash; </h:messages>  &ndash;&gt;-->
-<!--                    </h:panelGroup>-->
+                    <!--                    <h:panelGroup class="row col-md-2 col-md-offset-5">-->
+                    <!--                        &lt;!&ndash;    <h:messages > &ndash;&gt;-->
+                    <!--                        <h:outputText rendered="#{AddSectionCategoryController.getIsUserExist()}"-->
+                    <!--                                      value="#{AddSectionCategoryController.info()}"/>-->
+                    <!--                        &lt;!&ndash; </h:messages>  &ndash;&gt;-->
+                    <!--                    </h:panelGroup>-->
 
                 </h:form>
             </h:panelGroup>
