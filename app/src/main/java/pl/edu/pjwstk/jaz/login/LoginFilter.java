@@ -32,7 +32,7 @@ public class LoginFilter extends HttpFilter {
             System.out.println("isUserLogged(req): " + isUserLogged(req));  ////TODO
 
             chain.doFilter(req, res);
-        } else if (isResourceReq(req) || isAdminSiteAllowed(req) || isAdminLogged(req)) {
+        } else if (isResourceReq(req) || isAdminSite(req) || isAdminLogged(req)) {
 
             System.out.println("isResourceReq(req): " + isResourceReq(req));  ////TODO
             System.out.println("isSiteAllowed(req): " + isSiteAllowed(req));  ////TODO
@@ -70,7 +70,7 @@ public class LoginFilter extends HttpFilter {
         return session != null && session.getAttribute("username") != null;
     }
 
-    private boolean isAdminSiteAllowed(HttpServletRequest req) {
+    private boolean isAdminSite(HttpServletRequest req) {
 
         System.out.println("4-req.getContextPath(): " + req.getContextPath()); ////TODO
 

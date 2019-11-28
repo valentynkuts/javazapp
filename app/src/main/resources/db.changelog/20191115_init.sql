@@ -1,68 +1,57 @@
-
 CREATE TABLE section
 (
-    id_section   BIGSERIAL PRIMARY KEY,
-    name VARCHAR   NOT NULL
+    id   BIGSERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL
 );
 
 CREATE TABLE category
 (
-    id_category   BIGSERIAL PRIMARY KEY,
-    name VARCHAR   NOT NULL,
-    section_id BIGINT NOT NULL,
+    id         BIGSERIAL PRIMARY KEY,
+    name       VARCHAR NOT NULL,
+    section_id BIGINT  NOT NULL,
 
-    FOREIGN KEY(section_id) REFERENCES section(id_section)
+    FOREIGN KEY (section_id) REFERENCES section (id)     --
 );
 
 CREATE TABLE product
 (
-    id_product   BIGSERIAL  PRIMARY KEY,
-    title  TEXT   NOT NULL,
-    description  TEXT   NOT NULL,
-    price  NUMERIC (9,2)   NOT NULL,
-    category_id  BIGINT NOT NULL,
-    creator_id  BIGINT NOT NULL,
+    id  BIGSERIAL PRIMARY KEY,
+    title       VARCHAR       NOT NULL,
+    description TEXT          NOT NULL,
+    price       NUMERIC(9, 2) NOT NULL,
+    category_id BIGINT        NOT NULL,
+    creator_id  BIGINT        NOT NULL,
 
-    FOREIGN KEY(creator_id) REFERENCES profile(id),
-    FOREIGN KEY(category_id) REFERENCES category(id_category)
+    FOREIGN KEY (creator_id) REFERENCES profile (id),
+    FOREIGN KEY (category_id) REFERENCES category (id)
 );
 
-CREATE TABLE parametr_name
+CREATE TABLE parameter
 (
-
-    id_parametr BIGSERIAL  PRIMARY KEY,
-    name_key VARCHAR   NOT NULL
+    id   BIGSERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL
 );
 
 CREATE TABLE photo
 (
-    id_photo   BIGSERIAL  PRIMARY KEY,
-    name VARCHAR   NOT NULL,
-    path  VARCHAR   NOT NULL
+    id         BIGSERIAL PRIMARY KEY,
+    link       VARCHAR NOT NULL,
+    product_id BIGINT  NOT NULL,
+
+    FOREIGN KEY (product_id) REFERENCES product (id)
+--     REFERENCES ...
 );
 
-CREATE TABLE product_parametrval
+CREATE TABLE product_parameter
 (
-    product_id  BIGINT NOT NULL,
-    parametr_id BIGINT NOT NULL,
-    value_param VARCHAR   NOT NULL,
+    product_id   BIGINT  NOT NULL,
+    parameter_id BIGINT  NOT NULL,
+    value        VARCHAR NOT NULL,
 
-    CONSTRAINT   product_parametr_pk PRIMARY KEY(product_id,parametr_id),
+    PRIMARY KEY (product_id, parameter_id),
 
-    FOREIGN KEY(product_id) REFERENCES product(id_product),
+    FOREIGN KEY (product_id) REFERENCES product (id),
 
-    FOREIGN KEY(parametr_id) REFERENCES parametr_name(id_parametr)
-);
-
-CREATE TABLE product_photo
-(
-    product_id  BIGINT NOT NULL,
-    photo_id BIGINT NOT NULL,
-
-    CONSTRAINT   product_photo_pk PRIMARY KEY(product_id,photo_id),
-
-    FOREIGN KEY(product_id) REFERENCES product(id_product),
-
-    FOREIGN KEY(photo_id) REFERENCES photo(id_photo)
+    FOREIGN KEY (parameter_id) REFERENCES parameter (id)
 );
 

@@ -1,6 +1,6 @@
 package pl.edu.pjwstk.jaz.auth;
 
-import pl.edu.pjwstk.jaz.product.ProductEntity;
+import pl.edu.pjwstk.jaz.product.jpa.Product;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -22,7 +22,7 @@ public class ProfileEntity {
 
     @OneToMany
     @JoinColumn(name = "creator_id")
-    private Collection<ProductEntity> products;
+    private Collection<Product> products;
 
     public ProfileEntity() {
     }
@@ -40,7 +40,7 @@ public class ProfileEntity {
     }
 
     public ProfileEntity(String name, String surname, String password, String email, String username,
-                         String birthday, String role, Collection<ProductEntity> products) {
+                         String birthday, String role, Collection<Product> products) {
         this.name = name;
         this.surname = surname;
         this.password = password;
@@ -51,11 +51,11 @@ public class ProfileEntity {
         this.products = products;
     }
 
-    public Collection<ProductEntity> getProducts() {
+    public Collection<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Collection<ProductEntity> products) {
+    public void setProducts(Collection<Product> products) {
         this.products = products;
     }
 
