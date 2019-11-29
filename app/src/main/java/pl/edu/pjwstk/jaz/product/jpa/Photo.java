@@ -14,10 +14,13 @@ public class Photo {
     @Column(name = "link")
     private String link;
 
-    @ManyToOne
-    @JoinColumn(name="")
- // add auction
+    @Column(name = "sequence")
+    private int sequence;
 
+    @ManyToOne
+    @JoinColumn(name="product_id")
+    private Product product;
+ // ok //add auction
 
     public Photo() {
     }

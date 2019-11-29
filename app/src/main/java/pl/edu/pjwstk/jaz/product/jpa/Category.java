@@ -23,7 +23,6 @@ public class Category {
 
     public Category(String name, Collection<Product> products) {
         this.name = name;
-        this.products = products;
     }
 
     public Long getId() {
@@ -40,14 +39,6 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Collection<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Collection<Product> products) {
-        this.products = products;
     }
 
 }

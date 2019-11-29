@@ -23,11 +23,6 @@ public class Section {
         this.name = name;
     }
 
-    public Section(String name, Collection<Category> categories) {
-        this.name = name;
-        this.categories = categories;
-    }
-
     public Long getId() {
         return id;
     }
@@ -42,14 +37,6 @@ public class Section {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Collection<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Collection<Category> categories) {
-        this.categories = categories;
     }
 
     public String toString(){

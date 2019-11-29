@@ -10,12 +10,12 @@ CREATE TABLE category
     name       VARCHAR NOT NULL,
     section_id BIGINT  NOT NULL,
 
-    FOREIGN KEY (section_id) REFERENCES section (id)     --
+    FOREIGN KEY (section_id) REFERENCES section (id) --
 );
 
 CREATE TABLE product
 (
-    id  BIGSERIAL PRIMARY KEY,
+    id          BIGSERIAL PRIMARY KEY,
     title       VARCHAR       NOT NULL,
     description TEXT          NOT NULL,
     price       NUMERIC(9, 2) NOT NULL,
@@ -26,20 +26,20 @@ CREATE TABLE product
     FOREIGN KEY (category_id) REFERENCES category (id)
 );
 
-CREATE TABLE parameter
-(
-    id   BIGSERIAL PRIMARY KEY,
-    name VARCHAR NOT NULL
-);
-
 CREATE TABLE photo
 (
     id         BIGSERIAL PRIMARY KEY,
     link       VARCHAR NOT NULL,
+    sequence      INT     NOT NULL,
     product_id BIGINT  NOT NULL,
 
     FOREIGN KEY (product_id) REFERENCES product (id)
---     REFERENCES ...
+);
+
+CREATE TABLE parameter
+(
+    id   BIGSERIAL PRIMARY KEY,
+    name VARCHAR NOT NULL
 );
 
 CREATE TABLE product_parameter

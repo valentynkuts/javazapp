@@ -25,7 +25,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
-    private Collection<Category> categories; //TODO
+    private Category category; //ok
 
     @OneToOne
     @JoinColumn(name = "creator_id")
@@ -33,8 +33,8 @@ public class Product {
 
     @OneToMany
     @JoinColumn(name = "product_id")
-    @OrderColumn("order")
-    private List<PhotoProduct> photos ;
+    @OrderColumn
+    private List<Photo> photos ;
 
     @OneToMany
     @JoinColumn(name = "product_id")
@@ -44,11 +44,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String title, String description, float price, Collection<Category> categories, ProfileEntity creator, Collection<PhotoProduct> photos, Collection<ProductParameter> parameters) {
+    public Product(String title, String description, float price, Category category, ProfileEntity creator,
+                   List<Photo> photos, Collection<ProductParameter> parameters) {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.categories = categories;
+        this.category = category;
         this.creator = creator;
         this.photos = photos;
         this.parameters = parameters;
@@ -86,12 +87,12 @@ public class Product {
         this.price = price;
     }
 
-    public Collection<Category> getCategories() {
-        return categories;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategories(Collection<Category> categories) {
-        this.categories = categories;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public ProfileEntity getCreator() {
@@ -102,11 +103,11 @@ public class Product {
         this.creator = creator;
     }
 
-    public Collection<PhotoProduct> getPhotos() {
+    public List<Photo> getPhotos() {
         return photos;
     }
 
-    public void setPhotos(Collection<PhotoProduct> photos) {
+    public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }
 

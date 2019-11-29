@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "parametr_name")
+@Table(name = "parameter")
 public class Parameter {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

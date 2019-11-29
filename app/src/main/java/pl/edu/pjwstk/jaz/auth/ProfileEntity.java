@@ -20,9 +20,9 @@ public class ProfileEntity {
     private String birthday;
     private String role;
 
-    @OneToMany
-    @JoinColumn(name = "creator_id")
-    private Collection<Product> products;
+//    @OneToMany
+//    @JoinColumn(name = "creator_id")
+//    private Collection<Product> products;
 
     public ProfileEntity() {
     }
@@ -39,25 +39,25 @@ public class ProfileEntity {
         this.role = role;
     }
 
-    public ProfileEntity(String name, String surname, String password, String email, String username,
-                         String birthday, String role, Collection<Product> products) {
-        this.name = name;
-        this.surname = surname;
-        this.password = password;
-        this.email = email;
-        this.username = username;
-        this.birthday = birthday;
-        this.role = role;
-        this.products = products;
-    }
+//    public ProfileEntity(String name, String surname, String password, String email, String username,
+//                         String birthday, String role, Collection<Product> products) {
+//        this.name = name;
+//        this.surname = surname;
+//        this.password = password;
+//        this.email = email;
+//        this.username = username;
+//        this.birthday = birthday;
+//        this.role = role;
+//        this.products = products;
+//    }
 
-    public Collection<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Collection<Product> products) {
-        this.products = products;
-    }
+//    public Collection<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void setProducts(Collection<Product> products) {
+//        this.products = products;
+//    }
 
     public Long getId() {
         return id;
