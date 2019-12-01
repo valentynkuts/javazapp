@@ -12,17 +12,17 @@ import java.util.Collection;
 public class SectionRequest {
     private Long id;
     private String name;
-    private Collection<Category> categories;
+    //private Collection<Category> categories;
     //==============??
-    private String selectedItem;
-
-    public String getSelectedItem() {
-        return selectedItem;
-    }
-
-    public void setSelectedItem(String selectedItem) {
-        this.selectedItem = selectedItem;
-    }
+//    private String selectedItem;
+//
+//    public String getSelectedItem() {
+//        return selectedItem;
+//    }
+//
+//    public void setSelectedItem(String selectedItem) {
+//        this.selectedItem = selectedItem;
+//    }
 //==================
     public SectionRequest() {
     }
@@ -35,11 +35,6 @@ public class SectionRequest {
         this.id = id;
         this.name = name;
     }
-    public SectionRequest(Long id, String name, Collection<Category> categories) {
-        this.id = id;
-        this.name = name;
-        this.categories = categories;
-    }
 
     public Long getId() {
         return id;
@@ -47,14 +42,6 @@ public class SectionRequest {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Collection<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(Collection<Category> categories) {
-        this.categories = categories;
     }
 
     public String getName() {
@@ -65,7 +52,7 @@ public class SectionRequest {
         this.name = name;
     }
 
-    public Section toSection() {
+    public Section toSection() {  //????  TODO
         return new Section(name);
     }
 }

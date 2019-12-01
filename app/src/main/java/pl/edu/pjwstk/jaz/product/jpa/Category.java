@@ -21,8 +21,10 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name, Collection<Product> products) {
+    public Category(Long id, String name, Section section) {
+        this.id = id;
         this.name = name;
+        this.section = section;
     }
 
     public Long getId() {
@@ -39,6 +41,14 @@ public class Category {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Section getSection() {
+        return section;
+    }
+
+    public void setSection(Section section) {
+        this.section = section;
     }
 
 }

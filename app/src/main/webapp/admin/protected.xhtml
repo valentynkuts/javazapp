@@ -9,16 +9,19 @@
     <h:outputLabel value="Hello "/>
     <h:outputText value="#{loginController.welcomAdminName()}"/>
     <div>
-        <h:outputLink value="addSection.xhtml">Add Section</h:outputLink>
+        <h:outputLink value="section/addSection.xhtml">Add Section</h:outputLink>
     </div>
     <div>
-        <h:outputLink value="editSection.xhtml">Edit Section</h:outputLink>
+        <h:outputLink value="section/sectionList.xhtml">List of Sections</h:outputLink>
     </div>
     <div>
-        <h:outputLink value="addCategory.xhtml">Add Edit Category</h:outputLink>
+        <h:outputLink value="section/editSection.xhtml">Edit Section</h:outputLink>
     </div>
     <div>
-        <h:outputLink value="editCategory.xhtml">Add Edit Category</h:outputLink>
+        <h:outputLink value="category/addCategory.xhtml">Add Category</h:outputLink>
+    </div>
+    <div>
+        <h:outputLink value="category/editCategory.xhtml">Edit Category</h:outputLink>
     </div>
 </f:view>
 </html>

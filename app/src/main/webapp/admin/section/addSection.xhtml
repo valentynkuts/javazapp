@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+    <ui:composition template="../../templates/base.xhtml">
+        <!-- <ui:define name="title">Login page</ui:define> -->
+        <ui:param name="title" value="Add Section"/>
+        <ui:define name="content">
+            <h:panelGroup class="container">
+
+                <h:panelGroup class="row col-md-2 col-md-offset-5">
+                    <h3>Add Section</h3>
+                </h:panelGroup>
+
+                <h:form class="form mb-4">
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="sectionAdd">Section to Add</h:outputLabel>
+                        <h:inputText id="sectionAdd" value="#{editSectionController.getEditRequest().name}" class="form-control">
+                        </h:inputText>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row">
+                        <h:commandButton value="Add" action="#{editSectionController.save}"
+                                         class="btn col-md-2 col-md-offset-5"/>
+                    </h:panelGroup>
+                </h:form>
+
+                <h:panelGroup class="row col-md-2 col-md-offset-5">
+                    <h:outputLink value="sectionList.xhtml">List of Section to Edit</h:outputLink>
+                </h:panelGroup>
+
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
+</html>

@@ -30,6 +30,7 @@ public class LoginFilter extends HttpFilter {
             System.out.println("isResourceReq(req): " + isResourceReq(req));  ////TODO
             System.out.println("isSiteAllowed(req): " + isSiteAllowed(req));  ////TODO
             System.out.println("isUserLogged(req): " + isUserLogged(req));  ////TODO
+            //if (isAdminSite(req) && isAdminLogged(req))
 
             chain.doFilter(req, res);
         } else if (isResourceReq(req) || isAdminSite(req) || isAdminLogged(req)) {
@@ -74,7 +75,8 @@ public class LoginFilter extends HttpFilter {
 
         System.out.println("4-req.getContextPath(): " + req.getContextPath()); ////TODO
 
-        return req.getRequestURI().equals(req.getContextPath() + "/admin/protected.xhtml");
+        return req.getRequestURI().equals(req.getContextPath() + "/admin/protected.xhtml") ||
+                req.getRequestURI().contains("admin"); //TODO
     }
 
     private boolean isAdminLogged(HttpServletRequest req) {

@@ -15,6 +15,8 @@ public class SectionController {
     private SectionRequest sectionRequest;
     @Inject
     private SectionService ss;
+    @Inject
+    private SectionRepository sectionRepository;
 
 //    public void addSection(){
 //        ss.addSection(sectionRequest.getName());
@@ -47,8 +49,10 @@ public class SectionController {
 //            System.out.println(s.getId_section());
 //        }
         return ss.getSectionList();
+    }
 
-
+    public List<Section> getSectionList() {
+        return sectionRepository.findAll();
     }
 
 }

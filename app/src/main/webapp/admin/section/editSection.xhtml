@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+
+    <ui:composition template="../../templates/base.xhtml">
+        <ui:param name="title" value="Edit door"/>
+
+        <ui:define name="content">
+            <div class="text-center">
+                <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                               styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+                <h:form styleClass="form-base">
+                    <h:inputHidden value="#{editSectionController.getEditRequest().id}" />
+                    <div class="form-group">
+                        <h:inputText id="door-name" styleClass="form-control" placeholder="Section name"
+                                     value="#{editSectionController.getEditRequest().name}"/>
+                    </div>
+
+                    <h:commandButton styleClass="btn btn-primary" value="Save" action="#{editSectionController.save}"/><br/>
+                </h:form>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>

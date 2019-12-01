@@ -22,9 +22,9 @@ public class CategoryController {
     @Inject
     private SectionService ss;
 
-    public void addCategory(){
-        cs.addCategory(categoryRequest.getName());
-    }
+//    public void addCategory(){
+//        cs.addCategory(categoryRequest.getName());
+//    }
 
     public List sectionList(){
 

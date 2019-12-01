@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:body>
-    <ui:composition template="../templates/base.xhtml">
+    <ui:composition template="../../templates/base.xhtml">
         <!-- <ui:define name="title">Login page</ui:define> -->
         <ui:param name="title" value="Add Category"/>
         <ui:define name="content">
@@ -17,30 +17,31 @@
                     <h3>Add Category</h3>
                 </h:panelGroup>
 
-                <h:form class="form">
+                <h:form class="form mb-4">
+
                     <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                         <h:outputLabel for="section">Sections to select</h:outputLabel>
-                        <h:selectOneMenu class="form-control" id="section" value="#{sectionRequest.name}">
-                            <f:selectItems value="#{sectionCategoryController.sectionList()}"/>
+                        <h:selectOneMenu class="form-control" id="section" value="#{addCategoryController.getAddRequest().section}">
+                            <f:selectItems value="#{listSectionController.getSectionList()}"/>
                         </h:selectOneMenu>
                     </h:panelGroup>
 
                     <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                        <h:outputLabel for="caterory">Caterory</h:outputLabel>
-                        <h:inputText id="caterory" value="#{categoryRequest.name}" class="form-control">
+                        <h:outputLabel for="categoryAdd">Category to Add</h:outputLabel>
+                        <h:inputText id="categoryAdd" value="#{addCategoryController.getAddRequest().name}" class="form-control">
                         </h:inputText>
                     </h:panelGroup>
 
                     <h:panelGroup class="row">
-                        <h:commandButton value="Add" action="#{categoryController.addCategory}"
+                        <h:commandButton value="Add" action="#{addCategoryController.save}"
                                          class="btn col-md-2 col-md-offset-5"/>
                     </h:panelGroup>
-
-                    <h:panelGroup class="row col-md-2 col-md-offset-5">
-                        <h:outputLink value="editSectionCategory.xhtml">Edit Category</h:outputLink>
-                    </h:panelGroup>
-
                 </h:form>
+
+                <h:panelGroup class="row col-md-2 col-md-offset-5">
+                    <h:outputLink value="sectionList.xhtml">List of Category to Edit</h:outputLink>
+                </h:panelGroup>
+
             </h:panelGroup>
         </ui:define>
     </ui:composition>

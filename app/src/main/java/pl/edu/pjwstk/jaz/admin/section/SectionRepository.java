@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class SectionRepository {
@@ -30,12 +31,30 @@ public class SectionRepository {
         }
     }
 
+    @Transactional
+    public void save(Section section) {
+        if (section.getId() == null) {
+            em.persist(section);
+        } else {
+            em.merge(section);
+        }
+    }
+
 
     @Transactional
     public List<Section> getSectionList(){
         return em.createQuery("select s from Section s", Section.class).getResultList();
     }
 
+    @Transactional
+    public List<Section> findAll(){
+        return em.createQuery("from Section", Section.class).getResultList();
+    }
+
+    public Optional<Section> findSectionById(Long sectionId) {
+        var section = em.find(Section.class, sectionId);
+        return Optional.ofNullable(section);         //TODO
+    }
 
 //    public List<Door> findAll() {
 //        return em.createQuery("from Door", Door.class).getResultList();

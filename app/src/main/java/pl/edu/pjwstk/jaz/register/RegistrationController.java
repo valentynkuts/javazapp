@@ -76,7 +76,8 @@ public class RegistrationController {
 //                pr.insert(name, suname, pw_hash,
 //                        user.getEmail().trim(), user.getUsername().trim(), user.getBirthday().trim(), adminRole);
 
-                String role = "standard";
+                //String role = "standard";
+                String role = "admin";
                 pr.insert(name, suname, pw_hash,
                         user.getEmail().trim(), user.getUsername().trim(), user.getBirthday().trim(), role);
 
