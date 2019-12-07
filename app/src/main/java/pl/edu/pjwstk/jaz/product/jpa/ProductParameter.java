@@ -1,22 +1,25 @@
 package pl.edu.pjwstk.jaz.product.jpa;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 
 @Entity
 @Table(name = "product_parameter")
-public class ProductParameter {
-    @EmbeddedId
-    private ProductParameterId productParameterId;
+public class ProductParameter implements Serializable {
+    //@EmbeddedId
+    //private ProductParameterId productParameterId;
 
     //---------TODO------------
+    @Id
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @MapsId("productId")
+    //@MapsId("productId")
     @JoinColumn(name = "product_id")
     private Product product;
 
+    @Id
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @MapsId("parameterId")
+    //@MapsId("parameterId")
     @JoinColumn(name = "parameter_id")
     private Parameter parameter;
     //----------------------
@@ -27,18 +30,40 @@ public class ProductParameter {
     public ProductParameter() {
     }
 
-    public ProductParameter(ProductParameterId productParameterId, String value) {
-        this.productParameterId = productParameterId;
+    public ProductParameter(Product product, Parameter parameter, String value) {//TODO
+        this.product = product;
+        this.parameter = parameter;
         this.value = value;
     }
 
-    public ProductParameterId getProductParameterId() {
-        return productParameterId;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProductParameterId(ProductParameterId productParameterId) {
-        this.productParameterId = productParameterId;
+    public void setProduct(Product product) {
+        this.product = product;
     }
+
+    public Parameter getParameter() {
+        return parameter;
+    }
+
+    public void setParameter(Parameter parameter) {
+        this.parameter = parameter;
+    }
+
+//    public ProductParameter(ProductParameterId productParameterId, String value) {
+//        this.productParameterId = productParameterId;
+//        this.value = value;
+//    }
+//
+//    public ProductParameterId getProductParameterId() {
+//        return productParameterId;
+//    }
+//
+//    public void setProductParameterId(ProductParameterId productParameterId) {
+//        this.productParameterId = productParameterId;
+//    }
 
     public String getValue() {
         return value;
@@ -48,22 +73,5 @@ public class ProductParameter {
         this.value = value;
     }
 
-//---------TODO------------
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//
-//        CardAccessId that = (CardAccessId) o;
-//
-//        if (cardNumber != null ? !cardNumber.equals(that.cardNumber) : that.cardNumber != null) return false;
-//        return doorId != null ? doorId.equals(that.doorId) : that.doorId == null;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int result = cardNumber != null ? cardNumber.hashCode() : 0;
-//        result = 31 * result + (doorId != null ? doorId.hashCode() : 0);
-//        return result;
-//    }
+
 }

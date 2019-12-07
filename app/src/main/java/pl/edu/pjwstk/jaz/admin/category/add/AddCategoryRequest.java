@@ -6,21 +6,23 @@ import pl.edu.pjwstk.jaz.product.jpa.Section;
 public class AddCategoryRequest {
     private Long id;
     private String name;
-    private Section section;
+    private Long sectionId;
 
     public AddCategoryRequest() {
     }
 
-    public AddCategoryRequest(Long id, String name, Section section) {
+    public AddCategoryRequest(Long id, String name, Long sectionId) {
         this.id = id;
         this.name = name;
-        this.section = section;
+        this.sectionId = sectionId;
     }
 
-    public AddCategoryRequest(Category category) {
-        this.id = category.getId();
-        this.name = category.getName();
-        this.section = category.getSection();
+        public Long getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(Long sectionId) {
+        this.sectionId = sectionId;
     }
 
     public Long getId() {
@@ -39,15 +41,4 @@ public class AddCategoryRequest {
         this.name = name;
     }
 
-    public Section getSection() {
-        return section;
-    }
-
-    public void setSection(Section section) {
-        this.section = section;
-    }
-
-    public Category toCategory() {
-        return new Category(id, name, section);
-    }
 }

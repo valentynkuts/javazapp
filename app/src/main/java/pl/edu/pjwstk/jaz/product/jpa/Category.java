@@ -14,17 +14,21 @@ public class Category {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "section_id")
     private Section section;
 
     public Category() {
+       // this.section = new Section();
     }
 
     public Category(Long id, String name, Section section) {
         this.id = id;
         this.name = name;
         this.section = section;
+//        this.section = new Section();
+//        this.section.setId(section.getId());
+//        this.section.setName(section.getName());
     }
 
     public Long getId() {

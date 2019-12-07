@@ -24,19 +24,22 @@ public class Product {
     private float price;
 
     @ManyToOne
-    @JoinColumn(name = "category_id")
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category; //ok
 
-    @OneToOne
-    @JoinColumn(name = "creator_id")
-    private ProfileEntity creator ;
+//    @OneToOne
+//    @JoinColumn(name = "creator_id")
+//    private ProfileEntity creator ;
 
-    @OneToMany
+    @Column(name = "creator_id")
+    private Long ownerId;
+
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)//mappedBy??
     @JoinColumn(name = "product_id")
-    @OrderColumn
+    @OrderColumn(name = "sequence")//todo
     private List<Photo> photos ;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
     @JoinColumn(name = "product_id")
     private Collection<ProductParameter> parameters ;
 
@@ -44,13 +47,12 @@ public class Product {
     public Product() {
     }
 
-    public Product(String title, String description, float price, Category category, ProfileEntity creator,
-                   List<Photo> photos, Collection<ProductParameter> parameters) {
+    public Product(String title, String description, float price, Category category, Long ownerId, List<Photo> photos, Collection<ProductParameter> parameters) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
-        this.creator = creator;
+        this.ownerId = ownerId;
         this.photos = photos;
         this.parameters = parameters;
     }
@@ -95,14 +97,6 @@ public class Product {
         this.category = category;
     }
 
-    public ProfileEntity getCreator() {
-        return creator;
-    }
-
-    public void setCreator(ProfileEntity creator) {
-        this.creator = creator;
-    }
-
     public List<Photo> getPhotos() {
         return photos;
     }
@@ -117,5 +111,13 @@ public class Product {
 
     public void setParameters(Collection<ProductParameter> parameters) {
         this.parameters = parameters;
+    }
+
+    public Long getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Long ownerId) {
+        this.ownerId = ownerId;
     }
 }

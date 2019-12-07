@@ -10,8 +10,8 @@ import java.util.Collection;
 @Named
 @RequestScoped
 public class SectionRequest {
-    private Long id;
-    private String name;
+//    private Long id;
+//    private String name;
     //private Collection<Category> categories;
     //==============??
 //    private String selectedItem;
@@ -24,35 +24,35 @@ public class SectionRequest {
 //        this.selectedItem = selectedItem;
 //    }
 //==================
-    public SectionRequest() {
-    }
-
-    public SectionRequest(String name) {
-        this.name = name;
-    }
-
-    public SectionRequest(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Section toSection() {  //????  TODO
-        return new Section(name);
-    }
+//    public SectionRequest() {
+//    }
+//
+//    public SectionRequest(String name) {
+//        this.name = name;
+//    }
+//
+//    public SectionRequest(Long id, String name) {
+//        this.id = id;
+//        this.name = name;
+//    }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public Section toSection() {  //????  TODO
+//        return new Section(name);
+//    }
 }

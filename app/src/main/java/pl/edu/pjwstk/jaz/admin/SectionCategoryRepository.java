@@ -12,29 +12,29 @@ import java.util.List;
 @ApplicationScoped
 public class SectionCategoryRepository {
 
-    @PersistenceContext
-    private EntityManager em;
-
-    @Transactional
-    public void addSection(String name) {
-        var section = new Section();
-        section.setName(name);
-        em.persist(section);
-    }
-    @Transactional
-    public void addCategory(String name) {
-        var category = new Category();
-        category.setName(name);
-        em.persist(category);
-    }
-
-    @Transactional
-    public List<Section> getSectionList(){
-
-        return em.createQuery("select s from Section s", Section.class).getResultList();
-
-       //// List<SectionEntity> sectionList = new ArrayList<>();
-
-       //// return sectionList;
-    }
+//    @PersistenceContext
+//    private EntityManager em;
+//
+//    @Transactional
+//    public void addSection(String name) {
+//        var section = new Section();
+//        section.setName(name);
+//        em.persist(section);
+//    }
+//    @Transactional
+//    public void addCategory(String name) {
+//        var category = new Category();
+//        category.setName(name);
+//        em.persist(category);
+//    }
+//
+//    @Transactional
+//    public List<Section> getSectionList(){
+//
+//        return em.createQuery("select s from Section s", Section.class).getResultList();
+//
+//       //// List<SectionEntity> sectionList = new ArrayList<>();
+//
+//       //// return sectionList;
+//    }
 }

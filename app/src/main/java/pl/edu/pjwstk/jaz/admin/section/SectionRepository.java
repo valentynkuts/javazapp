@@ -15,13 +15,6 @@ public class SectionRepository {
     @PersistenceContext
     private EntityManager em;
 
-//    @Transactional
-//    public void addSection(String name) {
-//        var section = new Section();
-//        section.setName(name);
-//        em.persist(section);
-//    }
-
     @Transactional
     public void addSection(Section section) {
         if (section.getId() == null) {
@@ -40,7 +33,6 @@ public class SectionRepository {
         }
     }
 
-
     @Transactional
     public List<Section> getSectionList(){
         return em.createQuery("select s from Section s", Section.class).getResultList();
@@ -51,12 +43,15 @@ public class SectionRepository {
         return em.createQuery("from Section", Section.class).getResultList();
     }
 
+    @Transactional
     public Optional<Section> findSectionById(Long sectionId) {
         var section = em.find(Section.class, sectionId);
-        return Optional.ofNullable(section);         //TODO
+        return Optional.ofNullable(section);
     }
 
-//    public List<Door> findAll() {
-//        return em.createQuery("from Door", Door.class).getResultList();
-//    }
+    @Transactional
+    public Section getSectionReference(Long sectionId) {
+        return em.getReference(Section.class, sectionId);         //TODO
+    }
+
 }

@@ -6,17 +6,17 @@ import java.util.List;
 
 @ApplicationScoped
 public class SectionCategoryService {
-    @Inject
-    private SectionCategoryRepository scr;
-
-    public void addSection(String name){
-        scr.addSection(name);
-    }
-    public void addCategory(String name){
-        scr.addCategory(name);
-    }
-
-    public List getSectionList(){
-        return scr.getSectionList();
-    }
+//    @Inject
+//    private SectionCategoryRepository scr;
+//
+//    public void addSection(String name){
+//        scr.addSection(name);
+//    }
+//    public void addCategory(String name){
+//        scr.addCategory(name);
+//    }
+//
+//    public List getSectionList(){
+//        return scr.getSectionList();
+//    }
 }

@@ -16,7 +16,6 @@ public class EditSectionController {
     @Inject
     private ParamRetriever paramRetriever;
 
-   // @Inject
     private EditSectionRequest editSectionRequest;
 
     public EditSectionRequest getEditRequest() {
@@ -42,8 +41,4 @@ public class EditSectionController {
         return "/admin/section/sectionList.xhtml?faces-redirect=true";
     }
 
-//    public void save() {
-//        var section = editSectionRequest.toSection();
-//        sectionRepository.save(section);
-//    }
 }

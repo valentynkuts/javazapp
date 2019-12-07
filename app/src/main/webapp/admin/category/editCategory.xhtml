@@ -5,7 +5,28 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+<h:body>
+
+    <ui:composition template="../../templates/base.xhtml">
+        <ui:param name="title" value="Edit door"/>
+
+        <ui:define name="content">
+            <div class="text-center">
+                <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                               styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+                <h:form styleClass="form-base">
+                    <h:inputHidden value="#{editCategoryController.getEditRequest().id}" />
+                    <div class="form-group">
+                        <h:inputText id="category-name" styleClass="form-control" placeholder="Category name"
+                                     value="#{editCategoryController.getEditRequest().name}"/>
+                    </div>
+
+                    <h:commandButton styleClass="btn btn-primary" value="Save" action="#{editCategoryController.save}"/><br/>
+                </h:form>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
 </html>

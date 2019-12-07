@@ -15,12 +15,12 @@ public class SectionService {
 //        sr.addSection(name);
 //    }
 
-    public void addSection(Section section){
-        sr.addSection(section);
-    }
-
-
-    public List getSectionList(){
-        return sr.getSectionList();
-    }
+//    public void addSection(Section section){
+//        sr.addSection(section);
+//    }
+//
+//
+//    public List getSectionList(){
+//        return sr.getSectionList();
+//    }
 }

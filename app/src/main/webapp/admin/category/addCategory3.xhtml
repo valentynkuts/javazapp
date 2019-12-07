@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+
+    <ui:composition template="../../templates/base.xhtml">
+        <ui:param name="title" value="Edit door"/>
+        <ui:define name="content">
+            <h:panelGroup class="container">
+
+                <div class="row">
+
+                    <div class="col">
+                        <div class="col-xs-12 col-sm-6">
+                            <ui:repeat value="#{listSectionController.getSectionList()}" var="section">
+                                <h:link styleClass="list-group-item list-group-item-action" outcome="addCategory">
+                                    <f:param name="sectionId" value="#{section.id}"/>
+
+                                    <h:outputText value="##{section.id} - #{section.name}"/>
+                                </h:link>
+                            </ui:repeat>
+                        </div>
+                    </div>
+
+                    <h:form class="form">
+                        <h:panelGroup class="col">
+
+                            <div class="col-xs-12 col-sm-6">
+                                <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                                               styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+<!--                                <h:inputHidden value="#{addCategoryController.getAddRequest().getSection().id}"/>-->
+                                <div>
+                                    <h:inputText id="section-name" styleClass="form-control" placeholder="Section name"
+                                                 value="#{addCategoryController_Old.getAddRequest().section.name}"/>
+                                </div>
+                            </div>
+
+                            <div class="col-xs-12 col-sm-6">
+                                <h:outputLabel for="categoryAdd">Category to Add</h:outputLabel>
+                                <h:inputText id="categoryAdd" value="#{addCategoryController_Old.getAddRequest().name}"
+                                             class="form-control">
+                                </h:inputText>
+                            </div>
+
+
+                            <div class="col-xs-12 col-sm-6">
+                                <h:commandButton value="Add" action="#{addCategoryController_Old.show}"
+                                                 class="btn"/>
+                            </div>
+
+                        </h:panelGroup>
+
+                    </h:form>
+                </div>
+            </h:panelGroup>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>
