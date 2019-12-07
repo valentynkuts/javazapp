@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+    <ui:composition template="../layout.xhtml">
+        <ui:define name="title">Registration page</ui:define>
+        <ui:define name="content">
+            <h:panelGroup class="container">
+
+                <h:panelGroup class="row col-md-2 col-md-offset-5">
+                    <h2>Add Product Form</h2>
+                </h:panelGroup>
+
+                <h:form class="form">
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="sectionlist">Section to select</h:outputLabel>
+                        <h:selectOneMenu class="form-control" id="sectionlist" value="#{addProductController.getAddRequest().sectionId}">
+                            <f:selectItems value="#{listSectionController.getSectionList()}" var="section"
+                                           itemValue="#{section.id}"
+                                           itemLabel="#{section.name}"/>
+                            <f:ajax event="change" execute="sectionlist" render="categorylist"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="categorylist">Category to select</h:outputLabel>
+                        <h:selectOneMenu class="form-control" id="categorylist" value="#{addProductController.getAddRequest().categoryId}">
+                            <f:selectItems value="#{addProductController.getCategoryListBySectionId()}" var="category"
+                                           itemValue="#{category.id}"
+                                           itemLabel="#{category.name}"/>
+                        </h:selectOneMenu>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="title">Title</h:outputLabel>
+                        <h:inputTextarea id = "title" class="form-control" cols="30" rows="10" />
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="description">Description</h:outputLabel>
+                        <h:inputTextarea id = "description" class="form-control" cols="30" rows="10" />
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="price">Price</h:outputLabel>
+                        <h:inputText id="price" value="#{user.surname}" class="form-control">
+                            <f:validateDoubleRange minimum="0.01" maximum="9.99"/>
+                        </h:inputText>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="parameter">Name of parameter</h:outputLabel>
+                        <h:inputText id="parameter" value="#{user.username}" class="form-control">
+                        </h:inputText>
+                        <h:outputLabel for="value">value</h:outputLabel>
+                        <h:inputText id="value" value="#{user.username}" class="form-control">
+                        </h:inputText>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                        <h:outputLabel for="birthday">Birthday</h:outputLabel>
+                        <h:inputText id="birthday" value="#{user.birthday}" class="form-control"
+                                     validatorMessage="#{msg['birthday']}">
+                            <f:convertDateTime type="date" dateStyle="short" pattern="dd/MM/yyyy"/>
+                        </h:inputText>
+                    </h:panelGroup>
+
+                    <h:panelGroup class="row">
+                        <h:commandButton value="Add" action="#{registrationController.registration}"
+                                         class="btn col-md-2 col-md-offset-5"/>
+                    </h:panelGroup>
+
+                </h:form>
+
+                <h:form enctype="multipart/form-data"  prependId="false">
+                    <h:outputText value="File: ">file</h:outputText>
+                    <h:inputFile value="#{fileupload.uploadedFile}"  />
+                    <h:commandButton value="Save" type="submit" action="#{fileupload.saveFile}" style="color: red;"/>
+                </h:form>
+S
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

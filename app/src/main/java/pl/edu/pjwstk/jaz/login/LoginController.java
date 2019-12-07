@@ -54,6 +54,7 @@ public class LoginController {
                         session.setAttribute("name", pe.getName());
                         session.setAttribute("surname", pe.getSurname());
                         session.setAttribute("username", pe.getUsername());
+                        session.setAttribute("id", pe.getId());
 
                         facesContext.getExternalContext().redirect("index.xhtml");
                     }

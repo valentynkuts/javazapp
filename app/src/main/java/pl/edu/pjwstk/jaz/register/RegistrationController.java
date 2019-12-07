@@ -69,6 +69,7 @@ public class RegistrationController {
                 String plain_password = user.getPassword().trim();
                 String name = user.getName().trim();
                 String suname = user.getSurname().trim();
+                String username = user.getUsername().trim();
                 String pw_hash = BCrypt.hashpw(plain_password, BCrypt.gensalt());
                 //pw_hash -  instead of -  plain_password
 
@@ -76,8 +77,8 @@ public class RegistrationController {
 //                pr.insert(name, suname, pw_hash,
 //                        user.getEmail().trim(), user.getUsername().trim(), user.getBirthday().trim(), adminRole);
 
-                //String role = "standard";
-                String role = "admin";
+                String role = "standard";
+                //String role = "admin";
                 pr.insert(name, suname, pw_hash,
                         user.getEmail().trim(), user.getUsername().trim(), user.getBirthday().trim(), role);
 
@@ -85,6 +86,12 @@ public class RegistrationController {
                 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
                 session.setAttribute("name", name);
                 session.setAttribute("surname", suname);
+
+//                pe = pr.selectSingleResWithUsername(username);
+//                session.setAttribute("name", pe.getName());
+//                session.setAttribute("surname", pe.getSurname());
+//                session.setAttribute("id", pe.getId());
+
                 facesContext.getExternalContext().redirect("index.xhtml");
 
             } else {
