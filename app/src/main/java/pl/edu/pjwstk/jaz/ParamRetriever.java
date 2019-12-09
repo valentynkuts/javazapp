@@ -17,4 +17,9 @@ public class ParamRetriever {
         var paramValue = request.getParameter(paramKey);
         return Long.parseLong(paramValue);
     }
+
+    public Long getLongUserId(String str) {
+        return (Long)request.getSession().getAttribute(str);
+    }
+
 }
