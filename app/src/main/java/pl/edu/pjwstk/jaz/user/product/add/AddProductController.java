@@ -70,6 +70,10 @@ public class AddProductController {
         System.out.println("Title: "+addProductRequest.getTitle());
         System.out.println("Description: "+addProductRequest.getDescription());
         System.out.println("Price: "+addProductRequest.getPrice());
+        System.out.println("Name parameter: "+addParameterRequest.getName());
+        System.out.println("Value of parameter: "+addParameterRequest.getValue());
+        System.out.println("Photo link: "+addPhotoRequest.getLink());
+        System.out.println("Sequence of photo: "+addPhotoRequest.getSequence());
 //        var section = categoryService.findSectionById(addCategoryRequest.getSectionId()).orElseThrow();
 //        categoryService.save(new Category(addCategoryRequest.getId(), addCategoryRequest.getName(),section));
 

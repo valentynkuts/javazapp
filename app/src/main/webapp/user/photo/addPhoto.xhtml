@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:body>
+    <ui:composition template="../../layout.xhtml">
+        <ui:define name="title">Add Photo Form</ui:define>
+        <ui:define name="content">
+            <h:panelGroup class="container">
+
+                <h:panelGroup class="row col-md-2 col-md-offset-5">
+                    <h2>Add Photo Form</h2>
+                </h:panelGroup>
+                <div class="row">
+
+                    <h:form class="form">
+
+                        <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                            <h:outputLabel for="listProduct">Product to select</h:outputLabel>
+                            <h:selectOneMenu class="form-control" id="listProduct"
+                                             value="#{addProductController.getAddRequest().categoryId}">
+                                <f:selectItems value="#{addProductController.getProductListByOwnerId()}"
+                                               var="product"
+                                               itemValue="#{product.id}"
+                                               itemLabel="#{product.name}"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
+
+                        <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                            <h:outputLabel for="link">link of Photo to add to product</h:outputLabel>
+                            <h:inputText id="link" value="#{addProductController.getAddPhotoRequest()}"
+                                         class="form-control">
+                            </h:inputText>
+                            <h:outputLabel for="sequence">Order</h:outputLabel>
+                            <h:inputText id="sequence" value="#{addProductController.getAddPhotoRequest()}"
+                                         class="form-control">
+                            </h:inputText>
+                        </h:panelGroup>
+
+                        <h:panelGroup class="row">
+                            <h:commandButton value="Add photo" action="#{addProductController.savePhotoLink()}"
+                                             class="btn col-md-2 col-md-offset-5"/>
+                        </h:panelGroup>
+                    </h:form>
+                </div>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
+</html>

@@ -19,13 +19,28 @@ public class AddProductRequest {
     private Long categoryId;
 
     private Long ownerId;
-    private List<Photo> photos ;
-    private Collection<ProductParameter> parameters ;
+//    private List<Photo> photos ;
+//    private Collection<ProductParameter> parameters ;
+    private Photo photo ;
+    private ProductParameter parameter;
 
     public AddProductRequest() {
     }
 
-//    public AddProductRequest(Long id, String title, String description,
+    public AddProductRequest(Long id, String title, String description, float price, Long sectionId,
+                             Long categoryId, Long ownerId, Photo photo, ProductParameter parameter) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.sectionId = sectionId;
+        this.categoryId = categoryId;
+        this.ownerId = ownerId;
+        this.photo = photo;
+        this.parameter = parameter;
+    }
+
+    //    public AddProductRequest(Long id, String title, String description,
 //                             float price, Category category, Long ownerId,
 //                             List<Photo> photos, Collection<ProductParameter> parameters) {
 //        this.id = id;
@@ -38,17 +53,17 @@ public class AddProductRequest {
 //        this.parameters = parameters;
 //    }
 
-    public AddProductRequest(Long id, String title, String description, float price, Long sectionId, Long categoryId, Long ownerId, List<Photo> photos, Collection<ProductParameter> parameters) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.sectionId = sectionId;
-        this.categoryId = categoryId;
-        this.ownerId = ownerId;
-        this.photos = photos;
-        this.parameters = parameters;
-    }
+//    public AddProductRequest(Long id, String title, String description, float price, Long sectionId, Long categoryId, Long ownerId, List<Photo> photos, Collection<ProductParameter> parameters) {
+//        this.id = id;
+//        this.title = title;
+//        this.description = description;
+//        this.price = price;
+//        this.sectionId = sectionId;
+//        this.categoryId = categoryId;
+//        this.ownerId = ownerId;
+//        this.photos = photos;
+//        this.parameters = parameters;
+//    }
 
     public Long getSectionId() {
         return sectionId;
@@ -114,19 +129,35 @@ public class AddProductRequest {
         this.ownerId = ownerId;
     }
 
-    public List<Photo> getPhotos() {
-        return photos;
+    public Photo getPhoto() {
+        return photo;
     }
 
-    public void setPhotos(List<Photo> photos) {
-        this.photos = photos;
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 
-    public Collection<ProductParameter> getParameters() {
-        return parameters;
+    public ProductParameter getParameter() {
+        return parameter;
     }
 
-    public void setParameters(Collection<ProductParameter> parameters) {
-        this.parameters = parameters;
+    public void setParameter(ProductParameter parameter) {
+        this.parameter = parameter;
     }
+
+    //    public List<Photo> getPhotos() {
+//        return photos;
+//    }
+//
+//    public void setPhotos(List<Photo> photos) {
+//        this.photos = photos;
+//    }
+//
+//    public Collection<ProductParameter> getParameters() {
+//        return parameters;
+//    }
+//
+//    public void setParameters(Collection<ProductParameter> parameters) {
+//        this.parameters = parameters;
+//    }
 }
