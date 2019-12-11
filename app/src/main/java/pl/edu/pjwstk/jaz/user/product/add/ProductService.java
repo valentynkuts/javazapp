@@ -8,6 +8,7 @@ import pl.edu.pjwstk.jaz.product.jpa.Product;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Optional;
 
 @ApplicationScoped
 public class ProductService {
@@ -24,5 +25,12 @@ public class ProductService {
     public List<Product>  getProductListByOwnerId(Long ownerId){
         return productRepository.getProductListByOwnerId(ownerId);
 
+    }
+    public void save(Product product) {
+        productRepository.save(product);
+    }
+
+    public Optional<Category> findCategoryById(Long categoryId) {
+        return categoryRepository.findCategoryById(categoryId);
     }
 }

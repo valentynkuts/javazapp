@@ -1,9 +1,10 @@
-package pl.edu.pjwstk.jaz.user.product.add;
+package pl.edu.pjwstk.jaz.user.product.add.parameter;
 
 public class AddParameterRequest {
     private  Long id;
     private String name;
     private String value;
+    private Long productId;
 
     public AddParameterRequest() {
     }
@@ -12,6 +13,14 @@ public class AddParameterRequest {
         this.id = id;
         this.name = name;
         this.value = value;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Long getId() {

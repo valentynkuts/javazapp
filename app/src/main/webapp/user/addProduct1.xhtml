@@ -8,7 +8,7 @@
 
 <h:body>
     <ui:composition template="../layout.xhtml">
-        <ui:define name="title">Registration page</ui:define>
+        <ui:define name="title">Add Product</ui:define>
         <ui:define name="content">
             <h:panelGroup class="container">
 
@@ -68,13 +68,63 @@
                             </h:panelGroup>
 
                         </h:form>
-                        <div>
-                            <h:outputLink value="photo/addPhoto.xhtml"> Go to add Photo </h:outputLink>
-                        </div>
+                    </div>
+                    <div class="col">
+                        <h:form class="form">
 
-                        <div>
-                            <h:outputLink value="parameter/addParameter.xhtml"> Go to add Parameter </h:outputLink>
-                        </div>
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="productlist">Product to select</h:outputLabel>
+                                <h:selectOneMenu class="form-control" id="productlist"
+                                                 value="#{addProductController.getAddRequest().categoryId}">
+                                    <f:selectItems value="#{addProductController.getProductListByOwnerId()}"
+                                                   var="product"
+                                                   itemValue="#{product.id}"
+                                                   itemLabel="#{product.name}"/>
+                                </h:selectOneMenu>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="parameter">Name of parameter</h:outputLabel>
+                                <h:inputText id="parameter" value="#{addProductController.getAddParameterRequest().name}" class="form-control">
+                                </h:inputText>
+                                <h:outputLabel for="value">value</h:outputLabel>
+                                <h:inputText id="value" value="#{addProductController.getAddParameterRequest().value}" class="form-control">
+                                </h:inputText>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row">
+                                <h:commandButton value="Add parameter" action="#{addProductController.saveParameter()}"
+                                                 class="btn col-md-2 col-md-offset-5"/>
+                            </h:panelGroup>
+                        </h:form>
+
+                        <h:form class="form">
+
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="listProduct">Product to select</h:outputLabel>
+                                <h:selectOneMenu class="form-control" id="listProduct"
+                                                 value="#{addProductController.getAddRequest().categoryId}">
+                                    <f:selectItems value="#{addProductController.getProductListByOwnerId()}"
+                                                   var="product"
+                                                   itemValue="#{product.id}"
+                                                   itemLabel="#{product.name}"/>
+                                </h:selectOneMenu>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="link">link of Photo to add to product</h:outputLabel>
+                                <h:inputText id="link" value="#{addProductController.getAddPhotoRequest().link}" class="form-control">
+                                </h:inputText>
+                                <h:outputLabel for="sequence">Order</h:outputLabel>
+                                <h:inputText id="sequence" value="#{addProductController.getAddPhotoRequest().sequence}" class="form-control">
+                                </h:inputText>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row">
+                                <h:commandButton value="Add photo" action="#{addProductController.savePhotoLink()}"
+                                                 class="btn col-md-2 col-md-offset-5"/>
+                            </h:panelGroup>
+                        </h:form>
                     </div>
                 </div>
             </h:panelGroup>

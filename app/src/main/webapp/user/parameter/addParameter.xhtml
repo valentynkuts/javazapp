@@ -15,35 +15,56 @@
                 <h:panelGroup class="row col-md-2 col-md-offset-5">
                     <h2>Add Parameter Form</h2>
                 </h:panelGroup>
+
                 <div class="row">
+
+                    <div class="col">
                         <h:form class="form">
-
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                                <h:outputLabel for="productlist">Product to select</h:outputLabel>
-                                <h:selectOneMenu class="form-control" id="productlist"
-                                                 value="#{addProductController.getAddRequest().categoryId}">
-                                    <f:selectItems value="#{addProductController.getProductListByOwnerId()}"
-                                                   var="product"
-                                                   itemValue="#{product.id}"
-                                                   itemLabel="#{product.name}"/>
-                                </h:selectOneMenu>
-                            </h:panelGroup>
-
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                            <div class="col-xs-12 col-sm-6">
                                 <h:outputLabel for="parameter">Name of parameter</h:outputLabel>
-                                <h:inputText id="parameter" value="#{addProductController.getAddParameterRequest()}" class="form-control">
+                                <h:inputText id="parameter"
+                                             value="#{addParameterController.getAddParameterRequest().name}"
+                                             class="form-control">
                                 </h:inputText>
-                                <h:outputLabel for="value">value</h:outputLabel>
-                                <h:inputText id="value" value="#{addProductController.getAddParameterRequest()}" class="form-control">
-                                </h:inputText>
-                            </h:panelGroup>
-
-                            <h:panelGroup class="row">
-                                <h:commandButton value="Add parameter" action="#{addProductController.saveParameter()}"
-                                                 class="btn col-md-2 col-md-offset-5"/>
-                            </h:panelGroup>
+                                <div>
+                                    <h:commandButton value="Add name of parameter"
+                                                     action="#{addParameterController.saveParameter()}"
+                                                     class="btn"/>
+                                </div>
+                            </div>
                         </h:form>
                     </div>
+
+                    <div class="col">
+                        <div class="col-xs-12 col-sm-6">
+                        <h:form class="form">
+
+                            <div>
+                                <h:outputLabel for="productlist">Product to select</h:outputLabel>
+                                <h:selectOneMenu class="form-control" id="productlist"
+                                                 value="#{addParameterController.getAddParameterRequest().productId}">
+                                    <f:selectItems value="#{addParameterController.getProductListByOwnerId()}"
+                                                   var="product"
+                                                   itemValue="#{product.id}"
+                                                   itemLabel="#{product.title}"/>
+                                </h:selectOneMenu>
+                            </div>
+
+                            <div>
+                                <h:outputLabel for="value">value</h:outputLabel>
+                                <h:inputText id="value" value="#{addParameterController.getAddParameterRequest().value}"
+                                             class="form-control">
+                                </h:inputText>
+                            </div>
+
+                            <div>
+                                <h:commandButton value="Add parameter" action="#{addParameterController.save()}"
+                                                 class="btn"/>
+                            </div>
+                        </h:form>
+                        </div>
+                    </div>
+                </div>
             </h:panelGroup>
         </ui:define>
     </ui:composition>

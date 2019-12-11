@@ -3,6 +3,7 @@ package pl.edu.pjwstk.jaz.user.product.add;
 import pl.edu.pjwstk.jaz.ParamRetriever;
 import pl.edu.pjwstk.jaz.product.jpa.Category;
 import pl.edu.pjwstk.jaz.product.jpa.Product;
+import pl.edu.pjwstk.jaz.user.product.add.parameter.AddParameterRequest;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -19,8 +20,8 @@ public class AddProductController {
     private ParamRetriever paramRetriever;
 
     private AddProductRequest addProductRequest;
-    private AddPhotoRequest addPhotoRequest;
-    private AddParameterRequest addParameterRequest;
+    //private AddPhotoRequest addPhotoRequest;
+   // private AddParameterRequest addParameterRequest;
 
 
     public AddProductRequest getAddRequest() {
@@ -29,19 +30,19 @@ public class AddProductController {
         }
         return addProductRequest;
     }
-    public AddPhotoRequest getAddPhotoRequest() {
-        if (addPhotoRequest == null) {
-            addPhotoRequest = new AddPhotoRequest();
-        }
-        return addPhotoRequest;
-    }
+//    public AddPhotoRequest getAddPhotoRequest() {
+//        if (addPhotoRequest == null) {
+//            addPhotoRequest = new AddPhotoRequest();
+//        }
+//        return addPhotoRequest;
+//    }
 
-    public AddParameterRequest getAddParameterRequest() {
-        if (addParameterRequest == null) {
-            addParameterRequest = new AddParameterRequest();
-        }
-        return addParameterRequest;
-    }
+//    public AddParameterRequest getAddParameterRequest() {
+//        if (addParameterRequest == null) {
+//            addParameterRequest = new AddParameterRequest();
+//        }
+//        return addParameterRequest;
+//    }
 
     public List<Category> getCategoryListBySectionId() {
         if (getAddRequest().getSectionId() != null) {
@@ -58,7 +59,8 @@ public class AddProductController {
     }
 
     public List<Product> getProductListByOwnerId() {
-        return productService.getProductListByOwnerId(getOwnerId());
+        Long ownerId = getOwnerId();
+        return productService.getProductListByOwnerId(ownerId);
         //return productService.getProductListByOwnerId(47l);
 
     }
@@ -70,12 +72,16 @@ public class AddProductController {
         System.out.println("Title: "+addProductRequest.getTitle());
         System.out.println("Description: "+addProductRequest.getDescription());
         System.out.println("Price: "+addProductRequest.getPrice());
-        System.out.println("Name parameter: "+addParameterRequest.getName());
-        System.out.println("Value of parameter: "+addParameterRequest.getValue());
-        System.out.println("Photo link: "+addPhotoRequest.getLink());
-        System.out.println("Sequence of photo: "+addPhotoRequest.getSequence());
+//        System.out.println("Name parameter: "+addParameterRequest.getName());
+//        System.out.println("Value of parameter: "+addParameterRequest.getValue());
+//        System.out.println("Photo link: "+addPhotoRequest.getLink());
+//        System.out.println("Sequence of photo: "+addPhotoRequest.getSequence());
 //        var section = categoryService.findSectionById(addCategoryRequest.getSectionId()).orElseThrow();
 //        categoryService.save(new Category(addCategoryRequest.getId(), addCategoryRequest.getName(),section));
+
+        var category = productService.findCategoryById(addProductRequest.getCategoryId()).orElseThrow();
+        productService.save(new Product(addProductRequest.getTitle(),addProductRequest.getDescription(),
+                addProductRequest.getPrice(),getOwnerId(),category));
 
         return "/user/addProduct.xhtml?faces-redirect=true";
     }
@@ -86,6 +92,7 @@ public class AddProductController {
     }
 
     public String  savePhotoLink(){
+
         return "/user/addProduct.xhtml?faces-redirect=true";
 
     }

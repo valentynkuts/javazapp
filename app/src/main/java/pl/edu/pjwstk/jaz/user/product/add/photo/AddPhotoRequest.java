@@ -1,19 +1,19 @@
-package pl.edu.pjwstk.jaz.user.product.add;
+package pl.edu.pjwstk.jaz.user.product.add.photo;
 
 public class AddPhotoRequest {
     private Long id;
     private String link;
     private int sequence;
-    private Long product_id;
+    private Long productId;
 
     public AddPhotoRequest() {
     }
 
-    public AddPhotoRequest(Long id, String link, int sequence, Long product_id) {
+    public AddPhotoRequest(Long id, String link, int sequence, Long productId) {
         this.id = id;
         this.link = link;
         this.sequence = sequence;
-        this.product_id = product_id;
+        this.productId = productId;
     }
 
     public Long getId() {
@@ -40,11 +40,11 @@ public class AddPhotoRequest {
         this.sequence = sequence;
     }
 
-    public Long getProduct_id() {
-        return product_id;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(Long product_id) {
-        this.product_id = product_id;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 }

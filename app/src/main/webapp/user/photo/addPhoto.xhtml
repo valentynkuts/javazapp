@@ -22,27 +22,27 @@
                         <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                             <h:outputLabel for="listProduct">Product to select</h:outputLabel>
                             <h:selectOneMenu class="form-control" id="listProduct"
-                                             value="#{addProductController.getAddRequest().categoryId}">
-                                <f:selectItems value="#{addProductController.getProductListByOwnerId()}"
+                                             value="#{addPhotoController.getAddPhotoRequest().productId}">
+                                <f:selectItems value="#{addPhotoController.getProductListByOwnerId()}"
                                                var="product"
                                                itemValue="#{product.id}"
-                                               itemLabel="#{product.name}"/>
+                                               itemLabel="#{product.title}"/>
                             </h:selectOneMenu>
                         </h:panelGroup>
 
                         <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                             <h:outputLabel for="link">link of Photo to add to product</h:outputLabel>
-                            <h:inputText id="link" value="#{addProductController.getAddPhotoRequest()}"
+                            <h:inputText id="link" value="#{addPhotoController.getAddPhotoRequest().link}"
                                          class="form-control">
                             </h:inputText>
                             <h:outputLabel for="sequence">Order</h:outputLabel>
-                            <h:inputText id="sequence" value="#{addProductController.getAddPhotoRequest()}"
+                            <h:inputText id="sequence" value="#{addPhotoController.getAddPhotoRequest().sequence}"
                                          class="form-control">
                             </h:inputText>
                         </h:panelGroup>
 
                         <h:panelGroup class="row">
-                            <h:commandButton value="Add photo" action="#{addProductController.savePhotoLink()}"
+                            <h:commandButton value="Add photo" action="#{addPhotoController.save()}"
                                              class="btn col-md-2 col-md-offset-5"/>
                         </h:panelGroup>
                     </h:form>

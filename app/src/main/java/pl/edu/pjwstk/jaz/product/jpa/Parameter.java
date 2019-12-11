@@ -21,6 +21,10 @@ public class Parameter {
     public Parameter() {
     }
 
+    public Parameter(String name) {
+        this.name = name;
+    }
+
     public Parameter(String name, Collection<ProductParameter> parametrs) {
         this.name = name;
         this.parametrs = parametrs;
