@@ -8,6 +8,7 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @ApplicationScoped
@@ -22,6 +23,13 @@ public class PhotoRepository {
         } else {
             em.merge(photo);
         }
+    }
+
+    @Transactional
+    public List<Photo> getPhotoListByProductId(Long productId) {
+        return em.createQuery("select p from Photo p where p.product.id = :productId", Photo.class)
+                .setParameter("productId", productId)
+                .getResultList();
     }
 
 }

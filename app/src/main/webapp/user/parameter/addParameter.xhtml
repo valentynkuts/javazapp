@@ -42,7 +42,7 @@
                             <div>
                                 <h:outputLabel for="productlist">Product to select</h:outputLabel>
                                 <h:selectOneMenu class="form-control" id="productlist"
-                                                 value="#{addParameterController.getAddParameterRequest().productId}">
+                                                 value="#{addParameterController.getAddProductParameterRequest().productId}">
                                     <f:selectItems value="#{addParameterController.getProductListByOwnerId()}"
                                                    var="product"
                                                    itemValue="#{product.id}"
@@ -51,14 +51,25 @@
                             </div>
 
                             <div>
+                                <h:outputLabel for="parameterlist">Parameter to select</h:outputLabel>
+                                <h:selectOneMenu class="form-control" id="parameterlist"
+                                                 value="#{addParameterController.getAddProductParameterRequest().parameterId}">
+                                    <f:selectItems value="#{addParameterController.getParametertList()}"
+                                                   var="parameter"
+                                                   itemValue="#{parameter.id}"
+                                                   itemLabel="#{parameter.name}"/>
+                                </h:selectOneMenu>
+                            </div>
+
+                            <div>
                                 <h:outputLabel for="value">value</h:outputLabel>
-                                <h:inputText id="value" value="#{addParameterController.getAddParameterRequest().value}"
+                                <h:inputText id="value" value="#{addParameterController.getAddProductParameterRequest().value}"
                                              class="form-control">
                                 </h:inputText>
                             </div>
 
                             <div>
-                                <h:commandButton value="Add parameter" action="#{addParameterController.save()}"
+                                <h:commandButton value="Add parameter" action="#{addParameterController.saveProductParam()}"
                                                  class="btn"/>
                             </div>
                         </h:form>
