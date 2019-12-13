@@ -62,4 +62,11 @@ public class ParameterRepository {
                 .getResultList();
     }
 
+    @Transactional
+    public List<ProductParameter> getParameterByProductId(Long productId) {
+        return em.createQuery("select pp from ProductParameter pp join Parameter p on pp.parameter.id = p.id and pp.product.id = :productId", ProductParameter.class)
+                .setParameter("productId", productId)
+                .getResultList();
+    }
+
 }

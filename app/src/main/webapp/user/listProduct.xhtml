@@ -5,7 +5,56 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+<h:body>
+
+    <ui:composition template="../templates/base.xhtml">
+        <ui:param name="title" value="Product list"/>
+
+        <ui:define name="content">
+            <div class="w-25">
+                <h:link styleClass="btn-primary" value="Add" outcome="addCategory"/>
+                <div class="list-group">
+
+                    <ui:repeat value="#{listProductController.getProductListByOwnerId()}" var="product">
+                        <ul>
+
+                            <h:panelGroup styleClass="list-group-item list-group-item-action" class="text-primary">
+                                <f:param name="productId" value="#{product.id}"/>
+                                <h:outputText value="##{product.id}"/>
+                                <h:outputText value="##{product.title}"/>
+                                <h:outputText value="##{product.description}"/>
+                                <h:outputText value="##{product.price}"/>
+                            </h:panelGroup>
+
+                            <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}"
+                                       var="productParameter">
+                                <li>
+                                    <h:link styleClass="list-group-item list-group-item-action" outcome="editCategory">
+                                        <h:outputText value="##{productParameter.parameter.name} - #{productParameter.value}"/>
+                                    </h:link>
+                                </li>
+                            </ui:repeat>
+
+
+                            <ui:repeat value="#{listProductController.getPhotoListByProductId(product.id)}"
+                                       var="photo">
+                                <li>
+                                    <h:link styleClass="list-group-item list-group-item-action" outcome="editCategory">
+                                        <h:outputText value="##{photo.id} - #{photo.link}"/>
+                                    </h:link>
+                                </li>
+                            </ui:repeat>
+
+                        </ul>
+                    </ui:repeat>
+
+                </div>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
 </html>
+
+

@@ -1,6 +1,7 @@
-package pl.edu.pjwstk.jaz.admin.section.list;
+package pl.edu.pjwstk.jaz.user.product.list;
 
 import pl.edu.pjwstk.jaz.product.jpa.Parameter;
+import pl.edu.pjwstk.jaz.product.jpa.Photo;
 import pl.edu.pjwstk.jaz.product.jpa.Product;
 import pl.edu.pjwstk.jaz.product.jpa.ProductParameter;
 import pl.edu.pjwstk.jaz.user.product.add.ProductRepository;
@@ -32,5 +33,13 @@ public class ListProductService {
 
     public List<Parameter> getParameterByParamId(Long parameterId) {
         return parameterRepository.getParameterByParamId(parameterId);
+    }
+
+    public List<Photo> getPhotoListByProductId(Long productId) {
+        return photoRepository.getPhotoListByProductId(productId);
+    }
+
+    public List<ProductParameter> getParameterByProductId(Long productId) {
+        return parameterRepository.getParameterByProductId(productId);
     }
 }
