@@ -31,5 +31,10 @@ public class PhotoRepository {
                 .setParameter("productId", productId)
                 .getResultList();
     }
+    @Transactional
+    public Optional<Photo> findPhotoById(Long photoId) {
+        var photo = em.find(Photo.class, photoId);
+        return Optional.ofNullable(photo);
+    }
 
 }

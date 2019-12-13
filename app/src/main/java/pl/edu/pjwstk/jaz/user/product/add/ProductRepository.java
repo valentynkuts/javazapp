@@ -37,4 +37,19 @@ public class ProductRepository {
         return Optional.ofNullable(product);         //TODO
     }
 
+    @Transactional
+    public Category findCategoryByProductId(Long productId) {
+        return em.createQuery("select c from Category c where c.id in(select p.category.id from Product p where p.id = :productId)", Category.class)
+                .setParameter("productId", productId)
+                .getSingleResult();
+    }
+
+    @Transactional
+    public Category findCategoryByProductId1(Long productId) {
+        return em.createQuery("select c from Category c join Product p on c.id = (select p.category.id from Product p where p.id = :productId)", Category.class)
+                .setParameter("productId", productId)
+                .getSingleResult();
+    }
+
+
 }

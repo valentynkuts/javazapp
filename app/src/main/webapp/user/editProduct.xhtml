@@ -5,7 +5,99 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+
+<h:body>
+    <ui:composition template="../layout.xhtml">
+        <ui:define name="title">Edit Product page</ui:define>
+        <ui:define name="content">
+            <h:panelGroup class="container">
+
+                <h:panelGroup class="row col-md-2 col-md-offset-5">
+                    <h2>Edit Product Form</h2>
+                </h:panelGroup>
+                <div class="row">
+                    <div class="col">
+                        <h:form class="form">
+
+<!--                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">-->
+<!--                                <h:outputLabel for="sectionlist">Section to select</h:outputLabel>-->
+<!--                                <h:selectOneMenu class="form-control" id="sectionlist"-->
+<!--                                                 value="#{addProductController.getAddRequest().sectionId}">-->
+<!--                                    <f:selectItems value="#{listSectionController.getSectionList()}" var="section"-->
+<!--                                                   itemValue="#{section.id}"-->
+<!--                                                   itemLabel="#{section.name}"/>-->
+<!--                                    <f:ajax event="change" execute="sectionlist" render="categorylist"/>-->
+<!--                                </h:selectOneMenu>-->
+<!--                            </h:panelGroup>-->
+
+<!--                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">-->
+<!--                                <h:outputLabel for="categorylist">Category to select</h:outputLabel>-->
+<!--                                <h:selectOneMenu class="form-control" id="categorylist"-->
+<!--                                                 value="#{addProductController.getAddRequest().categoryId}">-->
+<!--                                    <f:selectItems value="#{addProductController.getCategoryListBySectionId()}"-->
+<!--                                                   var="category"-->
+<!--                                                   itemValue="#{category.id}"-->
+<!--                                                   itemLabel="#{category.name}"/>-->
+<!--                                </h:selectOneMenu>-->
+<!--                            </h:panelGroup>-->
+
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="title">Title</h:outputLabel>
+                                <h:inputTextarea id="title" value="#{editProductController.getEditProductRequest().title}"
+                                                 class="form-control" cols="30" rows="10"/>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="description">Description</h:outputLabel>
+                                <h:inputTextarea id="description"
+                                                 value="#{editProductController.getEditProductRequest().description}"
+                                                 class="form-control" cols="30" rows="10"/>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="price">Price</h:outputLabel>
+                                <h:inputText id="price" value="#{editProductController.getEditProductRequest().price}"
+                                             class="form-control">
+                                    <f:validateDoubleRange minimum="0.01" maximum="99999.99"/>
+                                </h:inputText>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="photolist">photo to select</h:outputLabel>
+                                <h:selectOneMenu class="form-control" id="photolist"
+                                                 value="#{editProductController.getEditProductRequest().photoId}">
+                                    <f:selectItems value="#{editProductController.getEditProductRequest().photos}" var="photo"
+                                                   itemValue="#{photo.id}"
+                                                   itemLabel="#{photo.link}"/>
+<!--                                    <f:ajax event="change" execute="photolist" render="photolink"/>-->
+                                </h:selectOneMenu>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                                <h:outputLabel for="photolink">Photo link</h:outputLabel>
+                                <h:inputText id="photolink" value="#{editProductController.getEditPhotoRequest().link}"
+                                             class="form-control">
+                                </h:inputText>
+                            </h:panelGroup>
+
+                            <h:panelGroup class="row">
+                                <h:commandButton value="Edit" action="#{editProductController.save()}"
+                                                 class="btn col-md-2 col-md-offset-5"/>
+                            </h:panelGroup>
+
+                        </h:form>
+<!--                        <div>-->
+<!--                            <h:outputLink value="photo/addPhoto.xhtml"> Go to add Photo </h:outputLink>-->
+<!--                        </div>-->
+
+<!--                        <div>-->
+<!--                            <h:outputLink value="parameter/addParameter.xhtml"> Go to add Parameter </h:outputLink>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+</h:body>
+
 </html>

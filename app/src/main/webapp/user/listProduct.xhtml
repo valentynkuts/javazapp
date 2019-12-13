@@ -6,51 +6,53 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-
     <ui:composition template="../templates/base.xhtml">
         <ui:param name="title" value="Product list"/>
-
         <ui:define name="content">
-            <div class="w-25">
+            <div class="row">
                 <div class="list-group">
-
                     <ui:repeat value="#{listProductController.getProductListByOwnerId()}" var="product">
-                        <ul>
+                        <h:panelGroup styleClass="list-group-item list-group-item-action">
+<!--                            <f:param name="productId" value="#{product.id}"/>-->
+                            <!--                                <h:outputLabel>id</h:outputLabel>-->
+                            <!--                                <h:outputText value="#{product.id}"/>-->
+                            <h:panelGroup>
+                                <h:outputText value="#{product.title}" style="font-weight:bold"/>
+                            </h:panelGroup><br/>
 
-                            <h:panelGroup styleClass="list-group-item list-group-item-action" class="text-primary">
-                                <f:param name="productId" value="#{product.id}"/>
-                                <h:outputLabel>id</h:outputLabel>
-                                <h:outputText value="#{product.id}"/>
-                                <h:outputLabel>title</h:outputLabel>
-                                <h:outputText value="##{product.title}"/>
-                                <h:outputLabel>description</h:outputLabel>
-                                <h:outputText value="##{product.description}"/>
-                                <h:outputLabel>price</h:outputLabel>
-                                <h:outputText value="##{product.price}"/>
-                            </h:panelGroup>
+                            <h:panelGroup>
+                                <h:outputLabel style="font-weight:bold">Description</h:outputLabel><br/>
+                                <h:outputText value="#{product.description}"/>
+                            </h:panelGroup><br/>
 
-                            <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}"
-                                       var="productParameter">
-                                <li>
-                                        <h:outputText value="#{productParameter.parameter.name} - #{productParameter.value}"/>
-                                </li>
+                            <h:panelGroup>
+                                <h:outputLabel style="font-weight:bold">Price</h:outputLabel><br/>
+                                <h:outputText value="#{product.price}"/>
+                            </h:panelGroup><br/>
+
+                            <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}" var="productParameter">
+                                <h:panelGroup>
+                                    <h:outputText
+                                            value="#{productParameter.parameter.name} : #{productParameter.value}"/>
+                                </h:panelGroup><br/>
                             </ui:repeat>
 
-                            <ui:repeat value="#{listProductController.getPhotoListByProductId(product.id)}"
-                                       var="photo">
-                                <li>
-                                        <h:outputText value="#{photo.id} - #{photo.link}"/>
-                                </li>
+                            <ui:repeat value="#{listProductController.getPhotoListByProductId(product.id)}" var="photo">
+                                <h:panelGroup>
+                                    <h:graphicImage value = "#{photo.link}" height="50px" width="50px" alt="Image not found"/>
+<!--                                    <h:graphicImage url="#{photo.link}" height="50px" width="50px" alt="Image not found"/>-->
+<!--                                    <h:outputText value="#{photo.id} - #{photo.link}"/>-->
+                                </h:panelGroup><br/>
                             </ui:repeat>
 
-                        </ul>
+                        </h:panelGroup>
 
                         <div>
-                            <h:link styleClass="btn-primary" value="Edit" outcome="editProduct"/>
+                            <h:link class="btn btn-lg" value="Edit" outcome="editProduct">
+                                <f:param name="productId" value="#{product.id}"/>
+                            </h:link>
                         </div>
                     </ui:repeat>
-
-
 
                 </div>
             </div>

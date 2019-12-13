@@ -84,13 +84,13 @@ public class RegistrationController {
 
                 FacesContext facesContext = FacesContext.getCurrentInstance();
                 HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-                session.setAttribute("name", name);
-                session.setAttribute("surname", suname);
+//                session.setAttribute("name", name);
+//                session.setAttribute("surname", suname);
 
-//                pe = pr.selectSingleResWithUsername(username);
-//                session.setAttribute("name", pe.getName());
-//                session.setAttribute("surname", pe.getSurname());
-//                session.setAttribute("id", pe.getId());
+                pe = pr.selectSingleResWithUsername(username);
+                session.setAttribute("name", pe.getName());
+                session.setAttribute("surname", pe.getSurname());
+                session.setAttribute("id", pe.getId());
 
                 facesContext.getExternalContext().redirect("index.xhtml");
 
