@@ -12,7 +12,6 @@
 
         <ui:define name="content">
             <div class="w-25">
-                <h:link styleClass="btn-primary" value="Add" outcome="addCategory"/>
                 <div class="list-group">
 
                     <ui:repeat value="#{listProductController.getProductListByOwnerId()}" var="product">
@@ -20,33 +19,38 @@
 
                             <h:panelGroup styleClass="list-group-item list-group-item-action" class="text-primary">
                                 <f:param name="productId" value="#{product.id}"/>
-                                <h:outputText value="##{product.id}"/>
+                                <h:outputLabel>id</h:outputLabel>
+                                <h:outputText value="#{product.id}"/>
+                                <h:outputLabel>title</h:outputLabel>
                                 <h:outputText value="##{product.title}"/>
+                                <h:outputLabel>description</h:outputLabel>
                                 <h:outputText value="##{product.description}"/>
+                                <h:outputLabel>price</h:outputLabel>
                                 <h:outputText value="##{product.price}"/>
                             </h:panelGroup>
 
                             <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}"
                                        var="productParameter">
                                 <li>
-                                    <h:link styleClass="list-group-item list-group-item-action" outcome="editCategory">
-                                        <h:outputText value="##{productParameter.parameter.name} - #{productParameter.value}"/>
-                                    </h:link>
+                                        <h:outputText value="#{productParameter.parameter.name} - #{productParameter.value}"/>
                                 </li>
                             </ui:repeat>
-
 
                             <ui:repeat value="#{listProductController.getPhotoListByProductId(product.id)}"
                                        var="photo">
                                 <li>
-                                    <h:link styleClass="list-group-item list-group-item-action" outcome="editCategory">
-                                        <h:outputText value="##{photo.id} - #{photo.link}"/>
-                                    </h:link>
+                                        <h:outputText value="#{photo.id} - #{photo.link}"/>
                                 </li>
                             </ui:repeat>
 
                         </ul>
+
+                        <div>
+                            <h:link styleClass="btn-primary" value="Edit" outcome="editProduct"/>
+                        </div>
                     </ui:repeat>
+
+
 
                 </div>
             </div>
