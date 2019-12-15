@@ -7,6 +7,7 @@ import pl.edu.pjwstk.jaz.admin.section.SectionRepository;
 import pl.edu.pjwstk.jaz.product.jpa.Category;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -29,9 +30,21 @@ public class AddCategoryController {
     }
 
     public String save() {
-       var section = categoryService.findSectionById(addCategoryRequest.getSectionId()).orElseThrow();
-        categoryService.save(new Category(addCategoryRequest.getId(), addCategoryRequest.getName(),section));
+        Long sectionId = addCategoryRequest.getSectionId();
+        String categoryName = addCategoryRequest.getName().trim();
 
-        return "/admin/category/categoryList.xhtml?faces-redirect=true";
+        if(!categoryService.doesCategoryExist(categoryName,sectionId)){
+//            var section = categoryService.findSectionById(addCategoryRequest.getSectionId()).orElseThrow();
+//            categoryService.save(new Category(addCategoryRequest.getId(), addCategoryRequest.getName(), section));
+
+            var section = categoryService.findSectionById(sectionId).orElseThrow();
+            categoryService.save(new Category(addCategoryRequest.getId(), categoryName, section));
+
+            return "/admin/category/categoryList.xhtml?faces-redirect=true";
+        } else{
+            FacesContext.getCurrentInstance().getExternalContext().getFlash()
+                    .put("error-message", "Category exist in the Section");
+            return "/admin/category/addCategory.xhtml?faces-redirect=true";
+        }
     }
 }

@@ -9,18 +9,15 @@
 
     <ui:composition template="../../templates/base.xhtml">
         <ui:param name="title" value="Edit door"/>
-
         <ui:define name="content">
             <div class="text-center">
-                <h:outputLabel rendered="#{flash.containsKey('error-message')}"
-                               styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+                <div><h:outputLink value="../protected.xhtml">HOME</h:outputLink></div>
                 <h:form styleClass="form-base">
                     <h:inputHidden value="#{editCategoryController.getEditRequest().id}" />
                     <div class="form-group">
-                        <h:inputText id="category-name" styleClass="form-control" placeholder="Category name"
-                                     value="#{editCategoryController.getEditRequest().name}"/>
+                        <h:inputText id="category-name" styleClass="form-control"
+                                     value="#{editCategoryController.getEditRequest().name}" required="true"/>
                     </div>
-
                     <h:commandButton styleClass="btn btn-primary" value="Save" action="#{editCategoryController.save}"/><br/>
                 </h:form>
             </div>

@@ -36,19 +36,11 @@ public class AddPhotoController {
     public List<Product> getProductListByOwnerId(){
         Long ownerId = getOwnerId();
         return photoService.getProductListByOwnerId(ownerId);
-
     }
 
     public String save() {
-
-        System.out.println("Product id: "+addPhotoRequest.getProductId());
-        System.out.println("Photo link: "+addPhotoRequest.getLink());
-        System.out.println("Sequence of photo: "+addPhotoRequest.getSequence());
-
-
-       var product = photoService.findProductById(addPhotoRequest.getProductId()).orElseThrow();
+        var product = photoService.findProductById(addPhotoRequest.getProductId()).orElseThrow();
         photoService.save(new Photo(addPhotoRequest.getLink(),addPhotoRequest.getSequence(),product));
-
         return "/user/photo/addPhoto.xhtml?faces-redirect=true";
     }
 

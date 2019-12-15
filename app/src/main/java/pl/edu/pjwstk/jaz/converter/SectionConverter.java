@@ -1,4 +1,4 @@
-package pl.edu.pjwstk.jaz;
+package pl.edu.pjwstk.jaz.converter;
 
 import pl.edu.pjwstk.jaz.admin.section.SectionRepository;
 import pl.edu.pjwstk.jaz.product.jpa.Section;
@@ -54,7 +54,7 @@ public class SectionConverter implements Converter {
             //System.out.println(sectionRepository.findSectionById(Long.valueOf(submittedValue)));
             return sectionRepository.findSectionById(Long.valueOf(submittedValue));
         } catch (NumberFormatException e) {
-            throw new ConverterException(new FacesMessage(submittedValue + " is not a valid Warehouse ID"), e);
+            throw new ConverterException(new FacesMessage(submittedValue + " is not a valid Section ID"), e);
         }
     }
 

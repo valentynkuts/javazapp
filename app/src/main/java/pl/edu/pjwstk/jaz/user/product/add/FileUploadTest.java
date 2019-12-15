@@ -15,7 +15,7 @@ import javax.servlet.http.Part;
 @ManagedBean
 @ViewScoped
 //@RequestScoped
-public class Fileupload implements Serializable {
+public class FileUploadTest implements Serializable {
     private Part uploadedFile;
     private String folder = "images";
     private String fileSavePath = FacesContext.getCurrentInstance().getExternalContext().getRequestContextPath()+"/images";

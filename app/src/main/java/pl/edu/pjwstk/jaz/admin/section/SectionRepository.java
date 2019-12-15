@@ -1,6 +1,5 @@
 package pl.edu.pjwstk.jaz.admin.section;
 
-import pl.edu.pjwstk.jaz.product.jpa.Category;
 import pl.edu.pjwstk.jaz.product.jpa.Section;
 
 import javax.enterprise.context.ApplicationScoped;
@@ -51,7 +50,28 @@ public class SectionRepository {
 
     @Transactional
     public Section getSectionReference(Long sectionId) {
-        return em.getReference(Section.class, sectionId);         //TODO
+        return em.getReference(Section.class, sectionId);
     }
+
+    @Transactional
+    public Section findSectionByName(String sectionName) {
+        return em.createQuery("select s from Section s where s.name = :sectionName", Section.class)
+                .setParameter("sectionName", sectionName)
+                .getSingleResult();
+    }
+    @Transactional
+    public Optional<Section> findSectionByName2(String sectionName) {
+            return Optional.ofNullable(findSectionByName(sectionName));
+
+    }
+
+    @Transactional
+    public Optional<Section> findSectionByName3(String sectionName) {
+        return Optional.ofNullable(em.createQuery("select s from Section s where s.name = :sectionName", Section.class)
+                .setParameter("sectionName", sectionName)
+                .getSingleResult());
+    }
+
+
 
 }

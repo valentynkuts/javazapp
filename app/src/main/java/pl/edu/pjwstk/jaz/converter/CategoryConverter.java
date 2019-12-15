@@ -1,4 +1,4 @@
-package pl.edu.pjwstk.jaz;
+package pl.edu.pjwstk.jaz.converter;
 
         import pl.edu.pjwstk.jaz.admin.category.CategoryRepository;
         import pl.edu.pjwstk.jaz.admin.section.SectionRepository;

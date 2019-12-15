@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:body>
-    <ui:composition template="../layout.xhtml">
+    <ui:composition template="../templates/base.xhtml">
         <ui:define name="title">Registration page</ui:define>
         <ui:define name="content">
             <h:panelGroup class="container">
@@ -16,7 +16,6 @@
                     <h2>Add Product Form</h2>
                 </h:panelGroup>
                 <div class="row">
-                    <div class="col">
                         <h:form class="form">
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
@@ -44,21 +43,21 @@
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                                 <h:outputLabel for="title">Title</h:outputLabel>
                                 <h:inputTextarea id="title" value="#{addProductController.getAddRequest().title}"
-                                                 class="form-control" cols="30" rows="10"/>
+                                                 class="form-control" cols="20" rows="10" required="true"/>
                             </h:panelGroup>
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                                 <h:outputLabel for="description">Description</h:outputLabel>
                                 <h:inputTextarea id="description"
                                                  value="#{addProductController.getAddRequest().description}"
-                                                 class="form-control" cols="30" rows="10"/>
+                                                 class="form-control" cols="20" rows="10" required="true"/>
                             </h:panelGroup>
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                                 <h:outputLabel for="price">Price</h:outputLabel>
                                 <h:inputText id="price" value="#{addProductController.getAddRequest().price}"
                                              class="form-control">
-                                    <f:validateDoubleRange minimum="0.01" maximum="99999.99"/>
+                                    <f:validateDoubleRange minimum="0.01" maximum="100000.99"/>
                                 </h:inputText>
                             </h:panelGroup>
 
@@ -68,15 +67,19 @@
                             </h:panelGroup>
 
                         </h:form>
-                        <div>
-                            <h:outputLink value="photo/addPhoto.xhtml"> Go to add Photo </h:outputLink>
-                        </div>
+                        <div class="row col-md-2 col-md-offset-5">
+                            <div>
+                                <h:outputLink value="photo/addPhoto.xhtml"> Go to add Photo </h:outputLink>
+                            </div>
 
-                        <div>
-                            <h:outputLink value="parameter/addParameter.xhtml"> Go to add Parameter </h:outputLink>
+                            <div>
+                                <h:outputLink value="parameter/addParameter.xhtml"> Go to add Parameter </h:outputLink>
+                            </div>
+                            <div>
+                                <h:outputLink value="../index.xhtml"> HOME </h:outputLink>
+                            </div>
                         </div>
                     </div>
-                </div>
             </h:panelGroup>
         </ui:define>
     </ui:composition>

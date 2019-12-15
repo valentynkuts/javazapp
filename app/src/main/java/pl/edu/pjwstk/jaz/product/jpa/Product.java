@@ -25,7 +25,7 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id", nullable = false)
-    private Category category; //ok
+    private Category category;
 
 //    @OneToOne
 //    @JoinColumn(name = "creator_id")

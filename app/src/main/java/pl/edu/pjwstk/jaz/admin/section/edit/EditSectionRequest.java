@@ -10,15 +10,11 @@ public class EditSectionRequest {
     public EditSectionRequest() {
     }
 
-//    public EditSectionRequest(String name) {
-//        this.name = name;
-//    }
     public EditSectionRequest(Section section) {
         this.id = section.getId();
         this.name = section.getName();
     }
-
-
+    
     public Long getId() {
         return id;
     }
@@ -35,9 +31,6 @@ public class EditSectionRequest {
         this.name = name;
     }
 
-//    public String toString(){
-//        return name;
-//    }
     public Section toSection() {
         return new Section(id, name);
     }

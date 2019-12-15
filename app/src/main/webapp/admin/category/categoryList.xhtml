@@ -12,7 +12,9 @@
 
         <ui:define name="content">
             <div class="w-25">
-                <h:link styleClass="btn-primary" value="Add" outcome="addCategory"/>
+                <div><h:link styleClass="btn-primary" value="Add category" outcome="addCategory"/></div>
+                <div><h:outputLink value="../protected.xhtml">HOME</h:outputLink></div>
+
                 <div class="list-group">
 
                     <ui:repeat value="#{listSectionCategoryController.getSectionListFromCategory()}" var="section">

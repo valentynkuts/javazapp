@@ -20,7 +20,6 @@ public class Photo {
     @ManyToOne
     @JoinColumn(name="product_id")
     private Product product;
- // ok //add auction
 
     public Photo() {
     }

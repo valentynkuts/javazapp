@@ -11,11 +11,11 @@
         <ui:define name="content">
             <div class="row">
                 <div class="list-group">
+                    <div class="text-center">
+                        <h:outputLink value="../index.xhtml"> HOME </h:outputLink>
+                    </div>
                     <ui:repeat value="#{listProductController.getProductListByOwnerId()}" var="product">
                         <h:panelGroup styleClass="list-group-item list-group-item-action">
-<!--                            <f:param name="productId" value="#{product.id}"/>-->
-                            <!--                                <h:outputLabel>id</h:outputLabel>-->
-                            <!--                                <h:outputText value="#{product.id}"/>-->
                             <h:panelGroup>
                                 <h:outputText value="#{product.title}" style="font-weight:bold"/>
                             </h:panelGroup><br/>
@@ -26,7 +26,7 @@
                             </h:panelGroup><br/>
 
                             <h:panelGroup>
-                                <h:outputLabel style="font-weight:bold">Price</h:outputLabel><br/>
+                                <h:outputLabel style="font-weight:bold">Price</h:outputLabel>
                                 <h:outputText value="#{product.price}"/>
                             </h:panelGroup><br/>
 

@@ -1,7 +1,9 @@
-package pl.edu.pjwstk.jaz;
+package pl.edu.pjwstk.jaz.converter;
 
-import pl.edu.pjwstk.jaz.product.jpa.Photo;
-import pl.edu.pjwstk.jaz.user.product.add.photo.PhotoRepository;
+import pl.edu.pjwstk.jaz.admin.category.CategoryRepository;
+import pl.edu.pjwstk.jaz.product.jpa.Category;
+import pl.edu.pjwstk.jaz.product.jpa.Product;
+import pl.edu.pjwstk.jaz.user.product.add.ProductRepository;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -11,10 +13,10 @@ import javax.faces.convert.ConverterException;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
-@FacesConverter(forClass = Photo.class)
-public class PhotoConverter implements Converter {
+@FacesConverter(forClass = Product.class)
+public class ProductConverter implements Converter {
     @Inject
-    PhotoRepository photoRepository;
+    ProductRepository productRepository;
 
     @Override
     public String getAsString(FacesContext context, UIComponent component, Object modelValue) throws ConverterException {
@@ -23,11 +25,11 @@ public class PhotoConverter implements Converter {
         if (modelValue == null) {
             return "";
         }
-        if (modelValue instanceof Photo) {
+        if (modelValue instanceof Product) {
             // System.out.println(String.valueOf(((Category) modelValue).getId()));
-            return String.valueOf(((Photo) modelValue).getId());
+            return String.valueOf(((Product) modelValue).getId());
         } else {
-            throw new ConverterException(new FacesMessage(modelValue + " is not a valid Photo"));
+            throw new ConverterException(new FacesMessage(modelValue + " is not a valid Product"));
         }
     }
 
@@ -40,7 +42,7 @@ public class PhotoConverter implements Converter {
         }
         try {
             //System.out.println(sectionRepository.findSectionById(Long.valueOf(submittedValue)));
-            return photoRepository.findPhotoById(Long.valueOf(submittedValue));
+            return productRepository.findProductById(Long.valueOf(submittedValue));
         } catch (NumberFormatException e) {
             throw new ConverterException(new FacesMessage(submittedValue + " is not a valid Product ID"), e);
         }

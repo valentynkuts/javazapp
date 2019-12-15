@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:body>
-    <ui:composition template="../../layout.xhtml">
+    <ui:composition template="../../templates/base.xhtml">
         <ui:define name="title">Add Parameter Form</ui:define>
         <ui:define name="content">
             <h:panelGroup class="container">
@@ -17,14 +17,20 @@
                 </h:panelGroup>
 
                 <div class="row">
-
                     <div class="col">
+                        <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                                       styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+
+                        <div>
+                            <h:outputLink value="../../index.xhtml"> HOME </h:outputLink>
+                        </div>
+
                         <h:form class="form">
                             <div class="col-xs-12 col-sm-6">
                                 <h:outputLabel for="parameter">Name of parameter</h:outputLabel>
                                 <h:inputText id="parameter"
                                              value="#{addParameterController.getAddParameterRequest().name}"
-                                             class="form-control">
+                                             class="form-control" required="true">
                                 </h:inputText>
                                 <div>
                                     <h:commandButton value="Add name of parameter"
@@ -37,42 +43,43 @@
 
                     <div class="col">
                         <div class="col-xs-12 col-sm-6">
-                        <h:form class="form">
+                            <h:form class="form">
+                                <div>
+                                    <h:outputLabel for="productlist">Product to select</h:outputLabel>
+                                    <h:selectOneMenu class="form-control" id="productlist"
+                                                     value="#{addParameterController.getAddProductParameterRequest().productId}">
+                                        <f:selectItems value="#{addParameterController.getProductListByOwnerId()}"
+                                                       var="product"
+                                                       itemValue="#{product.id}"
+                                                       itemLabel="#{product.title}"/>
+                                    </h:selectOneMenu>
+                                </div>
 
-                            <div>
-                                <h:outputLabel for="productlist">Product to select</h:outputLabel>
-                                <h:selectOneMenu class="form-control" id="productlist"
-                                                 value="#{addParameterController.getAddProductParameterRequest().productId}">
-                                    <f:selectItems value="#{addParameterController.getProductListByOwnerId()}"
-                                                   var="product"
-                                                   itemValue="#{product.id}"
-                                                   itemLabel="#{product.title}"/>
-                                </h:selectOneMenu>
-                            </div>
+                                <div>
+                                    <h:outputLabel for="parameterlist">Parameter to select</h:outputLabel>
+                                    <h:selectOneMenu class="form-control" id="parameterlist"
+                                                     value="#{addParameterController.getAddProductParameterRequest().parameterId}">
+                                        <f:selectItems value="#{addParameterController.getParametertList()}"
+                                                       var="parameter"
+                                                       itemValue="#{parameter.id}"
+                                                       itemLabel="#{parameter.name}"/>
+                                    </h:selectOneMenu>
+                                </div>
 
-                            <div>
-                                <h:outputLabel for="parameterlist">Parameter to select</h:outputLabel>
-                                <h:selectOneMenu class="form-control" id="parameterlist"
-                                                 value="#{addParameterController.getAddProductParameterRequest().parameterId}">
-                                    <f:selectItems value="#{addParameterController.getParametertList()}"
-                                                   var="parameter"
-                                                   itemValue="#{parameter.id}"
-                                                   itemLabel="#{parameter.name}"/>
-                                </h:selectOneMenu>
-                            </div>
+                                <div>
+                                    <h:outputLabel for="value">value</h:outputLabel>
+                                    <h:inputText id="value"
+                                                 value="#{addParameterController.getAddProductParameterRequest().value}"
+                                                 class="form-control" required="true">
+                                    </h:inputText>
+                                </div>
 
-                            <div>
-                                <h:outputLabel for="value">value</h:outputLabel>
-                                <h:inputText id="value" value="#{addParameterController.getAddProductParameterRequest().value}"
-                                             class="form-control">
-                                </h:inputText>
-                            </div>
-
-                            <div>
-                                <h:commandButton value="Add parameter" action="#{addParameterController.saveProductParam()}"
-                                                 class="btn"/>
-                            </div>
-                        </h:form>
+                                <div>
+                                    <h:commandButton value="Add parameter"
+                                                     action="#{addParameterController.saveProductParam()}"
+                                                     class="btn"/>
+                                </div>
+                            </h:form>
                         </div>
                     </div>
                 </div>

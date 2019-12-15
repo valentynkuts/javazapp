@@ -5,23 +5,31 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello "/>
-    <h:outputText value="#{loginController.welcomAdminName()}"/>
-    <div>
-        <h:outputLink value="section/addSection.xhtml">Add Section</h:outputLink>
-    </div>
-    <div>
-        <h:outputLink value="section/sectionList.xhtml">List of Sections</h:outputLink>
-    </div>
-    <div>
-        <h:outputLink value="section/editSection.xhtml">Edit Section</h:outputLink>
-    </div>
-    <div>
-        <h:outputLink value="category/addCategory.xhtml">Add Category</h:outputLink>
-    </div>
-    <div>
-        <h:outputLink value="category/editCategory.xhtml">Edit Category</h:outputLink>
-    </div>
-</f:view>
+<h:body>
+    <ui:composition template="../templates/base.xhtml">
+        <!-- <ui:define name="title">Admin page</ui:define> -->
+        <ui:param name="title" value="Admin page"/>
+        <ui:define name="content">
+            <h:panelGroup class="container">
+                <div class="row col-md-2 col-md-offset-5">
+                    <h:outputLabel value="Hello, "/>
+                    <h:outputText value="#{loginController.welcomAdminName()}"/>
+                    <div>
+                        <h:outputLink value="section/addSection.xhtml">Add Section</h:outputLink>
+                    </div>
+                    <div>
+                        <h:outputLink value="section/sectionList.xhtml">List of Sections</h:outputLink>
+                    </div>
+                    <div>
+                        <h:outputLink value="category/addCategory.xhtml">Add Category</h:outputLink>
+                    </div>
+                    <div>
+                        <h:outputLink value="category/categoryList.xhtml">List of Category</h:outputLink>
+                    </div>
+                </div>
+            </h:panelGroup>
+        </ui:define>
+    </ui:composition>
+
+</h:body>
 </html>

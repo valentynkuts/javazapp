@@ -7,6 +7,7 @@ import pl.edu.pjwstk.jaz.product.jpa.Section;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.Id;
+import javax.persistence.NoResultException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
@@ -53,6 +54,20 @@ public class CategoryService {
     }
     public Optional<Section> getSectionFromCategory(Long categoryId){
         return categoryRepository.getSectionFromCategory(categoryId);
+    }
+
+    public boolean doesCategoryExist(String categoryName,Long sectionId) {
+        try {
+            List<Category> categoryList = categoryRepository.findCategoryBySectionId(sectionId);
+            for (Category c:categoryList) {
+                if(c.getName().equals(categoryName))
+                    return true;
+            }
+            return false;
+        } catch (NoResultException nre) {
+            System.out.println("Category does not exist");
+            return false;
+        }
     }
 
 }

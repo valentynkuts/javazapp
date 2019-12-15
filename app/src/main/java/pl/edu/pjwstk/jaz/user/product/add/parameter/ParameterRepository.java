@@ -30,12 +30,8 @@ public class ParameterRepository {
     @Transactional
     public void saveProductParam(ProductParameter parameter) {
         em.persist(parameter);
-//        if ((parameter.getParameter() == null) && (parameter.getProduct() == null)) {
-//            em.persist(parameter);
-//        } else {
-//            em.merge(parameter);
-//        }
     }
+
 
     @Transactional
     public List<Parameter> getParametertList(){
@@ -67,6 +63,19 @@ public class ParameterRepository {
         return em.createQuery("select pp from ProductParameter pp join Parameter p on pp.parameter.id = p.id and pp.product.id = :productId", ProductParameter.class)
                 .setParameter("productId", productId)
                 .getResultList();
+    }
+
+    @Transactional
+    public Parameter findParameterByName(String parameterName) {
+        return em.createQuery("select p from Parameter p where p.name = :parameterName", Parameter.class)
+                .setParameter("parameterName", parameterName)
+                .getSingleResult();
+    }
+    @Transactional
+    public ProductParameter findProductParamByIdByName(String valueParam,Long parameterId,Long productId){
+        return em.createQuery("select pp from ProductParameter pp where pp.parameter.id = :parameterId and pp.product.id = :productId and pp.value = :valueParam", ProductParameter.class)
+                .setParameter("parameterId", parameterId).setParameter("productId", productId).setParameter("valueParam", valueParam)
+                .getSingleResult();
     }
 
 }

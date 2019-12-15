@@ -8,22 +8,23 @@
 
 <h:body>
 
-    <ui:composition template="layout.xhtml">
+    <ui:composition template="templates/base.xhtml">
         <ui:define name="title">Welcom</ui:define>
         <ui:define name="content">
-            <h2>WELCOM</h2>
-            <h:messages>
-                <h:outputText value="#{loginController.welcomUserName()}"/>
-            </h:messages>
-           <!-- <h:link value="Go to add " outcome="add" /> -->
-            <div>
-                <h:outputLink value="user/addProduct.xhtml"> Go to add product </h:outputLink>
-            </div>
-
-            <div>
-                <h:outputLink value="user/listProduct.xhtml"> Go to list product </h:outputLink>
-            </div>
-
+            <h:panelGroup class="container">
+                <div class="row col-md-2 col-md-offset-5">
+                    <h2>WELCOM</h2>
+                    <h:messages>
+                        <h:outputText value="#{loginController.welcomUserName()}"/>
+                    </h:messages>
+                    <div>
+                        <h:outputLink value="user/addProduct.xhtml"> Go to add product </h:outputLink>
+                    </div>
+                    <div>
+                        <h:outputLink value="user/listProduct.xhtml"> Go to list product </h:outputLink>
+                    </div>
+                </div>
+            </h:panelGroup>
         </ui:define>
     </ui:composition>
 

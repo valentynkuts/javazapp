@@ -6,26 +6,22 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-
     <ui:composition template="../../templates/base.xhtml">
         <ui:param name="title" value="Section list"/>
-
         <ui:define name="content">
             <div class="w-25">
-                <h:link styleClass="btn-primary" value="Add" outcome="addSection"/>
+                <div><h:link styleClass="btn-primary" value="Add section" outcome="addSection"/></div>
+                <div><h:outputLink value="../protected.xhtml">HOME</h:outputLink></div>
                 <div class="list-group">
                     <ui:repeat value="#{listSectionController.getSectionList()}" var="section">
                         <h:link styleClass="list-group-item list-group-item-action" outcome="editSection">
                             <f:param name="sectionId" value="#{section.id}"/>
-
                             <h:outputText  value="##{section.id} - #{section.name}"/>
                         </h:link>
                     </ui:repeat>
                 </div>
             </div>
         </ui:define>
-
     </ui:composition>
-
 </h:body>
 </html>

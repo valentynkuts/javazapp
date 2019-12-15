@@ -23,7 +23,6 @@ public class EditCategoryController {
     public EditCategoryRequest getEditRequest() {
         if (editCategoryRequest == null) {
             editCategoryRequest = createEditCategoryRequest();
-            System.out.println("getEditRequest:"+editCategoryRequest.getId()+"   "+editCategoryRequest.getName()+"  "+editCategoryRequest.getSection());
         }
         return editCategoryRequest;
     }
@@ -38,7 +37,6 @@ public class EditCategoryController {
     }
 
     public String save() {
-       // System.out.println("save1:"+editCategoryRequest.getId()+"   "+editCategoryRequest.getName()+"  "+editCategoryRequest.getSection());
 
        var section = categoryService.getSectionFromCategory(editCategoryRequest.getId()).orElseThrow();
         categoryService.save(new Category(editCategoryRequest.getId(), editCategoryRequest.getName(),section));
