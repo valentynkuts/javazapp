@@ -33,6 +33,18 @@ public class SectionRepository {
     }
 
     @Transactional
+    public Long getSectionMinId(){
+        return em.createQuery("select min(s.id) from Section s", Long.class).getSingleResult();
+
+    }
+
+    @Transactional
+    public Section getSectionByMinId(){
+        return em.createQuery("select s from Section s where s.id = (select min(s.id) from Section s)", Section.class).getSingleResult();
+
+    }
+
+    @Transactional
     public List<Section> getSectionList(){
         return em.createQuery("select s from Section s", Section.class).getResultList();
     }
@@ -71,7 +83,5 @@ public class SectionRepository {
                 .setParameter("sectionName", sectionName)
                 .getSingleResult());
     }
-
-
 
 }

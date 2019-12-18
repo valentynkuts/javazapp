@@ -37,8 +37,12 @@ public class AddProductController {
             Long sectionId = getAddRequest().getSectionId();
             return productService.findCategoryBySectionId(sectionId);
         }
-        return productService.findCategoryBySectionId(3l); //TODO
-      //return new ArrayList<>(Collections.singletonList(new Category(1L,"-----",new Section(1L,"-----"))));
+        Long sectionMinId = productService.getSectionMinId();
+        return productService.findCategoryBySectionId(sectionMinId); //TODO
+        // return productService.findCategoryBySectionId(3l); //TODO
+
+
+        //return new ArrayList<>(Collections.singletonList(new Category(1L,"-----",new Section(1L,"-----"))));
       //return new ArrayList<>(Arrays.asList(new Category(1L,"-----",new Section(1L,"-----"))));
     }
 

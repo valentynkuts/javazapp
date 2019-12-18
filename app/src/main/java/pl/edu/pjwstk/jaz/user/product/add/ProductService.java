@@ -4,6 +4,7 @@ import pl.edu.pjwstk.jaz.admin.category.CategoryRepository;
 import pl.edu.pjwstk.jaz.admin.section.SectionRepository;
 import pl.edu.pjwstk.jaz.product.jpa.Category;
 import pl.edu.pjwstk.jaz.product.jpa.Product;
+import pl.edu.pjwstk.jaz.product.jpa.Section;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -32,5 +33,9 @@ public class ProductService {
 
     public Optional<Category> findCategoryById(Long categoryId) {
         return categoryRepository.findCategoryById(categoryId);
+    }
+
+    public Long getSectionMinId(){
+        return sectionRepository.getSectionMinId();
     }
 }
