@@ -27,7 +27,7 @@ public class CategoryConverter implements Converter {
             return "";
         }
         if (modelValue instanceof Category) {
-            // System.out.println(String.valueOf(((Category) modelValue).getId()));
+            System.out.println(String.valueOf(((Category) modelValue).getId()));
             return String.valueOf(((Category) modelValue).getId());
         } else {
             throw new ConverterException(new FacesMessage(modelValue + " is not a valid Category"));
@@ -42,7 +42,7 @@ public class CategoryConverter implements Converter {
             return null;
         }
         try {
-            //System.out.println(sectionRepository.findSectionById(Long.valueOf(submittedValue)));
+            System.out.println(categoryRepository.findCategoryById(Long.valueOf(submittedValue)));
             return categoryRepository.findCategoryById(Long.valueOf(submittedValue));
         } catch (NumberFormatException e) {
             throw new ConverterException(new FacesMessage(submittedValue + " is not a valid Warehouse ID"), e);
