@@ -32,6 +32,11 @@ public class ParameterRepository {
         em.persist(parameter);
     }
 
+    @Transactional
+    public void saveEditedProductParam(ProductParameter parameter) {
+        em.merge(parameter);
+    }
+
 
     @Transactional
     public List<Parameter> getParametertList(){
@@ -49,6 +54,13 @@ public class ParameterRepository {
         return em.createQuery("select p from ProductParameter p where p.product.id = :productId", ProductParameter.class)
                 .setParameter("productId", productId)
                 .getResultList();
+    }
+
+    @Transactional
+    public ProductParameter getProductParameterByProductIdParameterId(Long productId,Long parameterId) {
+        return em.createQuery("select p from ProductParameter p where p.product.id = :productId and p.parameter.id = :parameterId", ProductParameter.class)
+                .setParameter("productId", productId).setParameter("parameterId", parameterId)
+                .getSingleResult();
     }
 
     @Transactional

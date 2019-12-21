@@ -2,19 +2,27 @@ package pl.edu.pjwstk.jaz.user.product.edit;
 
 import pl.edu.pjwstk.jaz.ParamRetriever;
 import pl.edu.pjwstk.jaz.product.jpa.Photo;
+import pl.edu.pjwstk.jaz.product.jpa.Product;
 import pl.edu.pjwstk.jaz.product.jpa.ProductParameter;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Named
-@RequestScoped
-public class EditProductController {
+//@Named
+//@RequestScoped
+@ManagedBean
+@ViewScoped
+public class EditProductController implements Serializable {
+    private static final long serialVersionUID = 2;
+
     @Inject
     private EditProductService editProductService;
 
@@ -22,7 +30,7 @@ public class EditProductController {
     private ParamRetriever paramRetriever;
 
     private EditProductRequest editProductRequest;
-    private EditPhotoRequest editPhotoRequest;
+   // private EditPhotoRequest editPhotoRequest;
 
     public EditProductRequest getEditProductRequest() {
         if (editProductRequest == null) {
@@ -31,12 +39,12 @@ public class EditProductController {
         return editProductRequest;
     }
 
-    public EditPhotoRequest getEditPhotoRequest() {
-        if (editPhotoRequest == null) {
-            editPhotoRequest = new EditPhotoRequest();
-        }
-        return editPhotoRequest;
-    }
+//    public EditPhotoRequest getEditPhotoRequest() {
+//        if (editPhotoRequest == null) {
+//            editPhotoRequest = new EditPhotoRequest();
+//        }
+//        return editPhotoRequest;
+//    }
 
     private EditProductRequest createEditProductRequest() {
         if (paramRetriever.contains("productId")) {
@@ -62,27 +70,45 @@ public class EditProductController {
         //return new ArrayList<>(Collections.singletonList(new Photo()));
         // return editProductRequest.getPhotos();
     }
-//    public void changePhoto(String link){
-//        editProductRequest.getPhoto().setLink(link);
-//    }
 
-//    public void showPhotoId(){
-//        System.out.println("editProductRequest.id: "+ editProductRequest.getPhotoId());
-//    }
-    
-//    public String getlink(){
-//        List<Photo> photos = editProductRequest.getPhotos();
-//        for (Photo p :photos) {
-//            if(p.getId().equals(editProductRequest.getPhotoId())){
-//                return p.getLink();
-//            }
-//        }
-//        return "OOOOps";
-//    }
+    public Photo getPhotofromListbyId(){
+        System.out.println("PhotoId: "+editProductRequest.getPhotoId());  //todo
+        for (Photo photo: editProductRequest.getPhotos()) {
+            if (photo.getId() == editProductRequest.getPhotoId()) {
+                System.out.println("Photo link: "+photo.getLink()); //todo
+                System.out.println("photo id: "+photo.getId());
+                System.out.println("photo sequence: "+photo.getSequence());
+                System.out.println("product: "+photo.getProduct());
+                return photo;
+            }
+        }
 
+        return new Photo();          //TODO
+    }
+
+    public ProductParameter getProductParameterfromListbyId(){
+        //System.out.println("PhotoId: "+editProductRequest.getPhotoId());  //todo
+        for (ProductParameter productParameter: editProductRequest.getParameters()) {
+            if (productParameter.getProduct().getId() == editProductRequest.getId() && productParameter.getParameter().getId() == editProductRequest.getParameterId()) {
+                //System.out.println("Photo link: "+photo.getLink()); //todo
+                return productParameter;
+            }
+        }
+        return new ProductParameter();              //TODO
+    }
 
     public String save(){
-        //System.out.println("editPhotoRequest.id: "+ getEditProductRequest().getId());
+//        Product product = new Product(editProductRequest.getId(),editProductRequest.getTitle(),editProductRequest.getDescription(),
+//                editProductRequest.getPrice(),editProductRequest.getCategory(),editProductRequest.getOwnerId(),editProductRequest.getPhotos(),
+//                editProductRequest.getParameters());
+
+        editProductService.saveEditedProduct(new Product(editProductRequest.getId(),editProductRequest.getTitle(),editProductRequest.getDescription(),
+                editProductRequest.getPrice(),editProductRequest.getCategory(),editProductRequest.getOwnerId(),editProductRequest.getPhotos(),
+                editProductRequest.getParameters()));
+
+//        editProductService.saveProduct(new Product(editProductRequest.getId(),editProductRequest.getTitle(),editProductRequest.getDescription(),
+//                editProductRequest.getPrice(),editProductRequest.getCategory(),editProductRequest.getOwnerId(),editProductRequest.getPhotos(),
+//                editProductRequest.getParameters()));
         return "/user/listProduct.xhtml?faces-redirect=true";
     }
 }

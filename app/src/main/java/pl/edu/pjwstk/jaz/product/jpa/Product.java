@@ -36,7 +36,7 @@ public class Product {
 
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)//mappedBy??
     @JoinColumn(name = "product_id")
-    @OrderColumn(name = "sequence")//todo
+   // @OrderColumn(name = "sequence")//todo
     private List<Photo> photos ;
 
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)
@@ -56,8 +56,29 @@ public class Product {
 
     }
 
+    public Product(Long id,String title, String description, float price, Long ownerId, Category category) {
+        this.id  = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.ownerId = ownerId;
+
+    }
+
 
     public Product(String title, String description, float price, Category category, Long ownerId, List<Photo> photos, Collection<ProductParameter> parameters) {
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.ownerId = ownerId;
+        this.photos = photos;
+        this.parameters = parameters;
+    }
+
+    public Product(Long id,String title, String description, float price, Category category, Long ownerId, List<Photo> photos, Collection<ProductParameter> parameters) {
+        this.id  = id;
         this.title = title;
         this.description = description;
         this.price = price;

@@ -34,6 +34,13 @@ public class Photo {
         this.product = product;
     }
 
+    public Photo(Long id,String link, int sequence, Product product) {
+        this.id = id;
+        this.link = link;
+        this.sequence = sequence;
+        this.product = product;
+    }
+
     public int getSequence() {
         return sequence;
     }

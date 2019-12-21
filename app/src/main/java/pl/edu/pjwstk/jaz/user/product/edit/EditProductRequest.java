@@ -19,14 +19,16 @@ public class EditProductRequest {
     private List<Photo> photos ;
     private List<ProductParameter> parameters ;
 
+    //private Photo photo;
     private Long photoId;
-    private Photo photo;
+    private Long parameterId;
 
-    private ProductParameter productParameter;
+
+    //private ProductParameter productParameter;
 
     public EditProductRequest() {
-        productParameter = new ProductParameter();
-        photo = new Photo();
+        //productParameter = new ProductParameter();
+        //photo = new Photo();
     }
 
     public EditProductRequest(Long id, String title, String description, float price, Category category,
@@ -40,8 +42,8 @@ public class EditProductRequest {
         this.photos = photos;
         this.parameters = parameters;
 
-        productParameter = new ProductParameter();
-        photo = new Photo();
+       // productParameter = new ProductParameter();
+        //photo = new Photo();
 
     }
 
@@ -117,19 +119,27 @@ public class EditProductRequest {
         this.photoId = photoId;
     }
 
-    public Photo getPhoto() {
-        return photo;
+//    public Photo getPhoto() {
+//        return photo;
+//    }
+//
+//    public void setPhoto(Photo photo) {
+//        this.photo = photo;
+//    }
+
+//    public ProductParameter getProductParameter() {
+//        return productParameter;
+//    }
+//
+//    public void setProductParameter(ProductParameter productParameter) {
+//        this.productParameter = productParameter;
+//    }
+
+    public Long getParameterId() {
+        return parameterId;
     }
 
-    public void setPhoto(Photo photo) {
-        this.photo = photo;
-    }
-
-    public ProductParameter getProductParameter() {
-        return productParameter;
-    }
-
-    public void setProductParameter(ProductParameter productParameter) {
-        this.productParameter = productParameter;
+    public void setParameterId(Long parameterId) {
+        this.parameterId = parameterId;
     }
 }

@@ -45,20 +45,20 @@
                                 <h:outputLabel for="title">Title</h:outputLabel>
                                 <h:inputTextarea id="title"
                                                  value="#{editProductController.getEditProductRequest().title}"
-                                                 class="form-control" cols="30" rows="10"/>
+                                                 class="form-control" cols="30" rows="10" required="true"/>
                             </h:panelGroup>
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                                 <h:outputLabel for="description">Description</h:outputLabel>
                                 <h:inputTextarea id="description"
                                                  value="#{editProductController.getEditProductRequest().description}"
-                                                 class="form-control" cols="30" rows="10"/>
+                                                 class="form-control" cols="30" rows="10" required="true"/>
                             </h:panelGroup>
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                                 <h:outputLabel for="price">Price</h:outputLabel>
                                 <h:inputText id="price" value="#{editProductController.getEditProductRequest().price}"
-                                             class="form-control">
+                                             class="form-control" required="true">
                                     <f:validateDoubleRange minimum="0.01" maximum="99999.99"/>
                                 </h:inputText>
                             </h:panelGroup>
@@ -66,48 +66,46 @@
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                                 <h:outputLabel for="photolist">photo to select</h:outputLabel>
                                 <h:selectOneMenu class="form-control" id="photolist"
-                                                 value="#{editProductController.getEditProductRequest().getPhoto().id}">
+                                                 value="#{editProductController.getEditProductRequest().photoId}">
+                                    <f:selectItem itemValue="#{null}" itemLabel="-- select one --"/>
                                     <f:selectItems value="#{editProductController.getEditProductRequest().photos}"
                                                    var="photo"
                                                    itemValue="#{photo.id}"
                                                    itemLabel="#{photo.link}"/>
+                                    <f:ajax event="change" execute="photolist" render="photolink sequence"/>
                                 </h:selectOneMenu>
 
                                 <h:outputLabel for="photolink">Photo link</h:outputLabel>
                                 <h:inputText id="photolink"
-                                             value="#{editProductController.getEditProductRequest().getPhoto().link}"
+                                             value="#{editProductController.getPhotofromListbyId().link}"
+                                             class="form-control" required="true">
+                                </h:inputText>
+
+                                <h:outputLabel for="sequence">Order</h:outputLabel>
+                                <h:inputText id="sequence"
+                                             value="#{editProductController.getPhotofromListbyId().sequence}"
                                              class="form-control">
                                 </h:inputText>
                             </h:panelGroup>
-
-                            <!--                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">-->
-                            <!--                                <h:outputLabel for="photolist">photo to select</h:outputLabel>-->
-                            <!--                                <h:selectOneMenu class="form-control" id="photolist"-->
-                            <!--                                                 value="#{editProductController.getEditProductRequest().photoId}">-->
-                            <!--                                    <f:selectItems value="#{editProductController.getPhotoListByProductId()}"-->
-                            <!--                                                   var="photo"-->
-                            <!--                                                   itemValue="#{photo.id}"-->
-                            <!--                                                   itemLabel="#{photo.link}"/>-->
-                            <!--                                </h:selectOneMenu>-->
-                            <!--                            </h:panelGroup>-->
-
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                                 <h:outputLabel for="paramlist">Parameter to select</h:outputLabel>
                                 <h:selectOneMenu class="form-control" id="paramlist"
-                                                 value="#{editProductController.getEditProductRequest().getProductParameter().getParameter().id}">
+                                                 value="#{editProductController.getEditProductRequest().parameterId}">
+                                    <f:selectItem itemValue="#{null}" itemLabel="-- select one --"/>
                                     <f:selectItems value="#{editProductController.getEditProductRequest().parameters}"
                                                    var="productParameter"
                                                    itemValue="#{productParameter.parameter.id}"
                                                    itemLabel="#{productParameter.parameter.name}"/>
+                                    <f:ajax event="change" execute="paramlist" render="value"/>
                                 </h:selectOneMenu>
 
                                 <h:outputLabel for="value">value</h:outputLabel>
                                 <h:inputText id="value"
-                                             value="#{editProductController.getEditProductRequest().getProductParameter().value}"
-                                             class="form-control">
+                                             value="#{editProductController.getProductParameterfromListbyId().value}"
+                                             class="form-control" required="true">
                                 </h:inputText>
-                            </h:panelGroup>
+                            </h:panelGroup>-
 
                             <h:panelGroup class="row">
                                 <h:commandButton value="Edit" action="#{editProductController.save()}"
