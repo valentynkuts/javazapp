@@ -12,8 +12,9 @@
         <ui:define name="content">
             <h:panelGroup class="container">
                 <div class="row col-md-2 col-md-offset-5">
+
                     <h:outputLabel value="Hello, "/>
-                    <h:outputText value="#{loginController.welcomAdminName()}"/>
+                    <h:outputText value="#{testLoginController.welcomAdminName()}"/>
                     <div>
                         <h:outputLink value="section/addSection.xhtml">Add Section</h:outputLink>
                     </div>
@@ -25,6 +26,15 @@
                     </div>
                     <div>
                         <h:outputLink value="category/categoryList.xhtml">List of Category</h:outputLink>
+                    </div>
+                    <div>
+                        <h:form>
+                            <h:commandButton styleClass="btn btn-primary" value="Logout"
+                                             action="#{logoutController.logout}"/>
+                        </h:form>
+                    </div>
+                    <div>
+                        <h:outputLink value="../index.xhtml">MAIN PAGE</h:outputLink>
                     </div>
                 </div>
             </h:panelGroup>

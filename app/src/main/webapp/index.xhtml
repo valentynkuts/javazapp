@@ -15,13 +15,19 @@
                 <div class="row col-md-2 col-md-offset-5">
                     <h2>WELCOM</h2>
                     <h:messages>
-                        <h:outputText value="#{loginController.welcomUserName()}"/>
+                        <h:outputText value="#{testLoginController.welcomUserName()}"/>
                     </h:messages>
                     <div>
                         <h:outputLink value="user/addProduct.xhtml"> Go to add product </h:outputLink>
                     </div>
                     <div>
                         <h:outputLink value="user/listProduct.xhtml"> Go to list product </h:outputLink>
+                    </div>
+                    <div>
+                        <h:form>
+                            <h:commandButton styleClass="btn btn-primary" value="Logout"
+                                             action="#{logoutController.logout}"/>
+                        </h:form>
                     </div>
                 </div>
             </h:panelGroup>

@@ -16,7 +16,7 @@ import java.io.IOException;
 @Named
 @RequestScoped
 
-public class LoginController {
+public class TestLoginController {
     @Inject
     private LoginRequest loginRequest;
 
@@ -40,35 +40,37 @@ public class LoginController {
     public void login() throws IOException {
 
         if (loginRequest.isAttributesSet()) {
-            //ProfileEntity pe = null;
+            ProfileEntity pe = null;
             try {
-                ProfileEntity pe = pr.selectSingleResWithUsername(loginRequest.getUsername().trim());
+                pe = pr.selectSingleResWithUsername(loginRequest.getUsername().trim());
                 String passw = loginRequest.getPassword().trim();
 
                 if (BCrypt.checkpw(passw, pe.getPassword())) { //BCrypt.checkpw(candidate_password, stored_hash)
-
-                    FacesContext facesContext = FacesContext.getCurrentInstance();
-                    HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
-
                     if (pe.getRole().equals("standard")) {
+
+                        FacesContext facesContext = FacesContext.getCurrentInstance();
+                        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
 
                         session.setAttribute("name", pe.getName());
                         session.setAttribute("surname", pe.getSurname());
                         session.setAttribute("username", pe.getUsername());
                         session.setAttribute("id", pe.getId());
-                        // System.out.println("User id:"+session.getAttribute("id"));//TODO
+                       // System.out.println("User id:"+session.getAttribute("id"));//TODO
 
                         facesContext.getExternalContext().redirect("index.xhtml");
                     }
 
                     if (pe.getRole().equals("admin")) {
 
+                        FacesContext facesContext = FacesContext.getCurrentInstance();
+                        HttpSession session = (HttpSession) facesContext.getExternalContext().getSession(true);
+
+                        session.setAttribute("admin", pe.getName());
+
                         session.setAttribute("name", pe.getName());
                         session.setAttribute("surname", pe.getSurname());
                         session.setAttribute("username", pe.getUsername());
                         session.setAttribute("id", pe.getId());
-
-                        session.setAttribute("admin", pe.getName());
 
                         facesContext.getExternalContext().redirect("admin/protected.xhtml");
                     }

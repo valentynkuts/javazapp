@@ -39,13 +39,13 @@
                     </h:panelGroup>
 
                     <h:panelGroup class="row">
-                        <h:commandButton value="Login" action="#{loginController.login}"
+                        <h:commandButton value="Login" action="#{testLoginController.login}"
                                          class="btn col-md-2 col-md-offset-5"/>
                     </h:panelGroup>
 
                     <h:panelGroup class="row col-md-2 col-md-offset-5">
                         <!--    <h:messages > -->
-                        <h:outputText rendered="#{loginController.getIsUserExist()}" value="#{loginController.info()}"/>
+                        <h:outputText rendered="#{testLoginController.getIsUserExist()}" value="#{testLoginController.info()}"/>
                         <!-- </h:messages>  -->
                     </h:panelGroup>
 
