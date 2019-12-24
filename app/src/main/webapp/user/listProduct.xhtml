@@ -14,10 +14,25 @@
                     <div class="text-center">
                         <h:outputLink value="../index.xhtml"> HOME </h:outputLink>
                     </div>
+
+                    <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                                   styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+
                     <ui:repeat value="#{listProductController.getProductListByOwnerId()}" var="product">
                         <h:panelGroup styleClass="list-group-item list-group-item-action">
+
                             <h:panelGroup>
                                 <h:outputText value="#{product.title}" style="font-weight:bold"/>
+                            </h:panelGroup><br/>
+
+                            <h:panelGroup>
+                                <h:outputLabel style="font-weight:bold">Section</h:outputLabel><br/>
+                                <h:outputText value="#{product.category.section.name}"/>
+                            </h:panelGroup><br/>
+
+                            <h:panelGroup>
+                                <h:outputLabel style="font-weight:bold">Category</h:outputLabel><br/>
+                                <h:outputText value="#{product.category.name}"/>
                             </h:panelGroup><br/>
 
                             <h:panelGroup>
@@ -26,24 +41,27 @@
                             </h:panelGroup><br/>
 
                             <h:panelGroup>
-                                <h:outputLabel style="font-weight:bold">Price</h:outputLabel>
+                                <h:outputLabel style="font-weight:bold">Price</h:outputLabel><br/>
                                 <h:outputText value="#{product.price}"/>
                             </h:panelGroup><br/>
 
-                            <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}" var="productParameter">
+                            <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}"
+                                       var="productParameter">
                                 <h:panelGroup>
                                     <h:outputText
                                             value="#{productParameter.parameter.name} : #{productParameter.value}"/>
                                 </h:panelGroup><br/>
                             </ui:repeat>
 
-                            <ui:repeat value="#{listProductController.getPhotoListByProductId(product.id)}" var="photo">
+                            <ui:repeat value="#{listProductController.getPhotoByProductIdMinSequence(product.id)}" var="photo">
                                 <h:panelGroup>
-                                    <h:graphicImage value = "#{photo.link}" height="50px" width="50px" alt="Image not found"/>
-<!--                                    <h:graphicImage url="#{photo.link}" height="50px" width="50px" alt="Image not found"/>-->
-<!--                                    <h:outputText value="#{photo.id} - #{photo.link}"/>-->
+                                    <h:graphicImage value="#{photo.link}" height="50px" width="50px"
+                                                    alt="Image not found"/>
+                                    <!--                                    <h:graphicImage url="#{photo.link}" height="50px" width="50px" alt="Image not found"/>-->
+                                    <!--                                    <h:outputText value="#{photo.id} - #{photo.link}"/>-->
                                 </h:panelGroup><br/>
                             </ui:repeat>
+
 
                         </h:panelGroup>
 

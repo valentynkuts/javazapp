@@ -15,6 +15,10 @@
                 <h:panelGroup class="row col-md-2 col-md-offset-5">
                     <h2>Edit Product Form</h2>
                 </h:panelGroup>
+
+                <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                               styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+
                 <div class="row">
                     <div class="col">
                         <h:form class="form">
@@ -85,7 +89,8 @@
                                 <h:inputText id="sequence"
                                              value="#{editProductController.getPhotofromListbyId().sequence}"
                                              class="form-control">
-                                </h:inputText>
+<!--                                   <f:ajax event="keyup" listener="#{editProductController.messageSequenceExist()}"/>-->
+                               </h:inputText>
                             </h:panelGroup>
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">

@@ -39,6 +39,13 @@ public class ListProductService {
         return photoRepository.getPhotoListByProductId(productId);
     }
 
+    public Photo getPhotoByProductIdMinSequence1(Long productId) {
+        return photoRepository.getPhotoByProductIdMinSequence1(productId);
+    }
+    public List<Photo> getPhotoByProductIdMinSequence(Long productId) {
+        return photoRepository.getPhotoByProductIdMinSequence(productId);
+    }
+
     public List<ProductParameter> getParameterByProductId(Long productId) {
         return parameterRepository.getParameterByProductId(productId);
     }

@@ -8,6 +8,7 @@ import pl.edu.pjwstk.jaz.product.jpa.ProductParameter;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
@@ -30,7 +31,7 @@ public class EditProductController implements Serializable {
     private ParamRetriever paramRetriever;
 
     private EditProductRequest editProductRequest;
-   // private EditPhotoRequest editPhotoRequest;
+    // private EditPhotoRequest editPhotoRequest;
 
     public EditProductRequest getEditProductRequest() {
         if (editProductRequest == null) {
@@ -54,14 +55,14 @@ public class EditProductController implements Serializable {
             List<ProductParameter> productParameters = editProductService.getParameterByProductId(productId);
             List<Photo> photos = editProductService.getPhotoListByProductId(productId);
             //var photos = editProductService.getPhotoListByProductId(productId);
-            return new EditProductRequest(product.getId(), product.getTitle(), product.getDescription(), product.getPrice(),category,
+            return new EditProductRequest(product.getId(), product.getTitle(), product.getDescription(), product.getPrice(), category,
                     product.getOwnerId(), photos, productParameters);
         }
         return new EditProductRequest();
     }
 
-    public List<Photo> getPhotoListByProductId(){
-        if(getEditProductRequest().getId()!=null) {
+    public List<Photo> getPhotoListByProductId() {
+        if (getEditProductRequest().getId() != null) {
             Long productId = editProductRequest.getId();
             //System.out.println("productId:" + productId);
             return editProductService.getPhotoListByProductId(productId);
@@ -71,24 +72,44 @@ public class EditProductController implements Serializable {
         // return editProductRequest.getPhotos();
     }
 
-    public Photo getPhotofromListbyId(){
-        System.out.println("PhotoId: "+editProductRequest.getPhotoId());  //todo
-        for (Photo photo: editProductRequest.getPhotos()) {
+    public Photo getPhotofromListbyId() {
+        System.out.println("PhotoId: " + editProductRequest.getPhotoId());  //todo
+        for (Photo photo : editProductRequest.getPhotos()) {
             if (photo.getId() == editProductRequest.getPhotoId()) {
-                System.out.println("Photo link: "+photo.getLink()); //todo
-                System.out.println("photo id: "+photo.getId());
-                System.out.println("photo sequence: "+photo.getSequence());
-                System.out.println("product: "+photo.getProduct());
+                System.out.println("Photo link: " + photo.getLink()); //todo
+                System.out.println("photo id: " + photo.getId());
+                System.out.println("photo sequence: " + photo.getSequence());
+                System.out.println("product: " + photo.getProduct());
                 return photo;
             }
         }
-
         return new Photo();          //TODO
     }
 
-    public ProductParameter getProductParameterfromListbyId(){
+    public boolean doesEditedSequencePhotoExist() {
+        List<Photo> photolist = editProductRequest.getPhotos();
+        int size = photolist.size();
+        for (int i = 0; i < size; i++) {
+            for (int j = i + 1; j < size; j++) {
+                if (photolist.get(i).getSequence() == photolist.get(j).getSequence())
+                    return true;
+            }
+        }
+        return false;
+    }
+
+    public void messageSequenceExist(){
+        if(doesEditedSequencePhotoExist()) {
+            System.out.println("messageSequenceExist: true");  //todo
+            FacesContext.getCurrentInstance().getExternalContext().getFlash().put("error-message", "Sequence of Photo exist");
+        } else {
+            System.out.println("messageSequenceExist: false");  //todo
+        }
+    }
+
+    public ProductParameter getProductParameterfromListbyId() {
         //System.out.println("PhotoId: "+editProductRequest.getPhotoId());  //todo
-        for (ProductParameter productParameter: editProductRequest.getParameters()) {
+        for (ProductParameter productParameter : editProductRequest.getParameters()) {
             if (productParameter.getProduct().getId() == editProductRequest.getId() && productParameter.getParameter().getId() == editProductRequest.getParameterId()) {
                 //System.out.println("Photo link: "+photo.getLink()); //todo
                 return productParameter;
@@ -96,19 +117,34 @@ public class EditProductController implements Serializable {
         }
         return new ProductParameter();              //TODO
     }
+/*
 
-    public String save(){
+    public String save() {
 //        Product product = new Product(editProductRequest.getId(),editProductRequest.getTitle(),editProductRequest.getDescription(),
 //                editProductRequest.getPrice(),editProductRequest.getCategory(),editProductRequest.getOwnerId(),editProductRequest.getPhotos(),
 //                editProductRequest.getParameters());
 
-        editProductService.saveEditedProduct(new Product(editProductRequest.getId(),editProductRequest.getTitle(),editProductRequest.getDescription(),
-                editProductRequest.getPrice(),editProductRequest.getCategory(),editProductRequest.getOwnerId(),editProductRequest.getPhotos(),
+        editProductService.saveEditedProduct(new Product(editProductRequest.getId(), editProductRequest.getTitle(), editProductRequest.getDescription(),
+                editProductRequest.getPrice(), editProductRequest.getCategory(), editProductRequest.getOwnerId(), editProductRequest.getPhotos(),
                 editProductRequest.getParameters()));
 
 //        editProductService.saveProduct(new Product(editProductRequest.getId(),editProductRequest.getTitle(),editProductRequest.getDescription(),
 //                editProductRequest.getPrice(),editProductRequest.getCategory(),editProductRequest.getOwnerId(),editProductRequest.getPhotos(),
 //                editProductRequest.getParameters()));
         return "/user/listProduct.xhtml?faces-redirect=true";
+    }
+
+*/
+
+    public String save() {
+        if (!doesEditedSequencePhotoExist()) {
+            editProductService.saveEditedProduct(new Product(editProductRequest.getId(), editProductRequest.getTitle(), editProductRequest.getDescription(),
+                    editProductRequest.getPrice(), editProductRequest.getCategory(), editProductRequest.getOwnerId(), editProductRequest.getPhotos(),
+                    editProductRequest.getParameters()));
+            return "/user/listProduct.xhtml?faces-redirect=true";
+        } else {
+            FacesContext.getCurrentInstance().getExternalContext().getFlash()
+                    .put("error-message", "Sequence of Photo of product "+editProductRequest.getTitle()+" exist");
+            return "/user/listProduct.xhtml?faces-redirect=true";        }
     }
 }

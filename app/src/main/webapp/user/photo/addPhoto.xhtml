@@ -15,6 +15,10 @@
                 <h:panelGroup class="row col-md-2 col-md-offset-5">
                     <h2>Add Photo Form</h2>
                 </h:panelGroup>
+
+                <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                               styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+
                 <div class="row">
 
                     <h:form class="form">

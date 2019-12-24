@@ -5,6 +5,7 @@ import pl.edu.pjwstk.jaz.product.jpa.Photo;
 import pl.edu.pjwstk.jaz.product.jpa.Product;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
@@ -38,10 +39,27 @@ public class AddPhotoController {
         return photoService.getProductListByOwnerId(ownerId);
     }
 
+//    public String save() {
+//        var product = photoService.findProductById(addPhotoRequest.getProductId()).orElseThrow();
+//        photoService.save(new Photo(addPhotoRequest.getLink(),addPhotoRequest.getSequence(),product));
+//        return "/user/photo/addPhoto.xhtml?faces-redirect=true";
+//    }
+
     public String save() {
-        var product = photoService.findProductById(addPhotoRequest.getProductId()).orElseThrow();
-        photoService.save(new Photo(addPhotoRequest.getLink(),addPhotoRequest.getSequence(),product));
-        return "/user/photo/addPhoto.xhtml?faces-redirect=true";
+
+        Long productId = addPhotoRequest.getProductId();
+        int sequence = addPhotoRequest.getSequence();
+        var product = photoService.findProductById(productId).orElseThrow();
+
+        if (!photoService.doesSequencePhotoExist(sequence,productId)) {
+            photoService.save(new Photo(addPhotoRequest.getLink(),sequence,product));
+
+            return "/user/photo/addPhoto.xhtml?faces-redirect=true";
+        }else {
+            FacesContext.getCurrentInstance().getExternalContext().getFlash()
+                    .put("error-message", "Sequence of Photo exist");
+            return "/user/photo/addPhoto.xhtml?faces-redirect=true";
+        }
     }
 
 }

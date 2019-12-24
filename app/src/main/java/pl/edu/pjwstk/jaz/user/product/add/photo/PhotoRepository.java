@@ -27,14 +27,35 @@ public class PhotoRepository {
 
     @Transactional
     public List<Photo> getPhotoListByProductId(Long productId) {
-        return em.createQuery("select p from Photo p where p.product.id = :productId", Photo.class)
+        return em.createQuery("select p from Photo p where p.product.id = :productId order by p.sequence asc", Photo.class)
                 .setParameter("productId", productId)
                 .getResultList();
+    }
+
+    @Transactional
+    public  List<Photo> getPhotoByProductIdMinSequence(Long productId) {
+        return em.createQuery("select p from Photo p where p.sequence = (select min(p.sequence) from Photo p) and p.product.id = :productId", Photo.class)
+                .setParameter("productId", productId)
+                .getResultList();
+    }
+
+    @Transactional
+    public  Photo getPhotoByProductIdMinSequence1(Long productId) {
+        return em.createQuery("select p from Photo p where p.sequence = (select min(p.sequence) from Photo p) and p.product.id = :productId", Photo.class)
+                .setParameter("productId", productId)
+                .getSingleResult();
     }
     @Transactional
     public Optional<Photo> findPhotoById(Long photoId) {
         var photo = em.find(Photo.class, photoId);
         return Optional.ofNullable(photo);
+    }
+
+    @Transactional
+    public Photo findPhotoBySequenceProductId(int sequence,Long productId) {
+        return em.createQuery("select p from Photo p where p.product.id = :productId and p.sequence = :sequence", Photo.class)
+                .setParameter("productId", productId).setParameter("sequence", sequence)
+                .getSingleResult();
     }
 
 }
