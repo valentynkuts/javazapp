@@ -23,6 +23,8 @@ public class EditProductRequest {
     private Long photoId;
     private Long parameterId;
 
+    private Long version;
+
 
     //private ProductParameter productParameter;
 
@@ -31,8 +33,10 @@ public class EditProductRequest {
         //photo = new Photo();
     }
 
+
+
     public EditProductRequest(Long id, String title, String description, float price, Category category,
-                              Long ownerId, List<Photo> photos, List<ProductParameter> parameters) {
+                              Long ownerId, List<Photo> photos, List<ProductParameter> parameters, Long version) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -41,6 +45,7 @@ public class EditProductRequest {
         this.ownerId = ownerId;
         this.photos = photos;
         this.parameters = parameters;
+        this.version = version;
 
        // productParameter = new ProductParameter();
         //photo = new Photo();
@@ -141,5 +146,13 @@ public class EditProductRequest {
 
     public void setParameterId(Long parameterId) {
         this.parameterId = parameterId;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

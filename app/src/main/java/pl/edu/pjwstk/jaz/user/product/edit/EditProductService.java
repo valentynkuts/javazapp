@@ -64,10 +64,10 @@ public class EditProductService {
         }
 
         for (Photo photo : product.getPhotos()) {
-            System.out.println("photo id: "+photo.getId());
-            System.out.println("photo link: "+photo.getLink());
-            System.out.println("photo sequence: "+photo.getSequence());
-            System.out.println("product: "+product);
+            System.out.println("photo id: " + photo.getId());
+            System.out.println("photo link: " + photo.getLink());
+            System.out.println("photo sequence: " + photo.getSequence());
+            System.out.println("product: " + product);
             // photoRepository.save(new Photo(photo.getId(),photo.getLink(), photo.getSequence(), product));
 
             photoRepository.save(photo);
@@ -75,11 +75,24 @@ public class EditProductService {
         }
 
 
-
     }
 
-    public void saveProduct(Product product){
+    public void saveProduct(Product product) {
         productRepository.save(product);
+    }//todo
+
+    public void updateVersionProductPlusOne(Long productId) {
+        productRepository.updateVersionProductPlusOne(productId);
+    }
+
+    public Long getVersionProduct(Long productId) {
+        return productRepository.getVersionProduct(productId);
+    }
+
+    public boolean doesVersionDifferentForOne(Long productId,Long currentVersion){
+        Long updatedVersion = productRepository.getVersionProduct(productId);
+        long diff = updatedVersion - currentVersion;
+        return (diff == 1);
     }
 }
 

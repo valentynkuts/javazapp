@@ -78,8 +78,11 @@ public class AddProductController implements Serializable {
 //        System.out.println("Price: "+addProductRequest.getPrice());
 
         var category = productService.findCategoryById(addProductRequest.getCategoryId()).orElseThrow();
+        Long version = 1L;
         productService.save(new Product(addProductRequest.getTitle(),addProductRequest.getDescription(),
-                addProductRequest.getPrice(),getOwnerId(),category));
+                addProductRequest.getPrice(),getOwnerId(),category, version));
+//        productService.save(new Product(addProductRequest.getTitle(),addProductRequest.getDescription(),
+//                addProductRequest.getPrice(),getOwnerId(),category));
 
         //return "/user/addProduct.xhtml?faces-redirect=true";
         return "/user/parameter/addParameter.xhtml?faces-redirect=true";

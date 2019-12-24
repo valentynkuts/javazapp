@@ -34,6 +34,9 @@ public class Product {
     @Column(name = "creator_id")
     private Long ownerId;
 
+    @Column(name = "version")
+    private Long version;
+
     @OneToMany(cascade = CascadeType.PERSIST, orphanRemoval = true)//mappedBy??
     @JoinColumn(name = "product_id")
    // @OrderColumn(name = "sequence")//todo
@@ -47,12 +50,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(String title, String description, float price, Long ownerId, Category category) {
+    public Product(String title, String description, float price, Long ownerId, Category category, Long version) {
         this.title = title;
         this.description = description;
         this.price = price;
         this.category = category;
         this.ownerId = ownerId;
+        this.version = version;
 
     }
 
@@ -77,7 +81,21 @@ public class Product {
         this.parameters = parameters;
     }
 
-    public Product(Long id,String title, String description, float price, Category category, Long ownerId, List<Photo> photos, Collection<ProductParameter> parameters) {
+    public Product(Long id,String title, String description, float price, Category category, Long ownerId,
+                   List<Photo> photos, Collection<ProductParameter> parameters, Long version) {
+        this.id  = id;
+        this.title = title;
+        this.description = description;
+        this.price = price;
+        this.category = category;
+        this.ownerId = ownerId;
+        this.photos = photos;
+        this.parameters = parameters;
+        this.version = version;
+    }
+
+    public Product(Long id,String title, String description, float price, Category category, Long ownerId,
+                   List<Photo> photos, Collection<ProductParameter> parameters) {
         this.id  = id;
         this.title = title;
         this.description = description;
@@ -87,6 +105,7 @@ public class Product {
         this.photos = photos;
         this.parameters = parameters;
     }
+
 
     public Long getId() {
         return id;
@@ -150,5 +169,13 @@ public class Product {
 
     public void setOwnerId(Long ownerId) {
         this.ownerId = ownerId;
+    }
+
+    public Long getVersion() {
+        return version;
+    }
+
+    public void setVersion(Long version) {
+        this.version = version;
     }
 }

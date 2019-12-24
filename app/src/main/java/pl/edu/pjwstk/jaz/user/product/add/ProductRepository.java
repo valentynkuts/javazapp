@@ -51,5 +51,19 @@ public class ProductRepository {
                 .getSingleResult();
     }
 
+    @Transactional
+    public void updateVersionProductPlusOne(Long productId){
+        em.createQuery("update Product p set p.version = p.version + 1 where p.id = :productId")
+                .setParameter("productId", productId)
+                .executeUpdate();
+    }
+
+    @Transactional
+    public Long getVersionProduct(Long productId){
+       return em.createQuery("select p.version from Product p where p.id = :productId", Long.class)
+                .setParameter("productId", productId)
+                .getSingleResult();
+    }
+
 
 }

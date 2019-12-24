@@ -5,20 +5,13 @@ import pl.edu.pjwstk.jaz.product.jpa.Photo;
 import pl.edu.pjwstk.jaz.product.jpa.Product;
 import pl.edu.pjwstk.jaz.product.jpa.ProductParameter;
 
-import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.inject.Named;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-//@Named
-//@RequestScoped
 @ManagedBean
 @ViewScoped
 public class EditProductController implements Serializable {
@@ -31,7 +24,6 @@ public class EditProductController implements Serializable {
     private ParamRetriever paramRetriever;
 
     private EditProductRequest editProductRequest;
-    // private EditPhotoRequest editPhotoRequest;
 
     public EditProductRequest getEditProductRequest() {
         if (editProductRequest == null) {
@@ -40,12 +32,6 @@ public class EditProductController implements Serializable {
         return editProductRequest;
     }
 
-//    public EditPhotoRequest getEditPhotoRequest() {
-//        if (editPhotoRequest == null) {
-//            editPhotoRequest = new EditPhotoRequest();
-//        }
-//        return editPhotoRequest;
-//    }
 
     private EditProductRequest createEditProductRequest() {
         if (paramRetriever.contains("productId")) {
@@ -54,9 +40,11 @@ public class EditProductController implements Serializable {
             var category = editProductService.findCategoryByProductId(productId);
             List<ProductParameter> productParameters = editProductService.getParameterByProductId(productId);
             List<Photo> photos = editProductService.getPhotoListByProductId(productId);
+            Long version = editProductService.getVersionProduct(productId);
             //var photos = editProductService.getPhotoListByProductId(productId);
+            editProductService.updateVersionProductPlusOne(productId);// update version (+1)
             return new EditProductRequest(product.getId(), product.getTitle(), product.getDescription(), product.getPrice(), category,
-                    product.getOwnerId(), photos, productParameters);
+                    product.getOwnerId(), photos, productParameters, version);
         }
         return new EditProductRequest();
     }
@@ -76,10 +64,10 @@ public class EditProductController implements Serializable {
         System.out.println("PhotoId: " + editProductRequest.getPhotoId());  //todo
         for (Photo photo : editProductRequest.getPhotos()) {
             if (photo.getId() == editProductRequest.getPhotoId()) {
-                System.out.println("Photo link: " + photo.getLink()); //todo
-                System.out.println("photo id: " + photo.getId());
-                System.out.println("photo sequence: " + photo.getSequence());
-                System.out.println("product: " + photo.getProduct());
+//                System.out.println("Photo link: " + photo.getLink()); //todo
+//                System.out.println("photo id: " + photo.getId());
+//                System.out.println("photo sequence: " + photo.getSequence());
+//                System.out.println("product: " + photo.getProduct());
                 return photo;
             }
         }
@@ -137,7 +125,8 @@ public class EditProductController implements Serializable {
 */
 
     public String save() {
-        if (!doesEditedSequencePhotoExist()) {
+        boolean flag = editProductService.doesVersionDifferentForOne(editProductRequest.getId(),editProductRequest.getVersion());
+        if (!doesEditedSequencePhotoExist() && flag) {
             editProductService.saveEditedProduct(new Product(editProductRequest.getId(), editProductRequest.getTitle(), editProductRequest.getDescription(),
                     editProductRequest.getPrice(), editProductRequest.getCategory(), editProductRequest.getOwnerId(), editProductRequest.getPhotos(),
                     editProductRequest.getParameters()));

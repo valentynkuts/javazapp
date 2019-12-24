@@ -21,6 +21,7 @@ CREATE TABLE product
     price       NUMERIC(9, 2) NOT NULL,
     category_id BIGINT        NOT NULL,
     creator_id  BIGINT        NOT NULL,
+    version     BIGINT        DEFAULT 1,
 
     FOREIGN KEY (creator_id) REFERENCES profile (id),
     FOREIGN KEY (category_id) REFERENCES category (id)
