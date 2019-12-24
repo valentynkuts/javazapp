@@ -20,60 +20,77 @@
 
                     <ui:repeat value="#{listProductController.getProductListByOwnerId()}" var="product">
                         <h:panelGroup styleClass="list-group-item list-group-item-action">
+                            <div class="row">
 
-                            <h:panelGroup>
-                                <h:outputText value="#{product.title}" style="font-weight:bold"/>
-                            </h:panelGroup><br/>
+                                <div class="col">
+                                    <div class="col-xs-12 col-sm-2">
+                                        <ui:repeat
+                                                value="#{listProductController.getPhotoByProductIdMinSequence(product.id)}"
+                                                var="photo">
+                                            <h:panelGroup>
+                                                <h:graphicImage value="#{photo.link}" height="90px" width="130px"
+                                                                alt="Image not found"/>
+                                                <!--                                    <h:graphicImage url="#{photo.link}" height="50px" width="50px" alt="Image not found"/>-->
+                                                <!--                                    <h:outputText value="#{photo.id} - #{photo.link}"/>-->
+                                            </h:panelGroup><br/>
+                                        </ui:repeat>
+                                    </div>
+                                </div>
 
-                            <h:panelGroup>
-                                <h:outputLabel style="font-weight:bold">Section</h:outputLabel><br/>
-                                <h:outputText value="#{product.category.section.name}"/>
-                            </h:panelGroup><br/>
+                                <div class="col">
+                                    <div class="col-xs-12 col-sm-8">
+                                        <h:panelGroup>
+                                            <h:outputText value="#{product.title}" style="font-weight:bold"/>
+                                        </h:panelGroup><br/>
 
-                            <h:panelGroup>
-                                <h:outputLabel style="font-weight:bold">Category</h:outputLabel><br/>
-                                <h:outputText value="#{product.category.name}"/>
-                            </h:panelGroup><br/>
+                                        <h:panelGroup>
+                                            <h:outputLabel style="font-weight:bold">Section</h:outputLabel><br/>
+                                            <h:outputText value="#{product.category.section.name}"/>
+                                        </h:panelGroup><br/>
 
-                            <h:panelGroup>
-                                <h:outputLabel style="font-weight:bold">Description</h:outputLabel><br/>
-                                <h:outputText value="#{product.description}"/>
-                            </h:panelGroup><br/>
+                                        <h:panelGroup>
+                                            <h:outputLabel style="font-weight:bold">Category</h:outputLabel><br/>
+                                            <h:outputText value="#{product.category.name}"/>
+                                        </h:panelGroup><br/>
 
-                            <h:panelGroup>
-                                <h:outputLabel style="font-weight:bold">Price</h:outputLabel><br/>
-                                <h:outputText value="#{product.price}"/>
-                            </h:panelGroup><br/>
+                                        <h:panelGroup>
+                                            <h:outputLabel style="font-weight:bold">Description</h:outputLabel><br/>
+                                            <h:outputText value="#{product.description}"/>
+                                        </h:panelGroup><br/>
 
-                            <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}"
-                                       var="productParameter">
-                                <h:panelGroup>
-                                    <h:outputText
-                                            value="#{productParameter.parameter.name} : #{productParameter.value}"/>
-                                </h:panelGroup><br/>
-                            </ui:repeat>
+                                        <h:panelGroup>
+                                            <h:outputLabel style="font-weight:bold">Price</h:outputLabel><br/>
+                                            <h:outputText value="#{product.price}"/>
+                                        </h:panelGroup><br/>
 
-                            <ui:repeat value="#{listProductController.getPhotoByProductIdMinSequence(product.id)}" var="photo">
-                                <h:panelGroup>
-                                    <h:graphicImage value="#{photo.link}" height="50px" width="50px"
-                                                    alt="Image not found"/>
-                                    <!--                                    <h:graphicImage url="#{photo.link}" height="50px" width="50px" alt="Image not found"/>-->
-                                    <!--                                    <h:outputText value="#{photo.id} - #{photo.link}"/>-->
-                                </h:panelGroup><br/>
-                            </ui:repeat>
+                                        <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}"
+                                                   var="productParameter">
+                                            <h:panelGroup>
+                                                <h:outputText
+                                                        value="#{productParameter.parameter.name} : #{productParameter.value}"/>
+                                            </h:panelGroup><br/>
+                                        </ui:repeat>
+                                    </div>
+                                </div>
 
 
+                                <div class="col">
+                                    <div class="col-xs-12 col-sm-2">
+                                        <div>
+                                            <h:link class="btn btn-lg" value="Edit" outcome="editProduct">
+                                                <f:param name="productId" value="#{product.id}"/>
+                                            </h:link>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
                         </h:panelGroup>
-
-                        <div>
-                            <h:link class="btn btn-lg" value="Edit" outcome="editProduct">
-                                <f:param name="productId" value="#{product.id}"/>
-                            </h:link>
-                        </div>
                     </ui:repeat>
 
                 </div>
             </div>
+
         </ui:define>
 
     </ui:composition>

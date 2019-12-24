@@ -55,7 +55,7 @@ public class EditProductController implements Serializable {
             //System.out.println("productId:" + productId);
             return editProductService.getPhotoListByProductId(productId);
         }
-        return editProductService.getPhotoListByProductId(49l);//TODO
+        return editProductService.getPhotoListByProductId(49l);//TODO!!??
         //return new ArrayList<>(Collections.singletonList(new Photo()));
         // return editProductRequest.getPhotos();
     }
