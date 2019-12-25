@@ -126,12 +126,17 @@ public class EditProductController implements Serializable {
 
     public String save() {
         boolean flag = editProductService.doesVersionDifferentForOne(editProductRequest.getId(),editProductRequest.getVersion());
+        Long lastVersion = editProductService.getVersionProduct(editProductRequest.getId());
         if (!doesEditedSequencePhotoExist() && flag) {
             editProductService.saveEditedProduct(new Product(editProductRequest.getId(), editProductRequest.getTitle(), editProductRequest.getDescription(),
                     editProductRequest.getPrice(), editProductRequest.getCategory(), editProductRequest.getOwnerId(), editProductRequest.getPhotos(),
-                    editProductRequest.getParameters()));
+                    editProductRequest.getParameters(), lastVersion));
             return "/user/listProduct.xhtml?faces-redirect=true";
-        } else {
+        } else if(!flag){
+            FacesContext.getCurrentInstance().getExternalContext().getFlash()
+                    .put("error-message", "Version of product "+editProductRequest.getTitle()+" is out of date");
+            return "/user/listProduct.xhtml?faces-redirect=true";
+        }  else {
             FacesContext.getCurrentInstance().getExternalContext().getFlash()
                     .put("error-message", "Sequence of Photo of product "+editProductRequest.getTitle()+" exist");
             return "/user/listProduct.xhtml?faces-redirect=true";        }
