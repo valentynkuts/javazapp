@@ -23,31 +23,27 @@
                     <div class="col">
                         <h:form class="form">
 
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                                <h:outputLabel for="sectionlist">Section to select</h:outputLabel>
-                                <h:selectOneMenu class="form-control" id="sectionlist"
-                                                 value="#{editProductController.getEditProductRequest().sectionId}">
-                                    <f:selectItem itemValue="#{editProductController.getEditProductRequest().getCategory().getSection().id}"
-                                                  itemLabel="#{editProductController.getEditProductRequest().getCategory().getSection().name}"/>
-                                    <f:selectItems value="#{listSectionController.getSectionList()}" var="section"
-                                                   itemValue="#{section.id}"
-                                                   itemLabel="#{section.name}"/>
-                                    <f:ajax event="change" execute="sectionlist" render="categorylist"/>
-                                </h:selectOneMenu>
-                            </h:panelGroup>
+                            <!--                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">-->
+                            <!--                                <h:outputLabel for="sectionlist">Section to select</h:outputLabel>-->
+                            <!--                                <h:selectOneMenu class="form-control" id="sectionlist"-->
+                            <!--                                                 value="#{addProductController.getAddRequest().sectionId}">-->
+                            <!--                                    <f:selectItems value="#{listSectionController.getSectionList()}" var="section"-->
+                            <!--                                                   itemValue="#{section.id}"-->
+                            <!--                                                   itemLabel="#{section.name}"/>-->
+                            <!--                                    <f:ajax event="change" execute="sectionlist" render="categorylist"/>-->
+                            <!--                                </h:selectOneMenu>-->
+                            <!--                            </h:panelGroup>-->
 
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                                <h:outputLabel for="categorylist">Category to select</h:outputLabel>
-                                <f:selectItem itemValue="#{editProductController.getEditProductRequest().getCategory().id}"
-                                              itemLabel="#{editProductController.getEditProductRequest().getCategory().name}"/>
-                                <h:selectOneMenu class="form-control" id="categorylist"
-                                                 value="#{editProductController.getEditProductRequest().categoryId}">
-                                    <f:selectItems value="#{editProductController.getCategoryListBySectionId()}"
-                                                   var="category"
-                                                   itemValue="#{category.id}"
-                                                   itemLabel="#{category.name}"/>
-                                </h:selectOneMenu>
-                            </h:panelGroup>
+                            <!--                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">-->
+                            <!--                                <h:outputLabel for="categorylist">Category to select</h:outputLabel>-->
+                            <!--                                <h:selectOneMenu class="form-control" id="categorylist"-->
+                            <!--                                                 value="#{addProductController.getAddRequest().categoryId}">-->
+                            <!--                                    <f:selectItems value="#{addProductController.getCategoryListBySectionId()}"-->
+                            <!--                                                   var="category"-->
+                            <!--                                                   itemValue="#{category.id}"-->
+                            <!--                                                   itemLabel="#{category.name}"/>-->
+                            <!--                                </h:selectOneMenu>-->
+                            <!--                            </h:panelGroup>-->
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                                 <h:outputLabel for="title">Title</h:outputLabel>
@@ -84,20 +80,17 @@
                                 </h:selectOneMenu>
 
                                 <h:outputLabel for="photolink">Photo link</h:outputLabel>
-                                <h:inputText id="photolink" label="Photo link"
+                                <h:inputText id="photolink"
                                              value="#{editProductController.getPhotofromListbyId().link}"
-                                             class="form-control" required="true" requiredMessage="Please,Choose the link">
+                                             class="form-control" required="true">
                                 </h:inputText>
-                                <h:message for="photolink" style="color:red" />
 
                                 <h:outputLabel for="sequence">Order</h:outputLabel>
-                                <h:inputText id="sequence" label="Order"
+                                <h:inputText id="sequence"
                                              value="#{editProductController.getPhotofromListbyId().sequence}"
-                                             class="form-control" required="true" requiredMessage="Order must be more than 0">
-
-                                <!-- <f:ajax event="keyup" listener="#{editProductController.messageSequenceExist()}"/>-->
+                                             class="form-control" required="true">>
+                                    <!-- <f:ajax event="keyup" listener="#{editProductController.messageSequenceExist()}"/>-->
                                 </h:inputText>
-                                <h:message for="sequence" style="color:red" />
                             </h:panelGroup>
 
                             <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
@@ -113,12 +106,10 @@
                                 </h:selectOneMenu>
 
                                 <h:outputLabel for="value">value</h:outputLabel>
-                                <h:inputText id="value" label="Value"
+                                <h:inputText id="value"
                                              value="#{editProductController.getProductParameterfromListbyId().value}"
-                                             class="form-control"
-                                             required="true" requiredMessage="Please,Choose the Value">
+                                             class="form-control" required="true">
                                 </h:inputText>
-                                <h:message for="value" style="color:red" />
                             </h:panelGroup>-
 
                             <h:panelGroup class="row">

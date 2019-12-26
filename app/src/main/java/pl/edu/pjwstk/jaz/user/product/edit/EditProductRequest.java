@@ -12,8 +12,6 @@ public class EditProductRequest {
     private String description;
     private float price;
     private Category category;
-    //private Long sectionId;
-    //private Long categoryId;
 
     private Long ownerId;
     private List<Photo> photos ;
@@ -22,6 +20,9 @@ public class EditProductRequest {
     //private Photo photo;
     private Long photoId;
     private Long parameterId;
+
+    private Long sectionId;
+    private Long categoryId;
 
     private Long version;
 
@@ -154,5 +155,21 @@ public class EditProductRequest {
 
     public void setVersion(Long version) {
         this.version = version;
+    }
+
+    public Long getSectionId() {
+        return sectionId;
+    }
+
+    public void setSectionId(Long sectionId) {
+        this.sectionId = sectionId;
+    }
+
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
     }
 }

@@ -1,5 +1,7 @@
 package pl.edu.pjwstk.jaz.user.product.edit;
 
+import liquibase.structure.core.Column;
+import pl.edu.pjwstk.jaz.admin.category.CategoryRepository;
 import pl.edu.pjwstk.jaz.product.jpa.*;
 import pl.edu.pjwstk.jaz.user.product.add.ProductRepository;
 import pl.edu.pjwstk.jaz.user.product.add.parameter.ParameterRepository;
@@ -19,6 +21,8 @@ public class EditProductService {
     private PhotoRepository photoRepository;
     @Inject
     private ParameterRepository parameterRepository;
+    @Inject
+    private CategoryRepository categoryRepository;
 
 
     public List<Product> getProductListByOwnerId(Long ownerId) {
@@ -93,6 +97,19 @@ public class EditProductService {
         Long updatedVersion = productRepository.getVersionProduct(productId);
         long diff = updatedVersion - currentVersion;
         return (diff == 1);
+    }
+
+    public List<Category> findCategoryBySectionId(Long sectionId){
+        return categoryRepository.findCategoryBySectionId(sectionId);
+    }
+
+    public Optional<Category> findCategoryById(Long categoryId) {
+        return categoryRepository.findCategoryById(categoryId);
+    }
+
+    public  boolean doesCategoryChosen(Long categoryId){
+        Optional<Category> category = categoryRepository.findCategoryById(categoryId);
+        return category.isPresent();
     }
 }
 
