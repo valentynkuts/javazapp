@@ -25,6 +25,8 @@ public class EditProductRequest {
 
     private Long version;
 
+    private Photo tempPhoto;
+
 
     public EditProductRequest() {
     }
@@ -147,5 +149,13 @@ public class EditProductRequest {
 
     public void setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+    }
+
+    public Photo getTempPhoto() {
+        return tempPhoto;
+    }
+
+    public void setTempPhoto(Photo tempPhoto) {
+        this.tempPhoto = tempPhoto;
     }
 }

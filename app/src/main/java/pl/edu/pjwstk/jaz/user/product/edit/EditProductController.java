@@ -61,6 +61,7 @@ public class EditProductController implements Serializable {
     public Photo getPhotofromListbyId() {
         for (Photo photo : editProductRequest.getPhotos()) {
             if (photo.getId() == editProductRequest.getPhotoId()) {
+                editProductRequest.setTempPhoto(photo);
                 return photo;
             }
         }
@@ -110,16 +111,15 @@ public class EditProductController implements Serializable {
     }
 
     public boolean statePhotoIdSequence(Photo photo) {
-        if ((editProductRequest.getPhotoId() != null) && (photo.getSequence() <= 0L))
-        {
-            System.out.println("editProductRequest.getPhotoId(): "+editProductRequest.getPhotoId());
-            System.out.println("photo.getSequence(): "+photo.getSequence());
+        if ((editProductRequest.getPhotoId() != null) && (photo.getSequence() <= 0L)) {
+            System.out.println("editProductRequest.getPhotoId(): " + editProductRequest.getPhotoId());
+            System.out.println("photo.getSequence(): " + photo.getSequence());
             System.out.println("true");
             return true;
 
-        }else {
-            System.out.println("editProductRequest.getPhotoId(): "+editProductRequest.getPhotoId());
-            System.out.println("photo.getSequence(): "+photo.getSequence());
+        } else {
+            System.out.println("editProductRequest.getPhotoId(): " + editProductRequest.getPhotoId());
+            System.out.println("photo.getSequence(): " + photo.getSequence());
             System.out.println("false");
             return false;
 
@@ -128,7 +128,7 @@ public class EditProductController implements Serializable {
     }
 
     public boolean stateParameterIdValue(ProductParameter productParameter) {
-        if (editProductRequest.getParameterId()!= null && productParameter.getValue().isBlank())
+        if (editProductRequest.getParameterId() != null && productParameter.getValue().isBlank())
             return true;
         return false;
     }
@@ -161,7 +161,9 @@ public class EditProductController implements Serializable {
 
         } else {
             FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                    .put("error-message", "Sequence of Photo of product " + editProductRequest.getTitle() + " exist");
+                    .put("error-message", "Sequence " + editProductRequest.getTempPhoto().getSequence() +
+                            " of Photo " + editProductRequest.getTempPhoto().getLink() + " of product " + editProductRequest.getTitle() + " exist." +
+                            " Please edit again.");
             return "/user/listProduct.xhtml?faces-redirect=true";
         }
     }
