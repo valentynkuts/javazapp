@@ -17,7 +17,6 @@ public class EditProductRequest {
     private List<Photo> photos ;
     private List<ProductParameter> parameters ;
 
-    //private Photo photo;
     private Long photoId;
     private Long parameterId;
 
@@ -27,11 +26,7 @@ public class EditProductRequest {
     private Long version;
 
 
-    //private ProductParameter productParameter;
-
     public EditProductRequest() {
-        //productParameter = new ProductParameter();
-        //photo = new Photo();
     }
 
 
@@ -47,9 +42,6 @@ public class EditProductRequest {
         this.photos = photos;
         this.parameters = parameters;
         this.version = version;
-
-       // productParameter = new ProductParameter();
-        //photo = new Photo();
 
     }
 
@@ -124,22 +116,6 @@ public class EditProductRequest {
     public void setPhotoId(Long photoId) {
         this.photoId = photoId;
     }
-
-//    public Photo getPhoto() {
-//        return photo;
-//    }
-//
-//    public void setPhoto(Photo photo) {
-//        this.photo = photo;
-//    }
-
-//    public ProductParameter getProductParameter() {
-//        return productParameter;
-//    }
-//
-//    public void setProductParameter(ProductParameter productParameter) {
-//        this.productParameter = productParameter;
-//    }
 
     public Long getParameterId() {
         return parameterId;

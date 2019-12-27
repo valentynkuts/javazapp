@@ -24,7 +24,6 @@ public class PhotoConverter implements Converter {
             return "";
         }
         if (modelValue instanceof Photo) {
-            // System.out.println(String.valueOf(((Category) modelValue).getId()));
             return String.valueOf(((Photo) modelValue).getId());
         } else {
             throw new ConverterException(new FacesMessage(modelValue + " is not a valid Photo"));
@@ -39,7 +38,6 @@ public class PhotoConverter implements Converter {
             return null;
         }
         try {
-            //System.out.println(sectionRepository.findSectionById(Long.valueOf(submittedValue)));
             return photoRepository.findPhotoById(Long.valueOf(submittedValue));
         } catch (NumberFormatException e) {
             throw new ConverterException(new FacesMessage(submittedValue + " is not a valid Product ID"), e);

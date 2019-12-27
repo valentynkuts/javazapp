@@ -56,34 +56,20 @@ public class EditProductService {
 
     @Transactional
     public void saveEditedProduct(Product product) {
-//        productRepository.save(new Product(product.getId(),product.getTitle(), product.getDescription(),
-//                product.getPrice(), product.getOwnerId(), product.getCategory()));
         productRepository.save(product);
 
-
         for (ProductParameter productParameter : product.getParameters()) {
-//            parameterRepository.saveEditedProductParam(new ProductParameter(productParameter.getProduct(), productParameter.getParameter(),
-//                    productParameter.getValue()));
             parameterRepository.saveEditedProductParam(productParameter);
         }
 
         for (Photo photo : product.getPhotos()) {
-            System.out.println("photo id: " + photo.getId());
-            System.out.println("photo link: " + photo.getLink());
-            System.out.println("photo sequence: " + photo.getSequence());
-            System.out.println("product: " + product);
-            // photoRepository.save(new Photo(photo.getId(),photo.getLink(), photo.getSequence(), product));
-
             photoRepository.save(photo);
-
         }
-
-
     }
 
-    public void saveProduct(Product product) {
-        productRepository.save(product);
-    }//todo
+//    public void saveProduct(Product product) {
+//        productRepository.save(product);
+//    }//todo
 
     public void updateVersionProductPlusOne(Long productId) {
         productRepository.updateVersionProductPlusOne(productId);
@@ -93,13 +79,13 @@ public class EditProductService {
         return productRepository.getVersionProduct(productId);
     }
 
-    public boolean doesVersionDifferentForOne(Long productId,Long currentVersion){
+    public boolean doesVersionDifferentForOne(Long productId, Long currentVersion) {
         Long updatedVersion = productRepository.getVersionProduct(productId);
         long diff = updatedVersion - currentVersion;
         return (diff == 1);
     }
 
-    public List<Category> findCategoryBySectionId(Long sectionId){
+    public List<Category> findCategoryBySectionId(Long sectionId) {
         return categoryRepository.findCategoryBySectionId(sectionId);
     }
 
@@ -107,7 +93,7 @@ public class EditProductService {
         return categoryRepository.findCategoryById(categoryId);
     }
 
-    public  boolean doesCategoryChosen(Long categoryId){
+    public boolean doesCategoryChosen(Long categoryId) {
         Optional<Category> category = categoryRepository.findCategoryById(categoryId);
         return category.isPresent();
     }

@@ -34,16 +34,10 @@ public class AddPhotoController {
         return addPhotoRequest;
     }
 
-    public List<Product> getProductListByOwnerId(){
+    public List<Product> getProductListByOwnerId() {
         Long ownerId = getOwnerId();
         return photoService.getProductListByOwnerId(ownerId);
     }
-
-//    public String save() {
-//        var product = photoService.findProductById(addPhotoRequest.getProductId()).orElseThrow();
-//        photoService.save(new Photo(addPhotoRequest.getLink(),addPhotoRequest.getSequence(),product));
-//        return "/user/photo/addPhoto.xhtml?faces-redirect=true";
-//    }
 
     public String save() {
 
@@ -51,11 +45,11 @@ public class AddPhotoController {
         int sequence = addPhotoRequest.getSequence();
         var product = photoService.findProductById(productId).orElseThrow();
 
-        if (!photoService.doesSequencePhotoExist(sequence,productId)) {
-            photoService.save(new Photo(addPhotoRequest.getLink(),sequence,product));
+        if (!photoService.doesSequencePhotoExist(sequence, productId)) {
+            photoService.save(new Photo(addPhotoRequest.getLink(), sequence, product));
 
             return "/user/photo/addPhoto.xhtml?faces-redirect=true";
-        }else {
+        } else {
             FacesContext.getCurrentInstance().getExternalContext().getFlash()
                     .put("error-message", "Sequence of Photo exist");
             return "/user/photo/addPhoto.xhtml?faces-redirect=true";

@@ -33,15 +33,12 @@ public class AddCategoryController {
         Long sectionId = addCategoryRequest.getSectionId();
         String categoryName = addCategoryRequest.getName().trim();
 
-        if(!categoryService.doesCategoryExist(categoryName,sectionId)){
-//            var section = categoryService.findSectionById(addCategoryRequest.getSectionId()).orElseThrow();
-//            categoryService.save(new Category(addCategoryRequest.getId(), addCategoryRequest.getName(), section));
-
+        if (!categoryService.doesCategoryExist(categoryName, sectionId)) {
             var section = categoryService.findSectionById(sectionId).orElseThrow();
             categoryService.save(new Category(addCategoryRequest.getId(), categoryName, section));
 
             return "/admin/category/categoryList.xhtml?faces-redirect=true";
-        } else{
+        } else {
             FacesContext.getCurrentInstance().getExternalContext().getFlash()
                     .put("error-message", "Category exist in the Section");
             return "/admin/category/addCategory.xhtml?faces-redirect=true";

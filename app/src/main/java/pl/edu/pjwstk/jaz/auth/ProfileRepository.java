@@ -11,20 +11,6 @@ public class ProfileRepository {
     @PersistenceContext
     private EntityManager em;
 
-//    @Transactional
-//    public void sampleCodeWithPC() {
-//        var profile = new ProfileEntity("Test", "Surtest", "1234qQQQ",
-//                "test@gmail.com", "test1234", "02/12/1988");
-//
-//        em.persist(profile);
-//
-//        final ProfileEntity profileEntity = em.find(ProfileEntity.class, 7L);
-//        var list = em.createQuery("from ProfileEntity where name = :name", ProfileEntity.class)
-//                .setParameter("name", "pjanowiak2")
-//                .getResultList();
-//        System.out.println();
-//    }
-
     @Transactional
     public void insert(String name, String surname, String password, String email, String username, String birthday, String role) {
         var profile = new ProfileEntity(name, surname, password, email, username, birthday, role);
@@ -76,11 +62,4 @@ public class ProfileRepository {
                 .getSingleResult();
     }
 
-//    @Transactional
-//    public ProfileEntity deleteSingleResWithUsernamePassw(String username, String password) {
-//
-//        return em.createQuery("delete from ProfileEntity p where p.username = :username and p.password = :password", ProfileEntity.class)
-//                .setParameter("username", username).setParameter("password", password)
-//                .getSingleResult();
-//    }
 }

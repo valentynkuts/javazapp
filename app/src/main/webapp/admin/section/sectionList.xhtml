@@ -16,7 +16,7 @@
                     <ui:repeat value="#{listSectionController.getSectionList()}" var="section">
                         <h:link styleClass="list-group-item list-group-item-action" outcome="editSection">
                             <f:param name="sectionId" value="#{section.id}"/>
-                            <h:outputText  value="##{section.id} - #{section.name}"/>
+                            <h:outputText value="##{section.id} - #{section.name}"/>
                         </h:link>
                     </ui:repeat>
                 </div>

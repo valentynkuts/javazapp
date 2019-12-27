@@ -37,10 +37,8 @@ public class EditCategoryController {
     }
 
     public String save() {
-
-       var section = categoryService.getSectionFromCategory(editCategoryRequest.getId()).orElseThrow();
-        categoryService.save(new Category(editCategoryRequest.getId(), editCategoryRequest.getName(),section));
-
+        var section = categoryService.getSectionFromCategory(editCategoryRequest.getId()).orElseThrow();
+        categoryService.save(new Category(editCategoryRequest.getId(), editCategoryRequest.getName(), section));
         return "/admin/category/categoryList.xhtml?faces-redirect=true";
     }
 }

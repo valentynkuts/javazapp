@@ -23,7 +23,6 @@ public class ListProductController {
     private ParamRetriever paramRetriever;
 
     private ProductRequest productRequest;
-    //private HashMap<Integer,ProductRequest> ListProductRequest;
 
     public Long getOwnerId() {
         return paramRetriever.getLongUserId("id");

@@ -7,28 +7,9 @@ import javax.inject.Named;
 @RequestScoped
 public class LoginRequest {
 
-   // private String name;
-    //private String surname;
     private String password;
-    //private String email;
     private String username;
-    //private String birthday;
 
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
-//
-//    public String getSurname() {
-//        return surname;
-//    }
-//
-//    public void setSurname(String surname) {
-//        this.surname = surname;
-//    }
 
     public String getPassword() {
         return password;
@@ -38,14 +19,6 @@ public class LoginRequest {
         this.password = password;
     }
 
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
-
     public String getUsername() {
         return username;
     }
@@ -54,14 +27,6 @@ public class LoginRequest {
         this.username = username;
     }
 
-
-//    public String getBirthday() {
-//        return birthday;
-//    }
-//
-//    public void setBirthday(String birthday) {
-//        this.birthday = birthday;
-//    }
 
     public boolean isAttributesSet() {
         if (password != null && username != null)

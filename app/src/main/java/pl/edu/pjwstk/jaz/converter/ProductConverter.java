@@ -26,7 +26,6 @@ public class ProductConverter implements Converter {
             return "";
         }
         if (modelValue instanceof Product) {
-            // System.out.println(String.valueOf(((Category) modelValue).getId()));
             return String.valueOf(((Product) modelValue).getId());
         } else {
             throw new ConverterException(new FacesMessage(modelValue + " is not a valid Product"));
@@ -41,7 +40,6 @@ public class ProductConverter implements Converter {
             return null;
         }
         try {
-            //System.out.println(sectionRepository.findSectionById(Long.valueOf(submittedValue)));
             return productRepository.findProductById(Long.valueOf(submittedValue));
         } catch (NumberFormatException e) {
             throw new ConverterException(new FacesMessage(submittedValue + " is not a valid Product ID"), e);

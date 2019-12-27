@@ -7,7 +7,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 <h:body>
-    <ui:composition template="../layout.xhtml">
+    <ui:composition template="../templates/base.xhtml">
         <ui:define name="title">Edit Product page</ui:define>
         <ui:define name="content">
             <h:panelGroup class="container">
@@ -15,7 +15,7 @@
                 <h:panelGroup class="row col-md-2 col-md-offset-5">
                     <h2>Edit Product Form</h2>
                 </h:panelGroup>
-
+                <p style="color: #3c763d">You should select Photo and Parameter,even if you don't change that</p>
                 <h:outputLabel rendered="#{flash.containsKey('error-message')}"
                                styleClass="alert alert-danger" value="#{flash['error-message']}"/>
 

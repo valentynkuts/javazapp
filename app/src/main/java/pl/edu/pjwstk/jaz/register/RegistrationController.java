@@ -108,7 +108,4 @@ public class RegistrationController {
         return session.getAttribute("name") + "  " + session.getAttribute("surname");
 
     }
-
-
 }
-////1111Qqqq

@@ -50,25 +50,17 @@ public class EditProductController implements Serializable {
         return new EditProductRequest();
     }
 
-    public List<Photo> getPhotoListByProductId() {
-        if (getEditProductRequest().getId() != null) {
-            Long productId = editProductRequest.getId();
-            //System.out.println("productId:" + productId);
-            return editProductService.getPhotoListByProductId(productId);
-        }
-        return editProductService.getPhotoListByProductId(49l);//TODO!!??
-        //return new ArrayList<>(Collections.singletonList(new Photo()));
-        // return editProductRequest.getPhotos();
-    }
+//    public List<Photo> getPhotoListByProductId() {
+//        if (getEditProductRequest().getId() != null) {
+//            Long productId = editProductRequest.getId();
+//            return editProductService.getPhotoListByProductId(productId);
+//        }
+//        return editProductService.getPhotoListByProductId(49l);//TODO!!??
+//    }
 
     public Photo getPhotofromListbyId() {
-        System.out.println("PhotoId: " + editProductRequest.getPhotoId());  //todo
         for (Photo photo : editProductRequest.getPhotos()) {
             if (photo.getId() == editProductRequest.getPhotoId()) {
-//                System.out.println("Photo link: " + photo.getLink()); //todo
-//                System.out.println("photo id: " + photo.getId());
-//                System.out.println("photo sequence: " + photo.getSequence());
-//                System.out.println("product: " + photo.getProduct());
                 return photo;
             }
         }
@@ -97,10 +89,8 @@ public class EditProductController implements Serializable {
     }
 
     public ProductParameter getProductParameterfromListbyId() {
-        //System.out.println("PhotoId: "+editProductRequest.getPhotoId());  //todo
         for (ProductParameter productParameter : editProductRequest.getParameters()) {
             if (productParameter.getProduct().getId() == editProductRequest.getId() && productParameter.getParameter().getId() == editProductRequest.getParameterId()) {
-                //System.out.println("Photo link: "+photo.getLink()); //todo
                 return productParameter;
             }
         }
@@ -142,24 +132,6 @@ public class EditProductController implements Serializable {
             return true;
         return false;
     }
-/*
-
-    public String save() {
-//        Product product = new Product(editProductRequest.getId(),editProductRequest.getTitle(),editProductRequest.getDescription(),
-//                editProductRequest.getPrice(),editProductRequest.getCategory(),editProductRequest.getOwnerId(),editProductRequest.getPhotos(),
-//                editProductRequest.getParameters());
-
-        editProductService.saveEditedProduct(new Product(editProductRequest.getId(), editProductRequest.getTitle(), editProductRequest.getDescription(),
-                editProductRequest.getPrice(), editProductRequest.getCategory(), editProductRequest.getOwnerId(), editProductRequest.getPhotos(),
-                editProductRequest.getParameters()));
-
-//        editProductService.saveProduct(new Product(editProductRequest.getId(),editProductRequest.getTitle(),editProductRequest.getDescription(),
-//                editProductRequest.getPrice(),editProductRequest.getCategory(),editProductRequest.getOwnerId(),editProductRequest.getPhotos(),
-//                editProductRequest.getParameters()));
-        return "/user/listProduct.xhtml?faces-redirect=true";
-    }
-
-*/
 
     public String save() {
 
@@ -173,7 +145,6 @@ public class EditProductController implements Serializable {
 //                    Category category = editProductService.findCategoryById(editProductRequest.getCategoryId()).orElseThrow();
 //                    editProductRequest.setCategory(category);
 //                }
-
                 Category category = editProductService.findCategoryById(editProductRequest.getCategoryId()).orElseThrow();
                 editProductRequest.setCategory(category);
             }

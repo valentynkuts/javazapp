@@ -19,16 +19,12 @@ public class Category {
     private Section section;
 
     public Category() {
-       // this.section = new Section();
     }
 
     public Category(Long id, String name, Section section) {
         this.id = id;
         this.name = name;
         this.section = section;
-//        this.section = new Section();
-//        this.section.setId(section.getId());
-//        this.section.setName(section.getName());
     }
 
     public Long getId() {

@@ -25,24 +25,11 @@ public class SectionConverter implements Converter {
             return "";
         }
         if (modelValue instanceof Section) {
-            // System.out.println(String.valueOf(((Section) modelValue).getId()));
             return String.valueOf(((Section) modelValue).getId());
         } else {
             throw new ConverterException(new FacesMessage(modelValue + " is not a valid Section"));
         }
     }
-
-//    public String getAsString(FacesContext context, UIComponent component, Object modelValue) {
-//        if (modelValue == null) {
-//            return "";
-//        }
-//
-//        if (modelValue instanceof Warehouse) {
-//            return String.valueOf(((Warehouse) modelValue).getId());
-//        } else {
-//            throw new ConverterException(new FacesMessage(modelValue + " is not a valid Warehouse"));
-//        }
-//    }
 
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String submittedValue) throws ConverterException {
@@ -51,7 +38,6 @@ public class SectionConverter implements Converter {
             return null;
         }
         try {
-            //System.out.println(sectionRepository.findSectionById(Long.valueOf(submittedValue)));
             return sectionRepository.findSectionById(Long.valueOf(submittedValue));
         } catch (NumberFormatException e) {
             throw new ConverterException(new FacesMessage(submittedValue + " is not a valid Section ID"), e);

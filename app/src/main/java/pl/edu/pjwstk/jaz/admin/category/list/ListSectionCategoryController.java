@@ -17,7 +17,7 @@ public class ListSectionCategoryController {
     private CategoryService categoryService;
 
     public List<Category> getCategoryListBySectionId(Long sectionId) {
-        System.out.println("-------------  " + sectionId + "  -----------------");
+        //System.out.println("-------------  " + sectionId + "  -----------------");
         return categoryService.findCategoryBySectionId(sectionId);
     }
 
@@ -25,7 +25,7 @@ public class ListSectionCategoryController {
         return categoryService.findAll();
     }
 
-    public List<Section> getSectionListFromCategory(){
+    public List<Section> getSectionListFromCategory() {
         return categoryService.getSectionListFromCategory();
     }
 

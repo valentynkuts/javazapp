@@ -24,11 +24,11 @@ public class CategoryService {
 
     }
 
-    public Optional<Category> findCategoryById(Long categoryId){
-        return  categoryRepository.findCategoryById(categoryId);
+    public Optional<Category> findCategoryById(Long categoryId) {
+        return categoryRepository.findCategoryById(categoryId);
     }
 
-    public List<Category> findCategoryBySectionId(Long sectionId){
+    public List<Category> findCategoryBySectionId(Long sectionId) {
         return categoryRepository.findCategoryBySectionId(sectionId);
 
     }
@@ -41,26 +41,27 @@ public class CategoryService {
         return sectionRepository.findAll();
     }
 
-    public List<Category> findAll(){
+    public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
-    public List<Section> getSectionListFromCategory(){
+    public List<Section> getSectionListFromCategory() {
         return categoryRepository.getSectionListFromCategory();
     }
 
-    public Section getSectionFromCategory1(Long categoryId){
+    public Section getSectionFromCategory1(Long categoryId) {
         return categoryRepository.getSectionFromCategory1(categoryId);
     }
-    public Optional<Section> getSectionFromCategory(Long categoryId){
+
+    public Optional<Section> getSectionFromCategory(Long categoryId) {
         return categoryRepository.getSectionFromCategory(categoryId);
     }
 
-    public boolean doesCategoryExist(String categoryName,Long sectionId) {
+    public boolean doesCategoryExist(String categoryName, Long sectionId) {
         try {
             List<Category> categoryList = categoryRepository.findCategoryBySectionId(sectionId);
-            for (Category c:categoryList) {
-                if(c.getName().equals(categoryName))
+            for (Category c : categoryList) {
+                if (c.getName().equals(categoryName))
                     return true;
             }
             return false;

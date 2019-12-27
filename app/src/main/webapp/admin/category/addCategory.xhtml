@@ -24,7 +24,8 @@
 
                     <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                         <h:outputLabel for="section">Sections to select</h:outputLabel>
-                        <h:selectOneMenu class="form-control" id="section" value="#{addCategoryController.getAddRequest().sectionId}">
+                        <h:selectOneMenu class="form-control" id="section"
+                                         value="#{addCategoryController.getAddRequest().sectionId}">
                             <f:selectItems value="#{listSectionController.getSectionList()}" var="section"
                                            itemValue="#{section.id}"
                                            itemLabel="#{section.name}"/>
@@ -33,7 +34,8 @@
 
                     <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
                         <h:outputLabel for="categoryAdd">Category to Add</h:outputLabel>
-                        <h:inputText id="categoryAdd" value="#{addCategoryController.getAddRequest().name}" class="form-control" required="true">
+                        <h:inputText id="categoryAdd" value="#{addCategoryController.getAddRequest().name}"
+                                     class="form-control" required="true">
                         </h:inputText>
                     </h:panelGroup>
 

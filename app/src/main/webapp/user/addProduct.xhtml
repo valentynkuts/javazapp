@@ -16,70 +16,70 @@
                     <h2>Add Product Form</h2>
                 </h:panelGroup>
                 <div class="row">
-                        <h:form class="form">
+                    <h:form class="form">
 
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                                <h:outputLabel for="sectionlist">Section to select</h:outputLabel>
-                                <h:selectOneMenu class="form-control" id="sectionlist"
-                                                 value="#{addProductController.getAddRequest().sectionId}">
-                                    <f:selectItems value="#{listSectionController.getSectionList()}" var="section"
-                                                   itemValue="#{section.id}"
-                                                   itemLabel="#{section.name}"/>
-                                    <f:ajax event="change" execute="sectionlist" render="categorylist"/>
-                                </h:selectOneMenu>
-                            </h:panelGroup>
+                        <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                            <h:outputLabel for="sectionlist">Section to select</h:outputLabel>
+                            <h:selectOneMenu class="form-control" id="sectionlist"
+                                             value="#{addProductController.getAddRequest().sectionId}">
+                                <f:selectItems value="#{listSectionController.getSectionList()}" var="section"
+                                               itemValue="#{section.id}"
+                                               itemLabel="#{section.name}"/>
+                                <f:ajax event="change" execute="sectionlist" render="categorylist"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
 
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                                <h:outputLabel for="categorylist">Category to select</h:outputLabel>
-                                <h:selectOneMenu class="form-control" id="categorylist"
-                                                 value="#{addProductController.getAddRequest().categoryId}">
-                                    <f:selectItems value="#{addProductController.getCategoryListBySectionId()}"
-                                                   var="category"
-                                                   itemValue="#{category.id}"
-                                                   itemLabel="#{category.name}"/>
-                                </h:selectOneMenu>
-                            </h:panelGroup>
+                        <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                            <h:outputLabel for="categorylist">Category to select</h:outputLabel>
+                            <h:selectOneMenu class="form-control" id="categorylist"
+                                             value="#{addProductController.getAddRequest().categoryId}">
+                                <f:selectItems value="#{addProductController.getCategoryListBySectionId()}"
+                                               var="category"
+                                               itemValue="#{category.id}"
+                                               itemLabel="#{category.name}"/>
+                            </h:selectOneMenu>
+                        </h:panelGroup>
 
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                                <h:outputLabel for="title">Title</h:outputLabel>
-                                <h:inputTextarea id="title" value="#{addProductController.getAddRequest().title}"
-                                                 class="form-control" cols="20" rows="10" required="true"/>
-                            </h:panelGroup>
+                        <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                            <h:outputLabel for="title">Title</h:outputLabel>
+                            <h:inputTextarea id="title" value="#{addProductController.getAddRequest().title}"
+                                             class="form-control" cols="20" rows="10" required="true"/>
+                        </h:panelGroup>
 
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                                <h:outputLabel for="description">Description</h:outputLabel>
-                                <h:inputTextarea id="description"
-                                                 value="#{addProductController.getAddRequest().description}"
-                                                 class="form-control" cols="20" rows="10" required="true"/>
-                            </h:panelGroup>
+                        <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                            <h:outputLabel for="description">Description</h:outputLabel>
+                            <h:inputTextarea id="description"
+                                             value="#{addProductController.getAddRequest().description}"
+                                             class="form-control" cols="20" rows="10" required="true"/>
+                        </h:panelGroup>
 
-                            <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
-                                <h:outputLabel for="price">Price</h:outputLabel>
-                                <h:inputText id="price" value="#{addProductController.getAddRequest().price}"
-                                             class="form-control">
-                                    <f:validateDoubleRange minimum="0.01" maximum="100000.99"/>
-                                </h:inputText>
-                            </h:panelGroup>
+                        <h:panelGroup class="row form-group col-md-2 col-md-offset-5">
+                            <h:outputLabel for="price">Price</h:outputLabel>
+                            <h:inputText id="price" value="#{addProductController.getAddRequest().price}"
+                                         class="form-control">
+                                <f:validateDoubleRange minimum="0.01" maximum="100000.99"/>
+                            </h:inputText>
+                        </h:panelGroup>
 
-                            <h:panelGroup class="row">
-                                <h:commandButton value="Add" action="#{addProductController.save()}"
-                                                 class="btn col-md-2 col-md-offset-5"/>
-                            </h:panelGroup>
+                        <h:panelGroup class="row">
+                            <h:commandButton value="Add" action="#{addProductController.save()}"
+                                             class="btn col-md-2 col-md-offset-5"/>
+                        </h:panelGroup>
 
-                        </h:form>
-                        <div class="row col-md-2 col-md-offset-5">
-                            <div>
-                                <h:outputLink value="photo/addPhoto.xhtml"> Go to add Photo </h:outputLink>
-                            </div>
+                    </h:form>
+                    <div class="row col-md-2 col-md-offset-5">
+                        <div>
+                            <h:outputLink value="photo/addPhoto.xhtml"> Go to add Photo </h:outputLink>
+                        </div>
 
-                            <div>
-                                <h:outputLink value="parameter/addParameter.xhtml"> Go to add Parameter </h:outputLink>
-                            </div>
-                            <div>
-                                <h:outputLink value="../index.xhtml"> HOME </h:outputLink>
-                            </div>
+                        <div>
+                            <h:outputLink value="parameter/addParameter.xhtml"> Go to add Parameter </h:outputLink>
+                        </div>
+                        <div>
+                            <h:outputLink value="../index.xhtml"> HOME </h:outputLink>
                         </div>
                     </div>
+                </div>
             </h:panelGroup>
         </ui:define>
     </ui:composition>

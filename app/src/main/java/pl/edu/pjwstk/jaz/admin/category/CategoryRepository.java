@@ -35,12 +35,12 @@ public class CategoryRepository {
 
 
     @Transactional
-    public List<Category> getCategoryList(){
+    public List<Category> getCategoryList() {
         return em.createQuery("select c from Category c", Category.class).getResultList();
     }
 
     @Transactional
-    public List<Category> findAll(){
+    public List<Category> findAll() {
         return em.createQuery("from Category", Category.class).getResultList();
     }
 
@@ -62,20 +62,20 @@ public class CategoryRepository {
     }
 
     @Transactional
-    public List<Section> getSectionListFromCategory(){
+    public List<Section> getSectionListFromCategory() {
         return em.createQuery("select distinct s from Section s join Category c on c.section.id = s.id", Section.class).getResultList();
     }
 
     @Transactional
-    public Section getSectionFromCategory1(Long categoryId){
+    public Section getSectionFromCategory1(Long categoryId) {
         return em.createQuery("select s from Section s where s.id = (select c.section.id from Category c where c.id = :categoryId)", Section.class)
                 .setParameter("categoryId", categoryId)
                 .getSingleResult();
     }
 
     @Transactional
-    public  Optional<Section> getSectionFromCategory(Long categoryId){
-        var section =  em.createQuery("select s from Section s where s.id = (select c.section.id from Category c where c.id = :categoryId)", Section.class)
+    public Optional<Section> getSectionFromCategory(Long categoryId) {
+        var section = em.createQuery("select s from Section s where s.id = (select c.section.id from Category c where c.id = :categoryId)", Section.class)
                 .setParameter("categoryId", categoryId)
                 .getSingleResult();
         return Optional.ofNullable(section);

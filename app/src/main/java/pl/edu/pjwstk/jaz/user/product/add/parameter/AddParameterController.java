@@ -42,48 +42,45 @@ public class AddParameterController {
         Long ownerid = paramRetriever.getLongUserId("id");
         return ownerid;
     }
-    public List<Product> getProductListByOwnerId(){
+
+    public List<Product> getProductListByOwnerId() {
         Long ownerId = getOwnerId();
         return parameterService.getProductListByOwnerId(ownerId);
 
     }
 
-    public List<Parameter> getParametertList(){
+    public List<Parameter> getParametertList() {
         return parameterService.getParametertList();
     }
 
 
-    public String saveParameter(){
+    public String saveParameter() {
         String parameterName = addParameterRequest.getName().trim();
         if (!parameterService.doesParameterExist(parameterName)) {
-//        parameterService.saveParameter(new Parameter(addParameterRequest.getName()));
-        parameterService.saveParameter(new Parameter(parameterName));
+            parameterService.saveParameter(new Parameter(parameterName));
 
             return "/user/parameter/addParameter.xhtml?faces-redirect=true";
-        }
-        else {
+        } else {
             FacesContext.getCurrentInstance().getExternalContext().getFlash()
                     .put("error-message", "Name of Parameter exist");
             return "/user/parameter/addParameter.xhtml?faces-redirect=true";
         }
     }
 
-    public String saveProductParam()
-    {
+    public String saveProductParam() {
         var product = parameterService.findProductById(addProductParameterRequest.getProductId()).orElseThrow();
         var parameter = parameterService.findParameterById(addProductParameterRequest.getParameterId()).orElseThrow();
         String valueParam = addProductParameterRequest.getValue().trim();
         Long parameterId = parameter.getId();
         Long productId = product.getId();
-        if (!parameterService.doesProductParamExist(valueParam,parameterId,productId)) {
-//            parameterService.saveProductParam(new ProductParameter(product, parameter, addProductParameterRequest.getValue()));
+        if (!parameterService.doesProductParamExist(valueParam, parameterId, productId)) {
             parameterService.saveProductParam(new ProductParameter(product, parameter, valueParam));
 
             return "/user/parameter/addParameter.xhtml?faces-redirect=true";
-        }else {
-                FacesContext.getCurrentInstance().getExternalContext().getFlash()
-                        .put("error-message", "Value of the Parameter exist");
-                return "/user/parameter/addParameter.xhtml?faces-redirect=true";
-            }
+        } else {
+            FacesContext.getCurrentInstance().getExternalContext().getFlash()
+                    .put("error-message", "Value of the Parameter exist");
+            return "/user/parameter/addParameter.xhtml?faces-redirect=true";
+        }
     }
 }

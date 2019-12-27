@@ -8,12 +8,12 @@
 <h:body>
 
     <ui:composition template="../../templates/base.xhtml">
-        <ui:param name="title" value="Edit door"/>
+        <ui:param name="title" value="Edit Category"/>
         <ui:define name="content">
             <div class="text-center">
                 <div><h:outputLink value="../protected.xhtml">HOME</h:outputLink></div>
                 <h:form styleClass="form-base">
-                    <h:inputHidden value="#{editCategoryController.getEditRequest().id}" />
+                    <h:inputHidden value="#{editCategoryController.getEditRequest().id}"/>
                     <div class="form-group">
                         <h:inputText id="category-name" styleClass="form-control"
                                      value="#{editCategoryController.getEditRequest().name}" required="true"/>

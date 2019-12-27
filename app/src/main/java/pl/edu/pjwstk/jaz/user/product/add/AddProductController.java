@@ -45,18 +45,9 @@ public class AddProductController implements Serializable {
         }
         Long sectionMinId = productService.getSectionMinId();
         return productService.findCategoryBySectionId(sectionMinId); //TODO
-        // return productService.findCategoryBySectionId(3l); //TODO
 
 
-        //return new ArrayList<>(Collections.singletonList(new Category(1L,"-----",new Section(1L,"-----"))));
-      //return new ArrayList<>(Arrays.asList(new Category(1L,"-----",new Section(1L,"-----"))));
     }
-
-//    public List<Category> getCategoryListBySectionId() {
-//            Long sectionId = getAddRequest().getSectionId();
-//            return productService.findCategoryBySectionId(sectionId);
-//    }
-
 
     public Long getOwnerId() {
         Long ownerId = paramRetriever.getLongUserId("id");
@@ -70,21 +61,11 @@ public class AddProductController implements Serializable {
     }
 
     public String save() {
-//        System.out.println("OwnerId: "+getOwnerId());
-//        System.out.println("SectionId: "+addProductRequest.getSectionId());
-//        System.out.println("CategoryId: "+addProductRequest.getCategoryId());
-//        System.out.println("Title: "+addProductRequest.getTitle());
-//        System.out.println("Description: "+addProductRequest.getDescription());
-//        System.out.println("Price: "+addProductRequest.getPrice());
-
         var category = productService.findCategoryById(addProductRequest.getCategoryId()).orElseThrow();
         Long version = 1L;
-        productService.save(new Product(addProductRequest.getTitle(),addProductRequest.getDescription(),
-                addProductRequest.getPrice(),getOwnerId(),category, version));
-//        productService.save(new Product(addProductRequest.getTitle(),addProductRequest.getDescription(),
-//                addProductRequest.getPrice(),getOwnerId(),category));
+        productService.save(new Product(addProductRequest.getTitle(), addProductRequest.getDescription(),
+                addProductRequest.getPrice(), getOwnerId(), category, version));
 
-        //return "/user/addProduct.xhtml?faces-redirect=true";
         return "/user/parameter/addParameter.xhtml?faces-redirect=true";
     }
 }

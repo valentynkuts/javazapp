@@ -17,7 +17,7 @@ public class AddCategoryRequest {
         this.sectionId = sectionId;
     }
 
-        public Long getSectionId() {
+    public Long getSectionId() {
         return sectionId;
     }
 

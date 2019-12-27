@@ -16,13 +16,14 @@
                                styleClass="alert alert-danger" value="#{flash['error-message']}"/>
                 <div><h:outputLink value="../protected.xhtml">HOME</h:outputLink></div>
                 <h:form styleClass="form-base">
-                    <h:inputHidden value="#{editSectionController.getEditRequest().id}" />
+                    <h:inputHidden value="#{editSectionController.getEditRequest().id}"/>
                     <div class="form-group">
                         <h:inputText id="section-name" styleClass="form-control" placeholder="Section name"
                                      value="#{editSectionController.getEditRequest().name}" required="true"/>
                     </div>
 
-                    <h:commandButton styleClass="btn btn-primary" value="Save" action="#{editSectionController.save}"/><br/>
+                    <h:commandButton styleClass="btn btn-primary" value="Save"
+                                     action="#{editSectionController.save}"/><br/>
                 </h:form>
             </div>
         </ui:define>
