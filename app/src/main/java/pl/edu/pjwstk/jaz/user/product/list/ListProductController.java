@@ -52,8 +52,8 @@ public class ListProductController {
         return listProductService.getPhotoListByProductId(productId);
     }
 
-    public Photo getPhotoByProductIdMinSequence1(Long productId) {
-        return listProductService.getPhotoByProductIdMinSequence1(productId);
+    public Photo getPhotoByProductIdMinSequence2(Long productId) {
+        return listProductService.getPhotoByProductIdMinSequence2(productId);
     }
 
     public List<Photo> getPhotoByProductIdMinSequence(Long productId) {

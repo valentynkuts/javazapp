@@ -34,17 +34,25 @@ public class PhotoRepository {
 
     @Transactional
     public  List<Photo> getPhotoByProductIdMinSequence(Long productId) {
-        return em.createQuery("select p from Photo p where p.sequence = (select min(p.sequence) from Photo p) and p.product.id = :productId", Photo.class)
+        return em.createQuery("select p from Photo p where p.sequence = (select min(p.sequence) from Photo p where p.product.id = :productId) and p.product.id = :productId", Photo.class)
                 .setParameter("productId", productId)
                 .getResultList();
     }
 
-    @Transactional
-    public  Photo getPhotoByProductIdMinSequence1(Long productId) {
-        return em.createQuery("select p from Photo p where p.sequence = (select min(p.sequence) from Photo p) and p.product.id = :productId", Photo.class)
+    @Transactional////todo????
+    public  List<Photo> getPhotoByProductIdMinSequence1(Long productId) {
+        return em.createQuery("select p from Photo p where p.sequence = min(p.sequence) and p.product.id = :productId", Photo.class)
+                .setParameter("productId", productId)
+                .getResultList();
+    }
+
+    @Transactional////todo
+    public  Photo getPhotoByProductIdMinSequence2(Long productId) {
+        return em.createQuery("select p from Photo p where p.sequence = (select min(p.sequence) from Photo p where p.product.id = :productId) and p.product.id = :productId", Photo.class)
                 .setParameter("productId", productId)
                 .getSingleResult();
     }
+
     @Transactional
     public Optional<Photo> findPhotoById(Long photoId) {
         var photo = em.find(Photo.class, photoId);
