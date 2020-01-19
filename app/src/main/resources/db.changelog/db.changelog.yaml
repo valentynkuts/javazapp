@@ -1,5 +1,12 @@
 databaseChangeLog:
   - changeSet:
+      id: 20191025_init
+      author: Valentyn Kuts
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: 20191025_init.sql
+  - changeSet:
       id: 20191114_init
       author: Valentyn Kuts
       sqlFile:
@@ -13,3 +20,17 @@ databaseChangeLog:
         relativeToChangelogFile: true
         splitStatements: false
         path: 20191115_init.sql
+  - changeSet:
+      id: 20191125_init
+      author: Valentyn Kuts
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: 20191125_init.sql
+  - changeSet:
+      id: 20200116_init
+      author: Valentyn Kuts
+      sqlFile:
+        relativeToChangelogFile: true
+        splitStatements: false
+        path: 20200116_init.sql

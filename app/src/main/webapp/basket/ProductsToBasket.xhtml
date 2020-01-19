@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+    <ui:composition template="../templates/base.xhtml">
+        <ui:param name="title" value="Product list"/>
+        <ui:define name="content">
+            <div class="row">
+                <div class="list-group">
+                    <div class="text-center">
+                        <h:outputLink value="../index.xhtml"> HOME </h:outputLink>
+                    </div>
+
+                    <h:outputLabel rendered="#{flash.containsKey('error-message')}"
+                                   styleClass="alert alert-danger" value="#{flash['error-message']}"/>
+
+                    <ui:repeat value="#{listProductController.getProductListByOwnerId()}" var="product">
+                        <h:panelGroup styleClass="list-group-item list-group-item-action">
+                            <div class="row">
+
+                                <div class="col">
+                                    <div class="col-xs-12 col-sm-2">
+                                        <ui:repeat
+                                                value="#{listProductController.getPhotoByProductIdMinSequence(product.id)}"
+                                                var="photo">
+                                            <h:panelGroup>
+                                                <h:graphicImage value="#{photo.link}" height="90px" width="130px"
+                                                                alt="Image not found"/>
+                                                <!--                                    <h:graphicImage url="#{photo.link}" height="50px" width="50px" alt="Image not found"/>-->
+                                                <!--                                    <h:outputText value="#{photo.id} - #{photo.link}"/>-->
+                                            </h:panelGroup><br/>
+                                        </ui:repeat>
+                                    </div>
+                                </div>
+
+                                <div class="col">
+                                    <div class="col-xs-12 col-sm-8">
+                                        <h:panelGroup>
+                                            <h:outputText value="#{product.title}" style="font-weight:bold"/>
+                                        </h:panelGroup><br/>
+
+                                        <h:panelGroup>
+                                            <h:outputLabel style="font-weight:bold">Section</h:outputLabel><br/>
+                                            <h:outputText value="#{product.category.section.name}"/>
+                                        </h:panelGroup><br/>
+
+                                        <h:panelGroup>
+                                            <h:outputLabel style="font-weight:bold">Category</h:outputLabel><br/>
+                                            <h:outputText value="#{product.category.name}"/>
+                                        </h:panelGroup><br/>
+
+                                        <h:panelGroup>
+                                            <h:outputLabel style="font-weight:bold">Description</h:outputLabel><br/>
+                                            <h:outputText value="#{product.description}"/>
+                                        </h:panelGroup><br/>
+
+                                        <h:panelGroup>
+                                            <h:outputLabel style="font-weight:bold">Price</h:outputLabel><br/>
+                                            <h:outputText value="#{product.price}"/>
+                                        </h:panelGroup><br/>
+
+                                        <ui:repeat value="#{listProductController.getParameterByProductId(product.id)}"
+                                                   var="productParameter">
+                                            <h:panelGroup>
+                                                <h:outputText
+                                                        value="#{productParameter.parameter.name} : #{productParameter.value}"/>
+                                            </h:panelGroup><br/>
+                                        </ui:repeat>
+                                    </div>
+                                </div>
+
+
+                                <div class="col">
+                                    <div class="col-xs-12 col-sm-2">
+                                        <div>
+                                            <h:link class="btn btn-lg" value="Edit" outcome="editProduct">
+                                                <f:param name="productId" value="#{product.id}"/>
+                                            </h:link>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </h:panelGroup>
+                    </ui:repeat>
+
+                </div>
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+
+</h:body>
+</html>
+
+
