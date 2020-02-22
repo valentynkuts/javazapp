@@ -1,31 +1,29 @@
-package pl.edu.pjwstk.jaz.basket.jpa;
+package pl.edu.pjwstk.jaz.basket;
 
-
+import pl.edu.pjwstk.jaz.basket.jpa.Basket;
+import pl.edu.pjwstk.jaz.basket.jpa.BasketItem;
 import pl.edu.pjwstk.jaz.product.jpa.Product;
 
-import javax.persistence.*;
-import java.io.Serializable;
+import javax.persistence.Column;
 
-@Entity
-@Table(name = "basket_item")
-public class BasketItem implements Serializable {
-    @Id
-    @ManyToOne
-    @JoinColumn(name = "basket_id", nullable = false)
+public class BasketRequest {
     private Basket basket;
-
-    @Id
-    @OneToOne
-    @JoinColumn(name = "product_id",nullable = false)
     private Product product;
-
-    @Column(name = "amount")
     private Long amount;
 
-    public BasketItem() {
+    public BasketRequest() {
     }
 
-    public BasketItem(Basket basket, Product product, Long amount) {
+    public BasketRequest(Product product) {
+        this.product = product;
+    }
+
+    public BasketRequest(Basket basket, Product product) {
+        this.basket = basket;
+        this.product = product;
+    }
+
+    public BasketRequest(Basket basket, Product product, Long amount) {
         this.basket = basket;
         this.product = product;
         this.amount = amount;
@@ -53,5 +51,9 @@ public class BasketItem implements Serializable {
 
     public void setAmount(Long amount) {
         this.amount = amount;
+    }
+
+    public BasketItem toBasketItem() {
+        return new BasketItem(basket, product, amount);
     }
 }

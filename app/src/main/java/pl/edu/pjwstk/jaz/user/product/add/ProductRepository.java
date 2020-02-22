@@ -16,6 +16,11 @@ public class ProductRepository {
     private EntityManager em;
 
     @Transactional
+    public List<Product> getAllProducts() {
+        return em.createQuery("select p from Product p", Product.class).getResultList();
+    }
+
+    @Transactional
     public List<Product> getProductListByOwnerId(Long ownerId) {
         return em.createQuery("select p from Product p where p.ownerId = :ownerId", Product.class)
                 .setParameter("ownerId", ownerId)

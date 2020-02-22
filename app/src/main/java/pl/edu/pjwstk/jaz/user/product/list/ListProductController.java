@@ -27,11 +27,19 @@ public class ListProductController {
     public Long getOwnerId() {
         return paramRetriever.getLongUserId("id");
     }
+
     public ProductRequest getProductRequest() {
         if (productRequest == null) {
             productRequest = new ProductRequest();
         }
         return productRequest;
+    }
+
+    public List<Product> getProductsList() {
+        if(paramRetriever.contains("userId"))
+            return getProductListByOwnerId();
+
+        return listProductService.getAllProducts();
     }
 
     public List<Product> getProductListByOwnerId() {

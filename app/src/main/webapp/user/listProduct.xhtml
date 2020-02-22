@@ -18,7 +18,7 @@
                     <h:outputLabel rendered="#{flash.containsKey('error-message')}"
                                    styleClass="alert alert-danger" value="#{flash['error-message']}"/>
 
-                    <ui:repeat value="#{listProductController.getProductListByOwnerId()}" var="product">
+                    <ui:repeat value="#{listProductController.getProductsList()}" var="product">
                         <h:panelGroup styleClass="list-group-item list-group-item-action">
                             <div class="row">
 

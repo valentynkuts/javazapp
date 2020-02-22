@@ -21,6 +21,9 @@ public class ListProductService {
     @Inject
     private ParameterRepository parameterRepository;
 
+    public List<Product> getAllProducts() {
+        return productRepository.getAllProducts();
+    }
 
     public List<Product> getProductListByOwnerId(Long ownerId) {
         return productRepository.getProductListByOwnerId(ownerId);
@@ -28,7 +31,7 @@ public class ListProductService {
     }
 
     public List<ProductParameter> getProductParameterByProductId(Long productId) {
-       return parameterRepository.getProductParameterByProductId(productId);
+        return parameterRepository.getProductParameterByProductId(productId);
     }
 
     public List<Parameter> getParameterByParamId(Long parameterId) {
@@ -42,6 +45,7 @@ public class ListProductService {
     public Photo getPhotoByProductIdMinSequence2(Long productId) {
         return photoRepository.getPhotoByProductIdMinSequence2(productId);
     }
+
     public List<Photo> getPhotoByProductIdMinSequence(Long productId) {
         return photoRepository.getPhotoByProductIdMinSequence(productId);
     }
